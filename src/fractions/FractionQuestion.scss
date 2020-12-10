@@ -1,4 +1,34 @@
+// Flexbox cheat sheet:
+// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+/// thickness of the bar separating the numerator and denominator
+$bar-width: 0.1em;
+/// number of additional pixels the bar should extend past the numerator and denominator
+$bar-overhang: 2px;
+// size of gap between negative sign and the fraction body
+$frac-sign-space: 1px;
+
 .fraction {
     display: flex;
-    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+
+    .fraction-sign {
+        line-height: 2.5;
+        margin-right: $frac-sign-space;
+        // line-height: 2em + 4 * $bar-width;
+    }
+    .fraction-body {
+        display: flex;
+        flex-direction: column;
+    }
+    .bar {
+        // line-height: .6em;
+        margin: 0;
+        border-style: solid;
+        // border-width: $bar-width;
+    }
+    .number {
+        margin: 0 $frac-sign-space;
+    }
 }

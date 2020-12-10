@@ -1,4 +1,4 @@
-import { Fraction } from "./fraction"
+import { Fraction, gcd, floatToInt } from "./fraction"
 const SEED = 7403854
 
 describe("Fraction", () => {
@@ -79,5 +79,12 @@ describe("Fraction", () => {
         ])("should create %s from %d", (frac, dec) => {
             expect(Fraction.fromDecimal(dec).eq(frac)).toBeTruthy()
         })
+    })
+})
+
+describe("gcd", () => {
+    it("should work", () => {
+        expect(gcd(1, 1)).toBe(1)
+        expect(gcd(10, 5)).toBe(5)
     })
 })
