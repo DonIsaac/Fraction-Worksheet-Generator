@@ -10,10 +10,15 @@ function App() {
     new Fraction(5, 15),
     new Fraction(1, 3, true),
   ]
+  const testFractionsWithParens = [
+    new Fraction(7, 8),
+    new Fraction(4, 5, true)
+  ]
   return (
     <div className="App">
       <header className="App-header">
         {testFractions.map(f => <FractionComponent frac={f} key={f.toString()} />)}
+        {testFractionsWithParens.map(f => <FractionComponent frac={f} key={f.toString()} parens />)}
       </header>
     </div>
   )

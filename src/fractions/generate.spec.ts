@@ -1,7 +1,8 @@
-import { generateFraction, randomInt } from "./generate"
+import { generateFraction } from './fraction.gen'
+import { randomInt } from './util'
 
 describe("randomInt", () => {
-    it("is integer", () => {
+    it("generates integers", () => {
         const x = randomInt(5, 10)
         expect(Number.isInteger(x)).toBeTruthy()
     })
@@ -19,15 +20,5 @@ describe("randomInt", () => {
         it("should be less than to 10", () => {
             expect(x).toBeLessThan(10)
         })
-    })
-
-    it("integer within bounds", () => {
-        const x = randomInt(5, 10)
-        expect(x).toBeGreaterThanOrEqual(5)
-        expect(x).toBeLessThan(10)
-
-        const y = randomInt(-1, 100)
-        expect(y).toBeGreaterThanOrEqual(-1)
-        expect(y).toBeLessThan(100)
     })
 })

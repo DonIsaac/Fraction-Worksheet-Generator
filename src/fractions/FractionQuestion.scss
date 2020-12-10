@@ -5,26 +5,49 @@
 $bar-width: 0.1em;
 /// number of additional pixels the bar should extend past the numerator and denominator
 $bar-overhang: 2px;
-// size of gap between negative sign and the fraction body
-$frac-sign-space: 1px;
+/// size of gap between negative sign and the fraction body
+$frac-sign-space: 2px;
+/// line height to use to span the entire fraction from top to bottom
+$frac-height: 230%;
+/// space between the fraction body and the parenthesis
+$frac-margin: 3px;
 
 .fraction {
     display: flex;
-    align-items: stretch;
+    // align-items: center;
     justify-content: center;
 
+    .paren {
+        // line-height: $frac-height;
+        // font-size: $frac-height * 1em;
+        margin-top: -0.04 * $frac-height;
+        // margin-top: -0.04 * 2.5em;
+        font-size: $frac-height;
+        // vertical-align: middle;
+    }
     .fraction-sign {
-        line-height: 2.5;
+        line-height: $frac-height;
         margin-right: $frac-sign-space;
         // line-height: 2em + 4 * $bar-width;
     }
     .fraction-body {
         display: flex;
         flex-direction: column;
+
+        &:not(.negative) {
+            margin-left: $frac-margin;
+            margin-right: $frac-margin;
+        }
+
+        &.negative {
+            // margin-left: 12px + $frac-sign-space;
+            margin-right: $frac-margin + $frac-sign-space;
+
+        }
     }
     .bar {
         // line-height: .6em;
-        margin: 0;
+        margin: 0px;
         border-style: solid;
         // border-width: $bar-width;
     }

@@ -16,6 +16,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "classnames": "^2.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -24,6 +25,7 @@
     "web-vitals": "^0.2.4"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.11",
     "@types/react-router-dom": "^5.1.6",
     "node-sass": "^4.0.0"
   },
@@ -33,7 +35,10 @@
       "react-app/jest"
     ],
     "rules": {
-      "semi": ["warn", "never"]
+      "semi": [
+        "warn",
+        "never"
+      ]
     }
   },
   "browserslist": {

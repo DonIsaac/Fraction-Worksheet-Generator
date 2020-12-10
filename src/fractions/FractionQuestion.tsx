@@ -1,14 +1,15 @@
 import { FC } from "react"
 import { Fraction } from "./fraction"
+import classNames from "classnames"
 import "./FractionQuestion.scss"
 
 export interface FractionComponentProps {
     frac: Fraction
-    params?: boolean
+    parens?: boolean
 }
 
 export const FractionComponent: FC<FractionComponentProps> = ({
-    params = false,
+    parens = false,
     frac: {
         numerator,
         denominator,
@@ -16,17 +17,24 @@ export const FractionComponent: FC<FractionComponentProps> = ({
     }
 }) =>
     <div className="fraction">
+        {/* open parenthesis, if specified */}
+        {parens && <div className="paren fullheight">(</div>}
         {/* sign */}
         {isNegative && <div className="fraction-sign">-</div>}
+        {/* <div className="fraction-sign">{isNegative ? "-" : "\t"}</div> */}
         {/* Displays the numerator and denominator */}
-        <div className="fraction-body">
-            <span className="number numerator">
-                {numerator}
-            </span>
-            {/* <span style={{ lineHeight: "0.6em" }}>&#9473;</span> */}
-            <hr className="bar" />
-            <span className="number denominator">
-                {denominator}
-            </span>
+        <div className="fraction-body-wrapper">
+            <div className={classNames("fraction-body", { "negative": isNegative })}>
+                <span className="number numerator">
+                    {numerator}
+                </span>
+                <hr className="bar" />
+                <span className="number denominator">
+                    {denominator}
+                </span>
+            </div>
         </div>
+        {/* <div className="fraction-sign"></div> */}
+        {/* closing parenthesis, if specified */}
+        {parens && <div className="paren fullheight">)</div>}
     </div>
