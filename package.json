@@ -6,7 +6,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/",
+    "lint:fix": "yarn lint --fix",
+    "check": "tsc --noEmit",
+    "check:watch": "yarn check --watch",
+    "verify": "yarn lint && yarn check && yarn test",
+    "storybook": "start-storybook -p 6006 -s public",
+    "sb": "yarn storybook",
+    "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -25,9 +33,20 @@
     "web-vitals": "^0.2.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@storybook/addon-actions": "^6.1.11",
+    "@storybook/addon-essentials": "^6.1.11",
+    "@storybook/addon-links": "^6.1.11",
+    "@storybook/node-logger": "^6.1.11",
+    "@storybook/preset-create-react-app": "^3.1.5",
+    "@storybook/react": "^6.1.11",
     "@types/classnames": "^2.2.11",
     "@types/react-router-dom": "^5.1.6",
-    "node-sass": "^4.0.0"
+    "@types/seedrandom": "^2.4.28",
+    "babel-loader": "^8.2.2",
+    "node-sass": "^4.0.0",
+    "react-is": "^17.0.1",
+    "seedrandom": "^3.0.5"
   },
   "eslintConfig": {
     "extends": [
@@ -38,6 +57,17 @@
       "semi": [
         "warn",
         "never"
+      ],
+      "quotes": [
+        "warn",
+        "double"
+      ],
+      "indent": [
+        "warn",
+        4,
+        {
+          "SwitchCase": 1
+        }
       ]
     }
   },

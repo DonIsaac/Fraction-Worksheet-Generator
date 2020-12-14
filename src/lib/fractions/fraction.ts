@@ -53,7 +53,7 @@ export class Fraction {
             // Also returns false if numerator is NaN, infinity, not typeof "number", etc.
             !Number.isInteger(numerator)
         ) {
-            throw new RangeError("Numerator must be a finite integer greater than or equal to 0")
+            throw new RangeError(`Illegal numerator ${numerator}: must be a finite integer greater than or equal to 0`)
         }
 
         if (
@@ -61,7 +61,7 @@ export class Fraction {
             // Also returns false if numerator is NaN, infinity, not typeof "number", etc.
             !Number.isInteger(denominator)
         ) {
-            throw new RangeError("Denominator must be a positive finite integer")
+            throw new RangeError(`Illegal denominator ${denominator}: must be a positive finite integer`)
         }
 
         this.numerator = numerator

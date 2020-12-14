@@ -1,16 +1,4 @@
-// Flexbox cheat sheet:
-// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-
-/// thickness of the bar separating the numerator and denominator
-$bar-width: 0.1em;
-/// number of additional pixels the bar should extend past the numerator and denominator
-$bar-overhang: 2px;
-/// size of gap between negative sign and the fraction body
-$frac-sign-space: 2px;
-/// line height to use to span the entire fraction from top to bottom
-$frac-height: 230%;
-/// space between the fraction body and the parenthesis
-$frac-margin: 3px;
+@import "scss/variables.scss";
 
 .fraction {
     display: flex;
