@@ -1,4 +1,11 @@
-import { CSSProperties,  Dispatch, FC, FormEventHandler, InputHTMLAttributes, useState } from "react"
+import {
+    CSSProperties,
+    Dispatch,
+    FC,
+    FormEventHandler,
+    InputHTMLAttributes,
+    useState
+} from "react"
 import { Fraction } from "../../lib"
 import classNames from "classnames"
 import "./Fraction.scss"

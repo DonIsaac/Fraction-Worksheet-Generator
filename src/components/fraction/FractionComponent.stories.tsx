@@ -30,7 +30,8 @@ export default {
 } as Meta
 
 const parameters = {
-    controls: { expanded: true }
+    controls: { expanded: true },
+    jest: ["Fraction.spec.tsx"]
 }
 
 type FractionComponentStoryProps = {
