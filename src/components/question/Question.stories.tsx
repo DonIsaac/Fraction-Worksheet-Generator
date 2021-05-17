@@ -5,7 +5,7 @@ import { QuestionComponent, QuestionComponentProps } from "./Question"
 
 
 export default {
-    title: "Fractions/Question",
+    title: "Fractions/Questions",
     component: QuestionComponent,
 } as Meta
 

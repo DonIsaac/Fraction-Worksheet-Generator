@@ -19,7 +19,7 @@
         // line-height: 2em + 4 * $bar-width;
     }
     .fraction-body-wrapper {
-        display: block;
+        display: inline-block;
 
         .fraction-body {
             display: flex;

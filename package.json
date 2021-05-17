@@ -10,7 +10,7 @@
     "lint": "eslint src/",
     "lint:fix": "yarn lint --fix",
     "typecheck": "tsc --noEmit",
-    "typecheck:watch": "yarn check --watch",
+    "typecheck:watch": "yarn typecheck --watch",
     "verify": "yarn lint && yarn check && yarn test",
     "storybook": "start-storybook -p 6006 -s public",
     "sb": "yarn storybook",
