@@ -12,7 +12,7 @@ on:
     branches: [ master ]
     paths-ignore:
       - '*.md'
-    
+
 
 jobs:
   build:
@@ -34,7 +34,7 @@ jobs:
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-    - run: yarn --frozen --check-files
+    - run: yarn --frozen
     - run: yarn lint     # Check for style violations
     - run: yarn check    # Run TSC without outputting files or bundling. Type checking only
     - run: yarn test     # Run test suite

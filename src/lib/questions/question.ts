@@ -22,9 +22,9 @@ export function solveQuestion(q: Question, simplify = false): Fraction {
     }
 
     throw new Error("Not implemented")
-    const { operaton, left, right } = q
+    // const { operation , left, right } = q
 
-    switch (operaton) {
-        // case Operation.Addition: return solveQuestion(left, simplify) + solveQuestion(right, simplify)
-    }
+    // switch (operation) {
+    //     case Operation.Addition: return solveQuestion(left, simplify) + solveQuestion(right, simplify)
+    // }
 }

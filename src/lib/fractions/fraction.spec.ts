@@ -107,9 +107,9 @@ describe("Fraction", () => {
 
     describe(".strictEq(other)", () => {
         it.each([new Fraction(1, 2), new Fraction(4, 5, true)])
-            ("Fractions always equal themselves", frac => {
-                expect(frac.strictEq(frac)).toBeTruthy()
-            })
+        ("Fractions always equal themselves", frac => {
+            expect(frac.strictEq(frac)).toBeTruthy()
+        })
 
         it.each([
             [1, 2, false],
@@ -141,9 +141,9 @@ describe("Fraction", () => {
     describe(".eq(other)", () => {
 
         it.each([new Fraction(1, 2), new Fraction(4, 5, true)])
-            ("Fractions always equal themselves", frac => {
-                expect(frac.eq(frac)).toBeTruthy()
-            })
+        ("Fractions always equal themselves", frac => {
+            expect(frac.eq(frac)).toBeTruthy()
+        })
 
         it.each([
             [1, 2, false],
@@ -244,7 +244,7 @@ describe("Fraction", () => {
                 expect(lhs).toEqual(rhs)
             })
 
-            it(`Communative: ${a} + ${b} == ${b} + ${a}`, () => {
+            it(`Commutative : ${a} + ${b} == ${b} + ${a}`, () => {
                 expect(a.add(b)).toEqual(b.add(a))
             })
         })
