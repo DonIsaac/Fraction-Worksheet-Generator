@@ -9,6 +9,8 @@ import { Strategies, FractionGenerator, FractionGeneratorFactory } from "../type
 const MIXED_FRAC_SCALAR = 3
 
 /**
+ * Creates a random `Fraction`. The `Fraction` created may be constrained by
+ * various options.
  *
  * Options:
  * - `negative`: `true` to make the fraction negative, `false` otherwise.
@@ -17,13 +19,18 @@ const MIXED_FRAC_SCALAR = 3
  *   fraction.
  * @param gen the number generator used to create the numerator and denominator
  *            values
+ *
+ * @see Fraction
  */
 export const generateFraction: FractionGeneratorFactory = gen => ({
     negative,
     range,
     mixedFractions
 }): Fraction => {
+    // generate a random denominator value
     const denominator = gen(range)
+    // generate a random numerator value. Use random scalar to increase value if
+    // mixed values are desired
     const numerator = gen(range) * (mixedFractions
         ? randomInt(1, MIXED_FRAC_SCALAR)
         : 1)

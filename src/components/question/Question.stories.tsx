@@ -1,8 +1,7 @@
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from "@storybook/react/types-6-0"
-import { Fraction } from "../lib/fractions"
-import { Operation } from "../lib/types"
-import { QuestionComponent, QuestionComponentProps } from "./QuestionComponent"
+import { Operation, Fraction } from "../../lib"
+import { QuestionComponent, QuestionComponentProps } from "./Question"
 
 
 export default {

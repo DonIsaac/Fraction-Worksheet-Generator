@@ -1,10 +1,10 @@
 import { FC } from "react"
 import classNames from "classnames"
-import { Fraction, FractionComponent } from "../lib/fractions"
-import { Question } from "../lib/types"
-import { symbolFor } from "../lib/util"
+import { Fraction, Question } from "../../lib"
+import { FractionComponent } from "../fraction"
+import { symbolFor } from "../../lib/util"
 
-import "./QuestionComponent.scss"
+import "./Question.scss"
 
 export interface QuestionComponentProps {
     question: Question
@@ -12,11 +12,12 @@ export interface QuestionComponentProps {
 
 export const QuestionComponent: FC<QuestionComponentProps> = ({ question }) => (
     <div className="question">
-        <_QuestionComponent question={question} />
+        <LHS question={question} />
     </div>
 )
 
-const _QuestionComponent: FC<QuestionComponentProps> = ({ question }) => {
+/** Question's left hand side */
+const LHS: FC<QuestionComponentProps> = ({ question }) => {
     if (question instanceof Fraction) {
         return <FractionComponent frac={question} />
     }

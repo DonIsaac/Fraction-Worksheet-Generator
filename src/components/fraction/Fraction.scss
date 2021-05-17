@@ -1,0 +1,52 @@
+@import "../scss/variables.scss";
+@import "../scss/util.scss";
+
+.fraction {
+    @include frac-container;
+
+    .paren {
+        // line-height: $frac-height;
+        // font-size: $frac-height * 1em;
+        margin-top: -0.04 * $frac-height;
+        // margin-top: -0.04 * 2.5em;
+        font-size: $frac-height;
+        // vertical-align: middle;
+    }
+    .fraction-sign {
+        display: inline;
+        line-height: $frac-height;
+        margin-right: $frac-sign-space;
+        // line-height: 2em + 4 * $bar-width;
+    }
+    .fraction-body-wrapper {
+        display: block;
+
+        .fraction-body {
+            display: flex;
+            flex-direction: column;
+
+            .number {
+                display: inline-block;
+            }
+
+            &:not(.negative) {
+                margin-left: $frac-margin;
+                margin-right: $frac-margin;
+            }
+
+            &.negative {
+                // margin-left: 12px + $frac-sign-space;
+                margin-right: $frac-margin + $frac-sign-space;
+            }
+        }
+    }
+    .bar {
+        // line-height: .6em;
+        margin: 0px;
+        border-style: solid;
+        // border-width: $bar-width;
+    }
+    .number {
+        margin: 0 $frac-sign-space;
+    }
+}

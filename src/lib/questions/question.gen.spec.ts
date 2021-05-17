@@ -1,13 +1,14 @@
 import { generateQuestion } from "./question.gen"
 import { randomInt } from "../util"
-import { WorksheetConfig, Operation, Question } from "../types"
+import { WorksheetConfig, Operation } from "../types"
+import { Question } from "./question"
 import { Fraction } from "../fractions"
 
 const SEED = "some string to use as a seed"
 const TEST_ITERS = 16
 
 describe.each(Array(TEST_ITERS).fill(1))
-("generateQuestion", () => {
+("generateQuestion()", () => {
     let gen = ([min, max]: [number, number]) => randomInt(min, max)
 
     beforeAll(() => {
@@ -22,8 +23,8 @@ describe.each(Array(TEST_ITERS).fill(1))
 
     it("generates valid fractions with default parameters", () => {
         const question: Question = generateQuestion({operations: [Operation.Addition]})
-        expect(reduceQuestion(question, [])).toBeGreaterThanOrEqual(2)
-        expect(reduceQuestion(question, [])).toBeLessThanOrEqual(3)
+        expect(reduceQuestion(question, []).length).toBeGreaterThanOrEqual(2)
+        expect(reduceQuestion(question, []).length).toBeLessThanOrEqual(3)
 
     })
 })

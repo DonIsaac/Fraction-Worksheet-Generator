@@ -1,6 +1,5 @@
 import { generateFraction } from "./fraction.gen"
 import { randomInt } from "../util"
-import Seedrandom from "seedrandom"
 
 const SEED = "some string to use as a seed"
 const TEST_ITERS = 16

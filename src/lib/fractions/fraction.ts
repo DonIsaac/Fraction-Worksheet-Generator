@@ -1,31 +1,4 @@
-/**
- * Finds the greatest common divisor between two numbers
- *
- * @param a
- * @param b
- *
- * @see {@link https://en.wikipedia.org/wiki/Euclidean_algorithm Euclid's Algorithm}
- */
-export const gcd = (a: number, b: number): number =>
-    b <= 0
-        ? a
-        : gcd(b, a % b)
-
-/**
- * Multiplies a decimal by 10 until it is an integer
- *
- * ```ts
- * floatToInt(1.5) // => [15, 10]
- * floatToInt(7) // => [7, 1]
- * floatToInt(3.14) // => [314, 100]
- * ```
- * @param num
- * @param scale Used for recursive calls. Do not use this.
- */
-export const floatToInt = (num: number, scale: number = 1): [number, number] =>
-    Number.isInteger(num) && (num < Number.MAX_VALUE / 100)
-        ? [num, scale]
-        : floatToInt(num * 10, scale * 10)
+import { floatToInt, gcd, lcm } from "../util"
 
 export class Fraction {
 
@@ -40,7 +13,7 @@ export class Fraction {
         if (isNeg) num *= -1
         const [n, d] = floatToInt(num)
 
-        return new Fraction(n, d, isNeg)
+        return new Fraction(n, d, isNeg).simplify()
     }
 
     constructor(
@@ -75,27 +48,65 @@ export class Fraction {
     }
 
     public strictEq(other: Fraction) {
-        return this.numerator === other.numerator &&
-            this.denominator === other.denominator &&
-            this.isNegative === other.isNegative
+        // same object pointer
+        return this === other ||
+            // Both are 0
+            (this.numerator === 0 && other.numerator === 0) ||
+            // numerator, denominator, and sign are the same
+            (this.numerator === other.numerator &&
+                this.denominator === other.denominator &&
+                this.isNegative === other.isNegative)
     }
 
     public eq(other: Fraction): boolean {
         // return this.toDecimial() === other?.toDecimial()
-        return this.simplify().strictEq(other.simplify())
+        if (
+            this === other ||
+            (this.numerator === 0 && other.numerator === 0)
+        ) {
+            return true
+        } else {
+            return this.simplify().strictEq(other.simplify())
+        }
     }
     public equals = this.eq
+
+    public simplify(): Fraction {
+        if (!this.numerator) {
+            return new Fraction(0, this.denominator, false)
+        }
+
+        const divisor = gcd(this.numerator, this.denominator)
+
+        return new Fraction(
+            this.numerator / divisor,
+            this.denominator / divisor,
+            this.isNegative
+        )
+        // this.numerator /= divisor
+        // this.denominator /= divisor
+    }
+
+    public add(other: Fraction) {
+        const denom = lcm(this.denominator, other.denominator),
+            s1 = denom / this.denominator,
+            s2 = denom / other.denominator
+
+        const n1 = this.sign * this.numerator * s1,
+            n2 = other.sign * other.numerator * s2
+
+        const numerator = n1 + n2
+        const neg = numerator < 0
+
+        return new Fraction(Math.abs(numerator), denom, neg).simplify()
+    }
 
     public toString(): string {
         return (this.isNegative ? "-" : "") +
             `${this.numerator}/${this.denominator}`
     }
 
-    public simplify(): Fraction {
-        const divisor = gcd(this.numerator, this.denominator)
-
-        return new Fraction(this.numerator / divisor, this.denominator / divisor, this.isNegative)
-        // this.numerator /= divisor
-        // this.denominator /= divisor
+    private get sign(): number {
+        return this.isNegative ? -1 : 1
     }
 }

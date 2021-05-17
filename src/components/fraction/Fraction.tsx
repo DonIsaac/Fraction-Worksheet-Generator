@@ -1,7 +1,7 @@
 import { FC } from "react"
-import { Fraction } from "../lib/fractions/fraction"
+import { Fraction } from "../../lib"
 import classNames from "classnames"
-import "./FractionQuestion.scss"
+import "./Fraction.scss"
 
 export interface FractionComponentProps {
     frac: Fraction
@@ -18,9 +18,9 @@ export const FractionComponent: FC<FractionComponentProps> = ({
 }) => (
     <div className="fraction">
         {/* open parenthesis, if specified */}
-        {parens && <div className="paren fullheight">(</div>}
+        {parens && <span className="paren fullheight">(</span>}
         {/* sign */}
-        {isNegative && <div className="fraction-sign">-</div>}
+        {isNegative && <span className="fraction-sign">-</span>}
         {/* <div className="fraction-sign">{isNegative ? "-" : "\t"}</div> */}
         {/* Displays the numerator and denominator */}
         <div className="fraction-body-wrapper">
@@ -36,6 +36,6 @@ export const FractionComponent: FC<FractionComponentProps> = ({
         </div>
         {/* <div className="fraction-sign"></div> */}
         {/* closing parenthesis, if specified */}
-        {parens && <div className="paren fullheight">)</div>}
+        {parens && <span className="paren fullheight">)</span>}
     </div>
 )
