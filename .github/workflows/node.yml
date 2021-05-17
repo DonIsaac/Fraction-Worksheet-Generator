@@ -35,6 +35,6 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - run: yarn --frozen
-    - run: yarn lint     # Check for style violations
-    - run: yarn check    # Run TSC without outputting files or bundling. Type checking only
-    - run: yarn test     # Run test suite
+    - run: yarn lint      # Check for style violations
+    - run: yarn typecheck # Run TSC without outputting files or bundling. Type checking only
+    - run: yarn test      # Run test suite
