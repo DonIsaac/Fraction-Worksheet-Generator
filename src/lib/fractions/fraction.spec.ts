@@ -1,5 +1,5 @@
 import { Fraction } from "./fraction"
-const SEED = 7403854
+// const SEED = 7403854
 
 describe("Fraction", () => {
     describe("constructor", () => {
@@ -60,25 +60,6 @@ describe("Fraction", () => {
         [-0.5, new Fraction(1, 2, true)],
         [0, new Fraction(0, 1)],
     ])("#fromDecimal(%d) factory", (dec, frac) => {
-        // const randDecimalTestArray = (count: number) => {
-        //     let arr: Array<[Fraction, number]> | undefined
-
-        //     const genArray = () => {
-        //         const a: Array<[Fraction, number]> = []
-        //         for (let i = 0; i < count; i++) {
-        //             const n = Math.round(Math.random() * Number.MAX_SAFE_INTEGER)
-        //             const d = Math.round(Math.random() * Number.MAX_SAFE_INTEGER)
-        //             const isNeg = Math.random() < 0.5
-        //             const expected = (isNeg ? -1 : 1) * (n / d)
-        //             a.push([new Fraction(n, d, isNeg), expected])
-        //         }
-
-        //         return a
-        //     }
-
-        //     if (!arr) arr = genArray()
-        //     return arr
-        // }
 
         let actual: Fraction
 
@@ -91,7 +72,7 @@ describe("Fraction", () => {
         })
 
         it(".toDecimal() returns the original decimal", () => {
-            expect(actual.toDecimial()).toEqual(dec)
+            expect(actual.toDecimal()).toEqual(dec)
         })
     })
 
@@ -101,7 +82,7 @@ describe("Fraction", () => {
         [new Fraction(0, 2), 0]
     ])(".toDecimal(%s)", (frac, expected) => {
         it(`turns ${frac} into ${expected}`, () => {
-            expect(frac.toDecimial()).toEqual(expected)
+            expect(frac.toDecimal()).toEqual(expected)
         })
     })
 
@@ -244,7 +225,7 @@ describe("Fraction", () => {
                 expect(lhs).toEqual(rhs)
             })
 
-            it(`Commutative : ${a} + ${b} == ${b} + ${a}`, () => {
+            it(`Commutative: ${a} + ${b} == ${b} + ${a}`, () => {
                 expect(a.add(b)).toEqual(b.add(a))
             })
         })
@@ -267,6 +248,109 @@ describe("Fraction", () => {
             it(`== ${b}.add(${a}) (commutative)`, () => {
                 expect(actual).toEqual(b.add(a))
             })
+        })
+
+    })
+
+    describe(".sub(other)", () => {
+        describe.each([
+            [new Fraction(1, 2), new Fraction(1, 2), new Fraction(0, 2)],
+            [new Fraction(1, 2, false), new Fraction(1, 2, true), new Fraction(1, 1, false)],
+            [new Fraction(56, 68, false), new Fraction(21, 91, false), new Fraction(131, 221, false)]
+        ])("%s.sub(%s)", (a, b, expected) => {
+            let actual: Fraction
+
+            beforeAll(() => {
+                actual = a.sub(b)
+            })
+
+            it(`== ${expected}`, () => {
+                expect(actual).toEqual(expected)
+            })
+        })
+    })
+
+    describe(".mult(other)", () => {
+        const one = new Fraction(1, 1, false)
+
+        it.each([
+            new Fraction(0, 1, false),
+            new Fraction(983, 76, false),
+            new Fraction(5, 4, true)
+        ])("Identity property (%s)", f => {
+            expect(f.mult(one)).toEqual(f)
+        })
+
+        describe.each([
+            [new Fraction(1, 2), new Fraction(1, 2), new Fraction(1, 4)],
+            [new Fraction(3, 4), new Fraction(0, 1), new Fraction(0, 4)],
+            [new Fraction(11, 7, false), new Fraction(21, 5, true), new Fraction(33, 5, true)]
+        ])("%s.mult(%s)", (a, b, expected) => {
+            let actual: Fraction
+
+            beforeAll(() => {
+                actual = a.mult(b)
+            })
+
+            it(`== ${expected}`, () => {
+                expect(actual).toEqual(expected)
+            })
+
+            it(`== ${b}.mult(${a})`, () => {
+                let reverse = b.mult(a)
+                expect(actual).toEqual(reverse)
+            })
+
+        })
+    })
+
+    describe(".div(other)", () => {
+        const one = new Fraction(1, 1, false)
+
+        it.each([
+            new Fraction(0, 1, false),
+            new Fraction(983, 76, false),
+            new Fraction(5, 4, true)
+        ])("Identity property (%s)", f => {
+            expect(f.div(one)).toEqual(f)
+        })
+
+        describe.each([
+            [new Fraction(1, 2), new Fraction(1, 2), new Fraction(1, 1)],
+            [new Fraction(11, 7, false), new Fraction(21, 5, true), new Fraction(55, 147, true)]
+        ])("%s.div(%s)", (a, b, expected) => {
+            let actual: Fraction
+
+            beforeAll(() => {
+                actual = a.div(b)
+            })
+
+            it(`== ${expected}`, () => {
+                expect(actual).toEqual(expected)
+            })
+        })
+
+        it("0/2 % 1/2 = 0/2", () => {
+            const actual = new Fraction(0, 2).div(new Fraction(1, 2))
+            const expected = new Fraction(0, 2)
+            expect(actual).toEqual(expected)
+        })
+
+        it("throws an error when the second fraction is zero", () => {
+            expect(() => new Fraction(1, 2).div(new Fraction(0, 2))).toThrow()
+        })
+    })
+
+    describe(".reciprocal()", () => {
+        it.each([
+            [new Fraction(1, 2), new Fraction(2, 1)],
+            [new Fraction(12, 78, true), new Fraction(78, 12, true)]
+        ])("%s.reciprocal() == %s", (f, expected) => {
+            expect(f.reciprocal()).toEqual(expected)
+        })
+
+        it("throws if the numerator is zero", () => {
+            expect(() => new Fraction(0, 2).reciprocal()).toThrowError()
         })
     })
 })

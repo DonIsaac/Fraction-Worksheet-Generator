@@ -9,7 +9,7 @@ import {
     lcm
 } from "./util"
 
-describe("randomInt", () => {
+describe("randomInt([min, max])", () => {
     it("generates integers", () => {
         const x = randomInt(5, 10)
         expect(Number.isInteger(x)).toBeTruthy()
@@ -20,6 +20,7 @@ describe("randomInt", () => {
         expect(() => randomInt(10, 10)).toThrowError(RangeError)
         // can't be less
         expect(() => randomInt(10, 0)).toThrowError(RangeError)
+        expect(() => randomInt(-4, -8)).toThrowError(RangeError)
     })
 
     describe.each([
@@ -44,7 +45,7 @@ describe("randomInt", () => {
     })
 })
 
-describe("raise", () => {
+describe("raise(err)", () => {
     it("is a function", () => {
         expect(typeof raise).toBe("function")
     })
@@ -66,7 +67,7 @@ describe("raise", () => {
     })
 })
 
-describe("gcd", () => {
+describe("gcd(a, b)", () => {
     describe.each([
         [1, 1, 1],
         [7, 15, 1],
@@ -94,7 +95,7 @@ describe("gcd", () => {
     // })
 })
 
-describe("lcm", () => {
+describe("lcm(a, b)", () => {
     it.each([
         [5, 10, 10],
         [0, 55, 0]
@@ -103,7 +104,63 @@ describe("lcm", () => {
     })
 })
 
-describe("floatToInt", () => {
+describe("floatToInt(float)", () => {
+
+    xdescribe.each([
+        [-21, 5],
+        [-458, 404],
+        [-435, -273],
+        [348, 53],
+        [-426, 156],
+        [-24, 133],
+        [30, 46],
+        [436, -135],
+        [-202, 205],
+        [77, 39],
+        [-181, -491],
+        [-364, -361],
+        [-318, 407],
+        [368, -378],
+        [465, 105],
+        [-200, 105],
+        [443, 96],
+        [436, 431],
+        [-209, -390],
+        [158, 357],
+        [25, 3],
+        [-116, 424],
+        [-86, 59],
+        [-213, 149],
+        [-64, 7],
+        [-487, -438],
+        [-293, -73],
+        [-86, 207],
+        [-201, 113],
+        [380, 430],
+    ])("floatToInt(%d \u00f7 %d)", (a, b) => {
+        let actual: [number, number]
+
+        beforeAll(() => {
+            actual = floatToInt(a / b)
+        })
+
+        it("scaled number is an integer", () => {
+            expect(Number.isInteger(actual[0])).toBeTruthy()
+        })
+
+        it("scale factor is an integer", () => {
+            expect(Number.isInteger(actual[1])).toBeTruthy()
+        })
+
+        it("scale factor is positive", () => {
+            expect(actual[1]).toBeGreaterThan(0)
+        })
+
+        it("Multiplying the original input yields the scaled number", () => {
+            const recalculated = a / b * actual[1]
+            expect(actual[0]).toEqual(recalculated)
+        })
+    })
 
     describe.each([
         [1.5, 15, 10],
@@ -134,7 +191,7 @@ describe("floatToInt", () => {
     })
 })
 
-describe("times", () => {
+describe("times(n)(fn)", () => {
     let fn: jest.Mock
 
     beforeAll(() => {
@@ -146,10 +203,10 @@ describe("times", () => {
     })
 
     it.each([0, 1, 5, 20])
-    ("Calls a function a specified number of times", n => {
-        times(n)(fn)
-        expect(fn).toBeCalledTimes(n)
-    })
+        ("Calls a function a specified number of times", n => {
+            times(n)(fn)
+            expect(fn).toBeCalledTimes(n)
+        })
 
     it("Passes the iteration number as an argument", () => {
         let n = 0
@@ -165,7 +222,7 @@ describe("times", () => {
     })
 })
 
-describe("symbolFor", () => {
+describe("symbolFor(op)", () => {
     describe.each([
         Operation.Addition,
         Operation.Subtraction,

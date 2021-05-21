@@ -21,8 +21,11 @@ export const generateQuestion: (args: WorksheetConfig) => Question =
     })
 
 type GenQuestionArgs = Required<Omit<WorksheetConfig, "strategy" | "countRange" | "operations">> & {
+    /** The fraction factory to use */
     gen: FractionGenerator
+    /** The number of fractions in the question */
     count: number
+    /** Arithmetic operation for this question subsection */
     operation: Operation
 }
 const _genQuestion: (args: GenQuestionArgs) => Question = args => {

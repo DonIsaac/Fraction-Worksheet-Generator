@@ -38,6 +38,7 @@ export const floatToInt = (num: number, scale: number = 1): [number, number] =>
     Number.isInteger(num) && (num < Number.MAX_VALUE / 100)
         ? [num, scale]
         : floatToInt(num * 10, scale * 10)
+
 /**
  * Generates a random integer between `min` (inclusive) and `max` (exclusive).
  *
@@ -51,7 +52,7 @@ export const randomInt = (min: number, max: number): number =>
     max > min
         ? Math.floor(Math.random() * (max - min)) + min
         : raise(new RangeError("Range max must be greater than the min"))
-    
+
 
 /**
  * Calls a function a certain number of times
