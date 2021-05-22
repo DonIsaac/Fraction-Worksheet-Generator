@@ -16,6 +16,10 @@ export class Fraction {
         return new Fraction(n, d, isNeg).simplify()
     }
 
+    public numerator: number
+    public denominator: number
+    public isNegative: boolean
+
     /**
      * Creates a new `Fraction`.
      *
@@ -24,29 +28,29 @@ export class Fraction {
      * @param isNegative    `true` to make the fraction negative, `false` to make it positive.
      */
     constructor(
-        public numerator: number,
-        public denominator: number,
-        public isNegative = false
+        numerator: number,
+        denominator: number = 1,
+        isNegative: boolean | null = null
     ) {
         if (
-            numerator < 0 ||
-            // Also returns false if numerator is NaN, infinity, not typeof "number", etc.
             !Number.isInteger(numerator)
         ) {
             throw new RangeError(`Illegal numerator ${numerator}: must be a finite integer greater than or equal to 0`)
         }
+        if (numerator < 0 && isNegative === false) {
+            throw new Error("Numerator value was negative, but fraction was explicitly declared positive")
+        }
 
         if (
             denominator <= 0 ||
-            // Also returns false if numerator is NaN, infinity, not typeof "number", etc.
             !Number.isInteger(denominator)
         ) {
             throw new RangeError(`Illegal denominator ${denominator}: must be a positive finite integer`)
         }
 
-        this.numerator = numerator
+        this.numerator = Math.abs(numerator)
         this.denominator = denominator
-        this.isNegative = isNegative
+        this.isNegative = numerator < 0 || !!isNegative
         // this.simplify()
     }
 

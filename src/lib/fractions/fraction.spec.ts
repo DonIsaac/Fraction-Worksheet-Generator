@@ -4,11 +4,12 @@ import { Fraction } from "./fraction"
 describe("Fraction", () => {
     describe("constructor", () => {
         describe("numerator values", () => {
-            it("cannot be negative", () => {
-                expect(() => new Fraction(-1, 2)).toThrow()
-                expect(() => new Fraction(-1, 2, true)).toThrow()
-                expect(() => new Fraction(-1, -2)).toThrow()
-
+            it("may be negative if not conflicting with negative flag", () => {
+                expect(new Fraction(-1, 2).isNegative).toBeTruthy()
+                expect(new Fraction(-1, 2, true).isNegative).toBeTruthy()
+            })
+            it("throws if numerator is negative but fraction is explicitly declared positive", () => {
+                expect(() => new Fraction(-1, 2, false)).toThrow()
             })
             it("may be 0", () => {
                 expect(() => new Fraction(0, 1)).not.toThrow()
@@ -27,6 +28,9 @@ describe("Fraction", () => {
         })
 
         describe("denominator values", () => {
+            it("defaults to 1", () => {
+                expect(new Fraction(5).denominator).toEqual(1)
+            })
             it("cannot be negative", () => {
                 expect(() => new Fraction(1, -2)).toThrow()
                 expect(() => new Fraction(-1, -2)).toThrow()
@@ -48,8 +52,39 @@ describe("Fraction", () => {
         })
 
         describe("negative flag", () => {
+            it("may be explicitly set", () => {
+                expect(new Fraction(1, 2, true).isNegative).toBeTruthy()
+                expect(new Fraction(1, 2, false).isNegative).toBeFalsy()
+            })
             it("When not provided, defaults to false", () => {
                 expect(new Fraction(1, 2).isNegative).toBeFalsy()
+            })
+        })
+
+        describe("spot checks", () => {
+            it("new Frac(1, 2, false)", () => {
+                const f = new Fraction(1, 2, false)
+                expect(f.numerator).toEqual(1)
+                expect(f.denominator).toEqual(2)
+                expect(f.isNegative).toEqual(false)
+            })
+
+            it("new Frac(9, 7, true)", () => {
+                const f = new Fraction(9, 7, true)
+                expect(f.numerator).toEqual(9)
+                expect(f.denominator).toEqual(7)
+                expect(f.isNegative).toEqual(true)
+            })
+
+            it("new Frac(-5)", () => {
+                const f = new Fraction(-5)
+                expect(f.numerator).toEqual(5)
+                expect(f.denominator).toEqual(1)
+                expect(f.isNegative).toEqual(true)
+            })
+
+            it("new Fraction(-1, 1, false)", () => {
+                expect(() => new Fraction(-1, 1, false)).toThrow()
             })
         })
     }) // !constructor

@@ -4,8 +4,7 @@ import logo from "./logo.svg"
 import "./App.scss"
 import { Fraction, Operation } from "../lib"
 import { Question } from "../lib"
-import { FractionComponent } from "./fraction"
-import { QuestionComponent } from "./question"
+import { FillBlanksQuestion } from "./question/FillBlanksQuestion"
 
 function App() {
     const testFractions = [
@@ -49,7 +48,7 @@ const Page: FC<PageProps> = ({ questions }) => (
         {questions.map((q, i) =>
             <li key={q.toString?.() ?? i}>
                 <span>
-                    <QuestionComponent question={q}  />
+                    <FillBlanksQuestion question={q} onChange={() => {}} />
                 </span>
             </li>
         )}

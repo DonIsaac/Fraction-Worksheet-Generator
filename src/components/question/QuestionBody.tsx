@@ -6,18 +6,29 @@ import { symbolFor } from "../../lib/util"
 
 import "./Question.scss"
 
-export interface QuestionComponentProps {
+export interface QuestionBodyProps {
+    /**
+     * The question being displayed
+     */
     question: Question
 }
 
-export const QuestionComponent: FC<QuestionComponentProps> = ({ question }) => (
+/**
+ * Displays question information common across all question archetypes. In an
+ * equation, this is the left-hand side.
+ *
+ * @param props the component's props
+ *
+ * @see QuestionBodyProps
+ */
+export const QuestionBody: FC<QuestionBodyProps> = ({ question, children }) => (
     <div className="question">
-        <LHS question={question} />
+        <QuestionNode question={question} />
+        {children}
     </div>
 )
 
-/** Question's left hand side */
-const LHS: FC<QuestionComponentProps> = ({ question }) => {
+const QuestionNode: FC<QuestionBodyProps> = ({ question }) => {
     if (question instanceof Fraction) {
         return <FractionComponent frac={question} />
     }
@@ -28,13 +39,7 @@ const LHS: FC<QuestionComponentProps> = ({ question }) => {
         <>
             <FractionComponent frac={left} />
             <span className={classNames("operation", operation)}>{symbolFor(operation)}</span>
-            <QuestionComponent question={right} />
+            <QuestionNode question={right} />
         </>
     )
 }
-
-// question instanceof Fraction
-//     ? <FractionComponent frac={question} />
-//     : (
-//         <Fraction
-//     )

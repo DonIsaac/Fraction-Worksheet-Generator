@@ -203,10 +203,10 @@ describe("times(n)(fn)", () => {
     })
 
     it.each([0, 1, 5, 20])
-        ("Calls a function a specified number of times", n => {
-            times(n)(fn)
-            expect(fn).toBeCalledTimes(n)
-        })
+    ("Calls a function a specified number of times", n => {
+        times(n)(fn)
+        expect(fn).toBeCalledTimes(n)
+    })
 
     it("Passes the iteration number as an argument", () => {
         let n = 0

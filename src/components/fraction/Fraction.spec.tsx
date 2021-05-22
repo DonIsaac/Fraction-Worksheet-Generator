@@ -1,10 +1,9 @@
 
 import React from "react"
 // import ReactDOM, { unmountComponentAtNode } from "react-dom"
-import { render, RenderResult, screen } from "@testing-library/react"
+import { fireEvent, render, RenderResult, screen } from "@testing-library/react"
 import { Fraction } from "../../lib/fractions"
-import { FractionComponent } from "./Fraction"
-import { debug } from "console"
+import { FractionComponent, FractionInput } from "./Fraction"
 
 describe("<FractionComponent />", () => {
 
@@ -93,11 +92,11 @@ describe("<FractionComponent />", () => {
                 expect(actual.container.querySelectorAll(".paren")).toHaveLength(2)
             })
 
-            it("Contains a left parenthasis", () => {
+            it("Contains a left parenthesis", () => {
                 expect(actual.queryByText("(")).not.toBeNull()
             })
 
-            it("Contains a right parenthasis", () => {
+            it("Contains a right parenthesis", () => {
                 expect(actual.queryByText(")")).not.toBeNull()
             })
 
@@ -125,6 +124,64 @@ describe("<FractionComponent />", () => {
                 let actual = render(<FractionComponent frac={neg} />)
                 expect(actual.container.querySelector(".paren")).toBeNull()
             })
+        })
+    })
+})
+
+describe("<FractionInput />", () => {
+    let actual: RenderResult
+    const onChange = jest.fn()
+
+    beforeEach(() => {
+        actual = render(<FractionInput onChange={onChange} />)
+    })
+
+    afterEach(() => {
+        actual?.unmount()
+        onChange.mockClear()
+        actual = null as unknown as RenderResult
+    })
+
+    it("contains a single numerator input field", () => {
+        const numerator = actual.container.querySelectorAll(".numerator input")
+        expect(numerator).not.toBeNull()
+        expect(numerator).toHaveLength(1)
+    })
+
+    it("contains a single denominator input field", () => {
+        const denominator = actual.container.querySelectorAll(".denominator input")
+        expect(denominator).not.toBeNull()
+        expect(denominator).toHaveLength(1)
+    })
+
+    xdescribe.each([
+        ["1", "2"],
+    ])("when valid input is plugged in", (n, d) => {
+
+        beforeEach(() => {
+            actual = render(<FractionInput onChange={onChange} />)
+
+            const numerator = actual.container.querySelector(".numerator input")
+            const denominator = actual.container.querySelector(".denominator input")
+            expect(numerator).not.toBeNull()
+            expect(denominator).not.toBeNull()
+            fireEvent.input(numerator!, n)
+            fireEvent.input(denominator!, n)
+        })
+
+        afterEach(() => {
+            actual.unmount()
+            onChange.mockClear()
+            actual = null as unknown as RenderResult
+        })
+
+        it("calls onChange with the correct Fraction value", () => {
+            const f = new Fraction(
+                Number.parseInt(n),
+                Number.parseInt(d)
+            )
+
+            expect(onChange).toBeCalledWith(f)
         })
     })
 })

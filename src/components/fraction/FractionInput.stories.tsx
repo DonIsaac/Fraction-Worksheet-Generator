@@ -8,6 +8,6 @@ export default {
 } as Meta
 
 
-const Template: Story<FractionInputProps> = ({ }) => <FractionInput />
+const Template: Story<FractionInputProps> = ({ }) => <FractionInput onChange={() => null} />
 
 export const Empty = Template.bind({})

@@ -4,6 +4,7 @@ import {
     FC,
     FormEventHandler,
     InputHTMLAttributes,
+    useEffect,
     useState
 } from "react"
 import { Fraction } from "../../lib"
@@ -15,6 +16,13 @@ export interface FractionComponentProps {
     parens?: boolean
 }
 
+/**
+ * Displays an existing Function.
+ *
+ * @param props
+ *
+ * @see Function
+ */
 export const FractionComponent: FC<FractionComponentProps> = ({
     parens = false,
     frac
@@ -22,11 +30,22 @@ export const FractionComponent: FC<FractionComponentProps> = ({
 
 // =============================================================================
 
+const VALID_INT_REGEX = /^-?[0-9]+$/
+const VALID_POSITIVE_INT_REGEX = /^[0-9]+$/
+const invalidFrac = (n: string, d: string) =>
+    !n.length ||
+    !d.length ||
+    !VALID_INT_REGEX.test(n) ||
+    !VALID_POSITIVE_INT_REGEX.test(d)
 export interface FractionInputProps {
-
+    onChange: (frac: Fraction) => void
 }
-
-export const FractionInput: FC<FractionInputProps> = () => {
+/**
+ * A custom input component that looks like a fraction.
+ *
+ * @param props
+ */
+export const FractionInput: FC<FractionInputProps> = ({ onChange }) => {
     // user input could be anything, so strings are used and validated upstream
     const [numerator, setNumerator] = useState<string>("")
     const [denominator, setDenominator] = useState<string>("")
@@ -35,6 +54,18 @@ export const FractionInput: FC<FractionInputProps> = () => {
     const updateValue: (fn: Dispatch<string>) => FormEventHandler<HTMLInputElement> =
         fn => e => fn(e.currentTarget.value)
 
+    useEffect(() => {
+        if (invalidFrac(numerator, denominator))
+            return
+
+        const n = Number.parseInt(numerator),
+            d = Number.parseInt(denominator)
+
+        if (d === 0)
+            return
+
+        onChange(new Fraction(n, d))
+    }, [numerator, denominator, onChange])
     // Make both input boxes have the same width. Use the largest one, but no
     // smaller than 1 character
     const style: CSSProperties = {

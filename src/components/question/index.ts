@@ -1,4 +1,4 @@
 
-export { QuestionComponent } from "./Question"
+export { FillBlanksQuestion } from "./FillBlanksQuestion"
 // Types are exported seperately because of --isolatedModules flag
-export type { QuestionComponentProps } from "./Question"
+export type { FillBlanksQuestionProps } from "./FillBlanksQuestion"

@@ -42,6 +42,8 @@ ol.page {
   columns: 3;
   margin: auto;
   padding: auto;
+  list-style-position: inside;
+  text-align: left;
 
   & > li {
     // display: inline-block;

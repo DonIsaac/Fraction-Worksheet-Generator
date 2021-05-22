@@ -6,6 +6,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:cov": "yarn test --coverage --watchAll",
     "test:sb": "yarn test --json --outputFile=.storybook/.jest-test-results.json",
     "eject": "react-scripts eject",
     "lint": "eslint src/",
@@ -13,6 +14,7 @@
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "yarn typecheck --watch",
     "verify": "yarn lint && yarn check && yarn test",
+    "prestorybook": "yarn test:sb",
     "storybook": "start-storybook -p 6006 -s public",
     "sb": "yarn storybook",
     "build-storybook": "build-storybook -s public"

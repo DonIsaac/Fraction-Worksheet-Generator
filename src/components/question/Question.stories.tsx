@@ -1,15 +1,15 @@
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from "@storybook/react/types-6-0"
 import { Operation, Fraction } from "../../lib"
-import { QuestionComponent, QuestionComponentProps } from "./Question"
+import { QuestionBody, QuestionBodyProps } from "./QuestionBody"
 
 
 export default {
     title: "Fractions/Questions",
-    component: QuestionComponent,
+    component: QuestionBody,
 } as Meta
 
-const Template: Story<QuestionComponentProps> = (args) => <QuestionComponent {...args} />
+const Template: Story<QuestionBodyProps> = (args) => <QuestionBody {...args} />
 
 export const BasicAddition = Template.bind({})
 BasicAddition.args = {

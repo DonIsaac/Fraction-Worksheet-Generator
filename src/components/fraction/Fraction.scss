@@ -3,6 +3,7 @@
 
 .fraction {
     @include frac-container;
+    text-align: center;
 
     .paren {
         // line-height: $frac-height;
