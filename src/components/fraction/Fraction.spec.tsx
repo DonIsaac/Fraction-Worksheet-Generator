@@ -3,7 +3,8 @@ import React from "react"
 // import ReactDOM, { unmountComponentAtNode } from "react-dom"
 import { fireEvent, render, RenderResult, screen } from "@testing-library/react"
 import { Fraction } from "../../lib/fractions"
-import { FractionComponent, FractionInput } from "./Fraction"
+import { FractionComponent } from "./Fraction"
+import { FractionInput } from "./FractionInput"
 
 describe("<FractionComponent />", () => {
 

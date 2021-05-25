@@ -3,15 +3,15 @@ import type { Question } from "."
 import { randomInt } from "../util"
 import { Fraction, generators } from "../fractions"
 
-export const generateQuestion: (args: WorksheetConfig) => Question =
+export const generateQuestion: (args?: WorksheetConfig) => Question =
     ({ // Arguments are unpacked/repacked to establish defaults
         operations = [Operation.Addition],
         strategy = "default",
         negative = false,
-        range = [1, 10],
-        countRange = [2, 3],
+        range = [1, 10] as [number, number],
+        countRange = [2, 3] as [number, number],
         mixedFractions = false
-    }) => _genQuestion({
+    } = {}) => _genQuestion({
         operation: operations[randomInt(0, operations.length)],
         negative,
         range,

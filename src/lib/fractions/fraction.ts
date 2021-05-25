@@ -16,9 +16,9 @@ export class Fraction {
         return new Fraction(n, d, isNeg).simplify()
     }
 
-    public numerator: number
-    public denominator: number
-    public isNegative: boolean
+    public readonly numerator: number
+    public readonly denominator: number
+    public readonly isNegative: boolean
 
     /**
      * Creates a new `Fraction`.

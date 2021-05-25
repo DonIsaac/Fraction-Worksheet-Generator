@@ -4,7 +4,8 @@ import logo from "./logo.svg"
 import "./App.scss"
 import { Fraction, Operation } from "../lib"
 import { Question } from "../lib"
-import { FillBlanksQuestion } from "./question/FillBlanksQuestion"
+// import { FillBlanksQuestion } from "./question/FillBlanksQuestion"
+import { QuestionGrid } from "./page/QuestionGrid"
 
 function App() {
     const testFractions = [
@@ -24,34 +25,10 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <Page questions={[...testFractions, ...testFractionsWithParens, ...testQuestions]} />
+                <QuestionGrid questions={[...testFractions, ...testFractionsWithParens, ...testQuestions]} onChange={() => {}} />
             </header>
         </div>
     )
-    /*
-    return (
-        <div className="App">
-            <header className="App-header">
-                {testFractions.map(f => <FractionComponent frac={f} key={f.toString()} />)}
-                {testFractionsWithParens.map(f => <FractionComponent frac={f} key={f.toString()} parens />)}
-            </header>
-        </div>
-    )
-    */
 }
 
-type PageProps = {
-    questions: Question[]
-}
-const Page: FC<PageProps> = ({ questions }) => (
-    <ol className="page">
-        {questions.map((q, i) =>
-            <li key={q.toString?.() ?? i}>
-                <span>
-                    <FillBlanksQuestion question={q} onChange={() => {}} />
-                </span>
-            </li>
-        )}
-    </ol>
-)
 export default App

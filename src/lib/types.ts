@@ -12,7 +12,7 @@ export interface WorksheetConfig {
      *
      * @default [Operation.Addition]
      */
-    operations: Operation[]
+    operations?: Operation[]
 
     /**
      * If false, neither the fractions in question or in the answer should
