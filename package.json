@@ -154,7 +154,8 @@
         "warn",
         "never"
       ],
-      "space-before-blocks": "error"
+      "space-before-blocks": "error",
+      "spaced-comment": ["error", "always", { "exceptions": ["-=*"] }]
     }
   },
   "jest": {
