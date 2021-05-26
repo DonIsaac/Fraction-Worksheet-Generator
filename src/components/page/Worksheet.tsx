@@ -1,6 +1,8 @@
 import React, { FC, useEffect, useState } from "react"
 import { shallowEqual, useDispatch, useSelector } from "react-redux"
-import { Question, times, QuestionGenerationConfig } from "../../lib"
+import {
+    Question, times, QuestionGenerationConfig, Fraction,
+} from "../../lib"
 import { generateQuestion } from "../../lib/questions/question.gen"
 import { RootState } from "../../state"
 import { setQuestions, WorksheetState } from "../../state/questions"
@@ -25,24 +27,34 @@ export const Worksheet: FC<WorksheetProps> = ({
     )
 
     const [questions, setQuestions] = useState<Question[]>([])
-    const [done, setDone] = useState(false)
+    
+    const [userSolutions, setUserSolutions] = useState<(Fraction | null)[]>([])
+    const setUserSolution = (f: Fraction, i: number) => userSolutions[i] = f
+
+    const [isDone, setDone] = useState(false)
 
     // Generate questions list
     useEffect(() => {
-        if (done) return
+        if (isDone) return
 
         const questions: Question[] = []
         times(rows * cols)(() => questions.push(generateQuestion(settings)))
         setQuestions(questions)
-    }, [rows, cols, settings, dispatch, done])
+        
+        const initSolutions: null[] = []
+        times(rows * cols)(() => initSolutions.push(null))
+        setUserSolutions(initSolutions)
+    }, [rows, cols, settings, dispatch, isDone])
 
     return (
         <form className="worksheet">
             <QuestionGrid
-                onChange={() => {}}
-                {...{ columns: cols, questions, isDone: done }}
+                onChange={setUserSolution}
+                {...{
+                    columns: cols, questions, userSolutions, isDone,
+                }}
             />
-            <Button type="submit" primary>Finish</Button>
+            <Button type="button" primary onClick={() => setDone(true)}>Finish</Button>
         </form>
         // <Button
     )

@@ -86,3 +86,13 @@ export const symbolFor = (op: Operation): string => {
         case Operation.Division: return "\u00f7"
     }
 }
+
+/**
+ * Zips two arrays into one array where each element is a pair of values from the
+ * first and the second arrays. Only supposed to be called on arrays of equal length.
+ * 
+ * @param a first array
+ * @param b second array
+ * @returns array of pairs of values from the two arrays
+ */
+export const zip = <A, B>(a: A[], b: B[]): [A, B][] => a.map((a, i) => [a, b[i]])
