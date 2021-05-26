@@ -5,7 +5,7 @@ import { QuestionBody, QuestionBodyProps } from "./QuestionBody"
 
 
 export default {
-    title: "Fractions/Questions",
+    title:     "Fractions/Questions",
     component: QuestionBody,
 } as Meta
 
@@ -15,34 +15,34 @@ export const BasicAddition = Template.bind({})
 BasicAddition.args = {
     question: {
         operation: Operation.Addition,
-        left: new Fraction(1, 2),
-        right: new Fraction(3, 4)
-    }
+        left:      new Fraction(1, 2),
+        right:     new Fraction(3, 4),
+    },
 }
 
 export const BasicSubtraction = Template.bind({})
 BasicSubtraction.args = {
     question: {
         operation: Operation.Subtraction,
-        left: new Fraction(1, 2),
-        right: new Fraction(3, 4)
-    }
+        left:      new Fraction(1, 2),
+        right:     new Fraction(3, 4),
+    },
 }
 
 export const BasicMultiplication = Template.bind({})
 BasicMultiplication.args = {
     question: {
         operation: Operation.Multiplication,
-        left: new Fraction(1, 2),
-        right: new Fraction(3, 4)
-    }
+        left:      new Fraction(1, 2),
+        right:     new Fraction(3, 4),
+    },
 }
 
 export const BasicDivision = Template.bind({})
 BasicDivision.args = {
     question: {
         operation: Operation.Division,
-        left: new Fraction(1, 2),
-        right: new Fraction(3, 4)
-    }
+        left:      new Fraction(1, 2),
+        right:     new Fraction(3, 4),
+    },
 }

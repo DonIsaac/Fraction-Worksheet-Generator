@@ -30,7 +30,7 @@ export class Fraction {
     constructor(
         numerator: number,
         denominator: number = 1,
-        isNegative: boolean | null = null
+        isNegative: boolean | null = null,
     ) {
         if (
             !Number.isInteger(numerator)
@@ -113,7 +113,7 @@ export class Fraction {
         return new Fraction(
             this.numerator / divisor,
             this.denominator / divisor,
-            this.isNegative
+            this.isNegative,
         )
     }
 
@@ -164,7 +164,7 @@ export class Fraction {
         return new Fraction(
             this.numerator * other.numerator,
             this.denominator * other.denominator,
-            this.sign * other.sign < 0
+            this.sign * other.sign < 0,
         ).simplify()
     }
 

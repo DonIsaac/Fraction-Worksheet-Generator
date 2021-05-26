@@ -5,7 +5,7 @@ import {
     FormEventHandler,
     InputHTMLAttributes,
     useEffect,
-    useState
+    useState,
 } from "react"
 import { Fraction } from "../../lib"
 import classNames from "classnames"
@@ -25,22 +25,22 @@ export interface FractionComponentProps {
  */
 export const FractionComponent: FC<FractionComponentProps> = ({
     parens = false,
-    frac
+    frac,
 }) => <FractionBase {...{ parens, ...frac }} />
 
 // =============================================================================
 
 export type FractionBaseProps = {
     parens?: boolean
-    numerator: any
-    denominator: any
+    numerator: number | string | JSX.Element
+    denominator: number | string | JSX.Element
     isNegative: boolean
 }
 export const FractionBase: FC<FractionBaseProps> = ({
     parens = false,
     numerator,
     denominator,
-    isNegative
+    isNegative,
 }) => (
     <div className="fraction">
         {/* open parenthesis, if specified */}

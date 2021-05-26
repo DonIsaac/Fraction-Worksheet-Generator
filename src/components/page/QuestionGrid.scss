@@ -1,14 +1,23 @@
-ol.page,
-ul.page {
+.page {
   // columns: 3;
+  column-gap: 0;
   margin: auto;
-  padding: auto;
+  padding: 0;
   list-style-position: inside;
   text-align: left;
+  max-width: 100%;
+  overflow: hidden;
 
-  & > li {
+  & > li, & > div {
     // display: inline-block;
-    display: list-item;
-    margin-right: 1em;
+    // display: list-item;
+    // margin-right: 1em;
+    box-sizing: border-box;
+    border: 1px solid;
+    padding: 0.5em 4em 4em 0.5em;
+
+    & > span {
+      display: block;
+    }
   }
 }

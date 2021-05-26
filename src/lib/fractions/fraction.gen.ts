@@ -25,7 +25,7 @@ const MIXED_FRAC_SCALAR = 3
 export const generateFraction: FractionGeneratorFactory = gen => ({
     negative,
     range,
-    mixedFractions
+    mixedFractions,
 }): Fraction => {
     // generate a random denominator value
     const denominator = gen(range)
@@ -41,7 +41,7 @@ export const generateFraction: FractionGeneratorFactory = gen => ({
 }
 
 export const generators: Record<Strategies, FractionGenerator> = {
-    "default": generateFraction(([min, max]) => randomInt(min, max))
+    "default": generateFraction(([min, max]) => randomInt(min, max)),
 }
 
 /*

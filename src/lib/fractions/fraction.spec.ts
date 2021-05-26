@@ -114,7 +114,7 @@ describe("Fraction", () => {
     describe.each([
         [new Fraction(1, 2), 0.5],
         [new Fraction(3, 4, true), -0.75],
-        [new Fraction(0, 2), 0]
+        [new Fraction(0, 2), 0],
     ])(".toDecimal(%s)", (frac, expected) => {
         it(`turns ${frac} into ${expected}`, () => {
             expect(frac.toDecimal()).toEqual(expected)
@@ -131,7 +131,7 @@ describe("Fraction", () => {
             [1, 2, false],
             [15, 10, true],
             [0, 1, false],
-            [25, 3, true]
+            [25, 3, true],
         ])("Identical fractions are strictly equal", (n, d, neg) => {
             const f1 = new Fraction(n, d, neg)
             const f2 = new Fraction(n, d, neg)
@@ -140,7 +140,7 @@ describe("Fraction", () => {
 
         it.each([
             [new Fraction(0, 2), new Fraction(0, 1)],
-            [new Fraction(0, 5, true), new Fraction(0, 5, false)]
+            [new Fraction(0, 5, true), new Fraction(0, 5, false)],
         ])("Fractions are strictly equal  hen both numerators are 0", (f1, f2) => {
             expect(f1.strictEq(f2)).toBeTruthy()
         })
@@ -148,7 +148,7 @@ describe("Fraction", () => {
         it.each([
             [new Fraction(1, 2), new Fraction(2, 4)],
             [new Fraction(3, 4, false), new Fraction(3, 4, true)],
-            [new Fraction(35, 100), new Fraction(70, 2)]
+            [new Fraction(35, 100), new Fraction(70, 2)],
         ])("%s.strictEq(%s) is false", (f1, f2) => {
             expect(f1.strictEq(f2)).toBeFalsy()
         })
@@ -165,7 +165,7 @@ describe("Fraction", () => {
             [1, 2, false],
             [15, 10, true],
             [0, 1, false],
-            [25, 3, true]
+            [25, 3, true],
         ])("Identical fractions are equal", (n, d, neg) => {
             const f1 = new Fraction(n, d, neg)
             const f2 = new Fraction(n, d, neg)
@@ -177,7 +177,7 @@ describe("Fraction", () => {
             [new Fraction(2, 3), new Fraction(66, 99)],
             [new Fraction(25, 5, true), new Fraction(5, 1, true)],
             [new Fraction(0, 2), new Fraction(0, 1)],
-            [new Fraction(0, 1, false), new Fraction(0, 1, true)]
+            [new Fraction(0, 1, false), new Fraction(0, 1, true)],
         ])("%s.eq(%s) is true", (f1, f2) => {
             expect(f1.eq(f2)).toBeTruthy()
         })
@@ -185,7 +185,7 @@ describe("Fraction", () => {
         it.each([
             [new Fraction(1, 2, false), new Fraction(1, 2, true)],
             [new Fraction(5, 7, false), new Fraction(10, 14, true)],
-            [new Fraction(1, 3), new Fraction(2, 3)]
+            [new Fraction(1, 3), new Fraction(2, 3)],
         ])("%s.eq(%s) is false", (f1, f2) => {
             expect(f1.eq(f2)).toBeFalsy()
         })
@@ -250,7 +250,7 @@ describe("Fraction", () => {
         const cases: [Fraction, Fraction, Fraction][] = [
             [new Fraction(3, 4, false), new Fraction(7, 9, false), new Fraction(2, 3, false)],
             [new Fraction(21, 39, true), new Fraction(31, 3, false), new Fraction(28, 57, true)],
-            [new Fraction(26, 30, false), new Fraction(3, 25, true), new Fraction(73, 75, false)]
+            [new Fraction(26, 30, false), new Fraction(3, 25, true), new Fraction(73, 75, false)],
         ]
 
         describe.each(cases)("Arithmetic properties", (a, b, c) => {
@@ -268,7 +268,7 @@ describe("Fraction", () => {
         describe.each([
             [new Fraction(1, 2), new Fraction(1, 2), new Fraction(1, 1)],
             [new Fraction(1, 2, false), new Fraction(1, 2, true), new Fraction(0, 2, false)],
-            [new Fraction(56, 68, false), new Fraction(21, 91, false), new Fraction(233, 221, false)]
+            [new Fraction(56, 68, false), new Fraction(21, 91, false), new Fraction(233, 221, false)],
         ])("%s.add(%s)", (a, b, expected) => {
             let actual: Fraction
 
@@ -291,7 +291,7 @@ describe("Fraction", () => {
         describe.each([
             [new Fraction(1, 2), new Fraction(1, 2), new Fraction(0, 2)],
             [new Fraction(1, 2, false), new Fraction(1, 2, true), new Fraction(1, 1, false)],
-            [new Fraction(56, 68, false), new Fraction(21, 91, false), new Fraction(131, 221, false)]
+            [new Fraction(56, 68, false), new Fraction(21, 91, false), new Fraction(131, 221, false)],
         ])("%s.sub(%s)", (a, b, expected) => {
             let actual: Fraction
 
@@ -311,7 +311,7 @@ describe("Fraction", () => {
         it.each([
             new Fraction(0, 1, false),
             new Fraction(983, 76, false),
-            new Fraction(5, 4, true)
+            new Fraction(5, 4, true),
         ])("Identity property (%s)", f => {
             expect(f.mult(one)).toEqual(f)
         })
@@ -319,7 +319,7 @@ describe("Fraction", () => {
         describe.each([
             [new Fraction(1, 2), new Fraction(1, 2), new Fraction(1, 4)],
             [new Fraction(3, 4), new Fraction(0, 1), new Fraction(0, 4)],
-            [new Fraction(11, 7, false), new Fraction(21, 5, true), new Fraction(33, 5, true)]
+            [new Fraction(11, 7, false), new Fraction(21, 5, true), new Fraction(33, 5, true)],
         ])("%s.mult(%s)", (a, b, expected) => {
             let actual: Fraction
 
@@ -345,14 +345,14 @@ describe("Fraction", () => {
         it.each([
             new Fraction(0, 1, false),
             new Fraction(983, 76, false),
-            new Fraction(5, 4, true)
+            new Fraction(5, 4, true),
         ])("Identity property (%s)", f => {
             expect(f.div(one)).toEqual(f)
         })
 
         describe.each([
             [new Fraction(1, 2), new Fraction(1, 2), new Fraction(1, 1)],
-            [new Fraction(11, 7, false), new Fraction(21, 5, true), new Fraction(55, 147, true)]
+            [new Fraction(11, 7, false), new Fraction(21, 5, true), new Fraction(55, 147, true)],
         ])("%s.div(%s)", (a, b, expected) => {
             let actual: Fraction
 
@@ -379,7 +379,7 @@ describe("Fraction", () => {
     describe(".reciprocal()", () => {
         it.each([
             [new Fraction(1, 2), new Fraction(2, 1)],
-            [new Fraction(12, 78, true), new Fraction(78, 12, true)]
+            [new Fraction(12, 78, true), new Fraction(78, 12, true)],
         ])("%s.reciprocal() == %s", (f, expected) => {
             expect(f.reciprocal()).toEqual(expected)
         })

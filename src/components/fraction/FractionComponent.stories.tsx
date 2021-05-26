@@ -4,34 +4,34 @@ import { Operation, Fraction } from "../../lib"
 import { FractionComponent, FractionComponentProps } from "./Fraction"
 
 export default {
-    title: "Fractions/Fraction Displays",
+    title:     "Fractions/Fraction Displays",
     component: FractionComponent,
-    argTypes: {
+    argTypes:  {
         numerator: {
-            type: "number",
-            min: 0,
-            description: "Fraction's numerator value. Must be greater than 0."
+            type:        "number",
+            min:         0,
+            description: "Fraction's numerator value. Must be greater than 0.",
         },
         denominator: {
-            type: "number",
-            description: "Fraction's denominator value. Cannot be 0."
+            type:        "number",
+            description: "Fraction's denominator value. Cannot be 0.",
         },
         parens: {
-            type: "boolean",
-            description: "Flag to surround the fraction with parenthesis",
-            defaultValue: false
+            type:         "boolean",
+            description:  "Flag to surround the fraction with parenthesis",
+            defaultValue: false,
         },
         isNegative: {
-            type: "boolean",
-            description: "True if the fraction is negative, false if positive",
-            defaultValue: false
-        }
+            type:         "boolean",
+            description:  "True if the fraction is negative, false if positive",
+            defaultValue: false,
+        },
     },
 } as Meta
 
 const parameters = {
     controls: { expanded: true },
-    jest: ["Fraction.spec.tsx"]
+    jest:     ["Fraction.spec.tsx"],
 }
 
 type FractionComponentStoryProps = {
@@ -44,31 +44,28 @@ const Template: Story<FractionComponentStoryProps> = ({
     parens,
     isNegative,
     numerator: num,
-    denominator: denom
+    denominator: denom,
 }) => <FractionComponent parens={parens} frac={new Fraction(num, denom, isNegative)} />
 
 export const Basic = Template.bind({})
 Basic.args = {
-    parens: false,
-    numerator: 1,
+    parens:      false,
+    numerator:   1,
     denominator: 2,
-    isNegative: false
+    isNegative:  false,
 }
 Basic.parameters = parameters
-// Basic.argTypes =  {
-
-// }
 
 export const Negative = Template.bind({})
 Negative.args = {
     ...Basic.args,
-    isNegative: true
+    isNegative: true,
 }
 Negative.parameters = parameters
 
 export const WithParens = Template.bind({})
 WithParens.args = {
     ...Basic.args,
-    parens: true
+    parens: true,
 }
 WithParens.parameters = parameters

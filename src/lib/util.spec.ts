@@ -6,7 +6,7 @@ import {
     floatToInt,
     times,
     symbolFor,
-    lcm
+    lcm,
 } from "./util"
 
 describe("randomInt([min, max])", () => {
@@ -28,7 +28,7 @@ describe("randomInt([min, max])", () => {
         [0, 15],
         [-15, 0],
         [-20, -10],
-        [-5, 5]
+        [-5, 5],
     ])("bound checks: [%d, %d]", (min, max) => {
         let x: number
         beforeAll(() => {
@@ -72,7 +72,7 @@ describe("gcd(a, b)", () => {
         [1, 1, 1],
         [7, 15, 1],
         [10, 5, 5],
-        [0, 4, 4]
+        [0, 4, 4],
     ])("gcd(%d, %d)", (a, b, expected) => {
         let actual: number
 
@@ -98,7 +98,7 @@ describe("gcd(a, b)", () => {
 describe("lcm(a, b)", () => {
     it.each([
         [5, 10, 10],
-        [0, 55, 0]
+        [0, 55, 0],
     ])("lcm(%d, %d) == %d", (a, b, expected) => {
         expect(lcm(a, b)).toEqual(expected)
     })
@@ -168,7 +168,7 @@ describe("floatToInt(float)", () => {
         [7, 7, 1],
         [-2, -2, 1],
         [12.25, 1225, 100],
-        [0, 0, 1]
+        [0, 0, 1],
     ])("floatToInt(%s)", (input, asInt, scaleFactor) => {
         let actual: [number, number]
 
@@ -227,7 +227,7 @@ describe("symbolFor(op)", () => {
         Operation.Addition,
         Operation.Subtraction,
         Operation.Multiplication,
-        Operation.Division
+        Operation.Division,
     ])("symbolFor(%s)", input => {
         let actual: string
 

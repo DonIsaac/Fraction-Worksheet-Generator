@@ -1,14 +1,11 @@
-ol.page,
-ul.page {
-  columns: 3;
-  margin: auto;
-  padding: auto;
-  list-style-position: inside;
-  text-align: left;
+.worksheet {
+  // display: flex;
 
-  & > li {
-    // display: inline-block;
-    display: list-item;
-    margin-right: 1em;
-  }
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  margin: auto;
+  padding: 1em
 }

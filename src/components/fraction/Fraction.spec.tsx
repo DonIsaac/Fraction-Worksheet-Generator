@@ -1,7 +1,12 @@
 
 import React from "react"
 // import ReactDOM, { unmountComponentAtNode } from "react-dom"
-import { fireEvent, render, RenderResult, screen } from "@testing-library/react"
+import {
+    fireEvent,
+    render,
+    RenderResult,
+    screen,
+} from "@testing-library/react"
 import { Fraction } from "../../lib/fractions"
 import { FractionComponent } from "./Fraction"
 import { FractionInput } from "./FractionInput"
@@ -11,7 +16,7 @@ describe("<FractionComponent />", () => {
     describe.each([
         [1, 2],
         [3, 4],
-        [15, 10]
+        [15, 10],
     ])
     ("When rendering a positive fraction", (n, d) => {
         let actual: RenderResult
@@ -47,7 +52,7 @@ describe("<FractionComponent />", () => {
     describe.each([
         [1, 2],
         [3, 4],
-        [15, 10]
+        [15, 10],
     ])
     ("When rendering a negative fraction", (n, d) => {
         let actual: RenderResult
@@ -108,7 +113,7 @@ describe("<FractionComponent />", () => {
 
         })
         describe.each([
-            [1, 2]
+            [1, 2],
         ])("Default behavior", (n, d) => {
             let pos: Fraction, neg: Fraction
             beforeEach(() => {
@@ -179,7 +184,7 @@ describe("<FractionInput />", () => {
         it("calls onChange with the correct Fraction value", () => {
             const f = new Fraction(
                 Number.parseInt(n),
-                Number.parseInt(d)
+                Number.parseInt(d),
             )
 
             expect(onChange).toBeCalledWith(f)

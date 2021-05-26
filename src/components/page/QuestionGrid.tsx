@@ -5,6 +5,7 @@ import { FillBlanksQuestion } from "../question"
 import "./QuestionGrid.scss"
 
 export interface QuestionGridProps {
+
     /**
      * The questions to display in the grid
      */
@@ -24,12 +25,15 @@ export interface QuestionGridProps {
      * @default 3
      */
     columns?: number
+
+    isDone?: boolean
 }
 
 export const QuestionGrid: FC<QuestionGridProps> = ({
     questions,
     onChange,
-    columns = 3
+    columns = 3,
+    isDone = false,
 }) => (
     <ol className="page" style={{ columns }}>
         {questions.map((q, i) =>
@@ -37,7 +41,7 @@ export const QuestionGrid: FC<QuestionGridProps> = ({
                 <span>
                     <FillBlanksQuestion question={q} onChange={f => onChange(f, i)} />
                 </span>
-            </li>
+            </li>,
         )}
     </ol>
 )

@@ -7,6 +7,7 @@ import { symbolFor } from "../../lib/util"
 import "./Question.scss"
 
 export interface QuestionBodyProps {
+
     /**
      * The question being displayed
      */

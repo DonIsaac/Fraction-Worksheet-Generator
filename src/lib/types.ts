@@ -6,7 +6,7 @@ import type { Fraction } from "./fractions"
  * @see Question
  * @see FractionGenerator
  */
-export interface WorksheetConfig {
+export interface QuestionGenerationConfig {
 
     /**
      *
@@ -23,31 +23,38 @@ export interface WorksheetConfig {
     negative?: boolean;
 
     /**
-     * [min, max] values that may appear in numerator/denominator
-     *
+     * Range of number values that may appear in numerator/denominator.
      * @default [1,10]
      */
-    range?: [number, number]
+    range?: [min: number, max: number]
 
     /**
      * [min, max] number of fractions that may appear in each problem
      *
      * @default [2,2]
      */
-    countRange?: [number, number]
+    countRange?: [min: number, max: number]
 
     /**
+     * Question generation strategy.
+     *
      * @default "default"
      */
     strategy?: Strategies
 
     /**
+     * Whether questions will include mixed fractions. If `false`, all
+     * fraction numerators will be less than or equal to their denominators.
+     *
      * @default false
      */
     mixedFractions?: boolean
 
 }
 
+/**
+ * Available operations in questions.
+ */
 export enum Operation {
     Addition = "add",
     Subtraction = "sub",
@@ -58,7 +65,7 @@ export enum Operation {
 export type NumGenArgs = [range: [number, number]]
 // export type FractionGenerator = (digitCount: number, sign?: boolean) => Fraction;
 export type FractionGenerator = (
-    config: Required<Pick<WorksheetConfig, "negative" | "range" | "mixedFractions">>
+    config: Required<Pick<QuestionGenerationConfig, "negative" | "range" | "mixedFractions">>
 ) => Fraction
 export type FractionGeneratorFactory<T extends any[] = NumGenArgs> = (
     gen: (...args: T) => number

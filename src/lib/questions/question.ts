@@ -17,9 +17,11 @@ export type Question =
     ;;
 
 export interface SolveQuestionOpts {
+
     /** Whether or not to simplify the solution. Defaults to `false`. */
     simplify?: boolean
 }
+
 /**
  * Calculates the solution to a Question.
  *
@@ -28,7 +30,10 @@ export interface SolveQuestionOpts {
  *
  * @returns     the solution to the Question.
  */
-export function solveQuestion(q: Question, opts: SolveQuestionOpts = {}): Fraction {
+export const solveQuestion = (
+    q: Question,
+    opts: SolveQuestionOpts = {},
+): Fraction => {
     const { simplify = false } = opts
 
     if (q instanceof Fraction) {

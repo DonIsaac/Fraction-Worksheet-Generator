@@ -19,7 +19,7 @@ export interface FillBlanksQuestionProps {
  */
 export const FillBlanksQuestion: FC<FillBlanksQuestionProps> = ({
     question,
-    onChange
+    onChange,
 }) => {
     return (
         <QuestionBody question={question}>

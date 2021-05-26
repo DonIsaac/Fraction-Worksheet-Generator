@@ -6,8 +6,9 @@ import { Fraction, Operation } from "../lib"
 import { Question } from "../lib"
 // import { FillBlanksQuestion } from "./question/FillBlanksQuestion"
 import { QuestionGrid } from "./page/QuestionGrid"
+import { Worksheet } from "./page/Worksheet"
 
-function App() {
+const App = () => {
     const testFractions = [
         new Fraction(1, 2),
         new Fraction(3, 7, true),
@@ -16,16 +17,16 @@ function App() {
     ]
     const testFractionsWithParens = [
         new Fraction(7, 8),
-        new Fraction(4, 5, true)
+        new Fraction(4, 5, true),
     ]
     const testQuestions: Question[] = [
-        { left: new Fraction(1, 2), right: new Fraction(1, 2), operation: Operation.Addition }
+        { left: new Fraction(1, 2), right: new Fraction(1, 2), operation: Operation.Addition },
     ]
 
     return (
         <div className="App">
             <header className="App-header">
-                <QuestionGrid questions={[...testFractions, ...testFractionsWithParens, ...testQuestions]} onChange={() => {}} />
+                <Worksheet cols={6} rows={16} />
             </header>
         </div>
     )
