@@ -77,7 +77,15 @@
         }
       ],
       "arrow-spacing": "error",
-      "capitalized-comments": "error",
+      "capitalized-comments": [
+        "error",
+        "always",
+        {
+          "ignoreInlineComments": true,
+          "ignoreConsecutiveComments": true,
+          "ignorePattern": "import|const|let"
+        }
+      ],
       "comma-dangle": [
         "error",
         "always-multiline"
@@ -155,7 +163,14 @@
         "never"
       ],
       "space-before-blocks": "error",
-      "spaced-comment": ["error", "always", { "exceptions": ["-=*"] }]
+      "spaced-comment": [
+        "error",
+        "always",
+        {
+          "markers": ["*", "/"],
+          "exceptions": ["-", "=", "*"]
+        }
+      ]
     }
   },
   "jest": {

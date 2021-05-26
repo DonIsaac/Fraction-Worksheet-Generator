@@ -1,0 +1,41 @@
+////
+/// Contains variable declarations that configure the style of the entire
+/// application.
+///
+/// Helpful resources
+/// - Flexbox cheat sheet: @link https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+////
+
+
+// =============================================================================
+// ============================== WORKSHEET ====================================
+// =============================================================================
+
+$question-font-family: 'Courier New', Courier, monospace;
+
+
+
+
+// =============================================================================
+// ============================== FRACTIONS ====================================
+// =============================================================================
+
+/// thickness of the bar separating the numerator and denominator
+/// @group Fraction
+$bar-width: 0.1em;
+
+/// number of additional pixels the bar should extend past the numerator and denominator
+/// @group Fraction
+$bar-overhang: 2px;
+
+/// size of gap between negative sign and the fraction body
+/// @group Fraction
+$frac-sign-space: 2px;
+
+/// line height to use to span the entire fraction from top to bottom
+/// @group Fraction
+$frac-height: 300%;
+
+/// space between the fraction body and the parenthesis
+/// @group Fraction
+$frac-margin: 3px;

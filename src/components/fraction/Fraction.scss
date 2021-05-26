@@ -1,5 +1,7 @@
-@import "../scss/variables.scss";
-@import "../scss/util.scss";
+@import "../scss/_variables.scss";
+@import "../scss/_util.scss";
+
+$paren-height-scalar: -0.04;
 
 .fraction {
     @include frac-container;
@@ -8,7 +10,7 @@
     .paren {
         // line-height: $frac-height;
         // font-size: $frac-height * 1em;
-        margin-top: -0.04 * $frac-height;
+        margin-top: $paren-height-scalar * $frac-height;
         // margin-top: -0.04 * 2.5em;
         font-size: $frac-height;
         // vertical-align: middle;
@@ -20,11 +22,13 @@
         // line-height: 2em + 4 * $bar-width;
     }
     .fraction-body-wrapper {
-        display: inline-block;
+        // display: inline-block;
+        display: inline-flex;
 
         .fraction-body {
             display: flex;
             flex-direction: column;
+            justify-content: center;
 
             .number {
                 display: inline-block;
@@ -43,11 +47,15 @@
     }
     .bar {
         // line-height: .6em;
-        margin: 0px;
+        margin: 1px;
+        margin-bottom: 2px;
         border-style: solid;
         // border-width: $bar-width;
     }
     .number {
         margin: 0 $frac-sign-space;
+        input {
+            padding: 0 2px;
+        }
     }
 }

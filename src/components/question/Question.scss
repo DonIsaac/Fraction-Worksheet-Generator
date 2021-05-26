@@ -1,5 +1,5 @@
-@import "../scss/variables.scss";
-@import "../scss/util.scss";
+@import "../scss/_variables.scss";
+@import "../scss/_util.scss";
 
 .question {
     @include frac-container;

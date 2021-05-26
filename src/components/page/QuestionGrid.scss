@@ -1,5 +1,8 @@
+@import "../scss/_variables.scss";
+
 .page {
   // columns: 3;
+  font-family: $question-font-family;
   column-gap: 0;
   margin: auto;
   padding: 0;
@@ -17,7 +20,7 @@
     padding: 0.5em 4em 4em 0.5em;
 
     & > span {
-      display: block;
+      display: inline-block;
     }
   }
 }
