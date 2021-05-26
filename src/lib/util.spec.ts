@@ -16,9 +16,9 @@ describe("randomInt([min, max])", () => {
     })
 
     it("fails if max <= min", () => {
-        // can't be equal
+        // Can't be equal
         expect(() => randomInt(10, 10)).toThrowError(RangeError)
-        // can't be less
+        // Can't be less
         expect(() => randomInt(10, 0)).toThrowError(RangeError)
         expect(() => randomInt(-4, -8)).toThrowError(RangeError)
     })
@@ -88,10 +88,10 @@ describe("gcd(a, b)", () => {
             expect(actual).toEqual(gcd(b, a))
         })
     })
-    // it("should work", () => {
-    //     expect(gcd(1, 1)).toBe(1)
-    //     expect(gcd(7, 15)).toBe(1)
-    //     expect(gcd(10, 5)).toBe(5)
+    // It("should work", () => {
+    //     Expect(gcd(1, 1)).toBe(1)
+    //     Expect(gcd(7, 15)).toBe(1)
+    //     Expect(gcd(10, 5)).toBe(5)
     // })
 })
 

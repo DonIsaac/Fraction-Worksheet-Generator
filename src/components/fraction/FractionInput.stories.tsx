@@ -7,7 +7,7 @@ export default {
     component:  FractionInput,
     parameters: {
         expanded: true,
-        // jest: "FractionInput.spec.tsx"
+        // Jest: "FractionInput.spec.tsx"
     },
 } as Meta
 

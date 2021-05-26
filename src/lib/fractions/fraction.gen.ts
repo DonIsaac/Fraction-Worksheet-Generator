@@ -27,15 +27,15 @@ export const generateFraction: FractionGeneratorFactory = gen => ({
     range,
     mixedFractions,
 }): Fraction => {
-    // generate a random denominator value
+    // Generate a random denominator value
     const denominator = gen(range)
-    // generate a random numerator value. Use random scalar to increase value if
-    // mixed values are desired
+    // Generate a random numerator value. Use random scalar to increase value if
+    // Mixed values are desired
     const numerator = gen(range) * (mixedFractions
         ? randomInt(1, MIXED_FRAC_SCALAR)
         : 1)
-    // random sign if negatives are enabled false otherwise
-    // const isNeg = negative && Math.random() < 0.5
+    // Random sign if negatives are enabled false otherwise
+    // Const isNeg = negative && Math.random() < 0.5
 
     return new Fraction(numerator, denominator, negative)
 }
@@ -45,7 +45,7 @@ export const generators: Record<Strategies, FractionGenerator> = {
 }
 
 /*
-export const generateFraction: FractionGeneratorFactory = (denom: () => number) => (
+Export const generateFraction: FractionGeneratorFactory = (denom: () => number) => (
     digitCount: number,
     sign: boolean = Math.random() < 0.5
 ): Fraction => {

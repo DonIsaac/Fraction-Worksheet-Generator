@@ -63,7 +63,7 @@ export enum Operation {
 }
 
 export type NumGenArgs = [range: [number, number]]
-// export type FractionGenerator = (digitCount: number, sign?: boolean) => Fraction;
+// Export type FractionGenerator = (digitCount: number, sign?: boolean) => Fraction;
 export type FractionGenerator = (
     config: Required<Pick<QuestionGenerationConfig, "negative" | "range" | "mixedFractions">>
 ) => Fraction

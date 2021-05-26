@@ -12,14 +12,14 @@ const initialState: WorksheetState = {
 }
 
 const worksheetState = createSlice({
-    name:         "worksheetState",
-    initialState: initialState,
-    reducers:     {
+    name:     "worksheetState",
+    initialState,
+    reducers: {
         // Removing all questions also resets isDone to false.
         clearQuestions: () => initialState,
         setQuestions:   (state, action: PayloadAction<Question[]>) =>
             ({ ...state, questions: action.payload }),
-        setDone(state) {
+        setDone: (state) => {
             state.isDone = true
         },
     },

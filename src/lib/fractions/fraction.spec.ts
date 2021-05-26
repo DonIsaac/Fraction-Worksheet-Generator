@@ -1,5 +1,5 @@
 import { Fraction } from "./fraction"
-// const SEED = 7403854
+// Const SEED = 7403854
 
 describe("Fraction", () => {
     describe("constructor", () => {
@@ -332,7 +332,7 @@ describe("Fraction", () => {
             })
 
             it(`== ${b}.mult(${a})`, () => {
-                let reverse = b.mult(a)
+                const reverse = b.mult(a)
                 expect(actual).toEqual(reverse)
             })
 

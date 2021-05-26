@@ -57,20 +57,39 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
+      "array-bracket-newline": [
+        "error",
+        {
+          "multiline": true
+        }
+      ],
+      "array-element-newline": [
+        "error",
+        {
+          "ArrayExpression": "consistent",
+          "ArrayPattern": {
+            "minItems": 4
+          }
+        }
+      ],
+      "arrow-spacing": "error",
+      "capitalized-comments": "error",
       "comma-dangle": [
         "error",
         "always-multiline"
       ],
-      "semi": [
-        "warn",
-        "never"
+      "dot-location": [
+        "error",
+        "property"
       ],
-      "quotes": [
-        "warn",
-        "double"
+      "eqeqeq": ["error", "smart"],
+      "func-style": [
+        "error",
+        "expression"
       ],
       "indent": [
         "error",
@@ -87,14 +106,6 @@
         }
       ],
       "lines-around-comment": "error",
-      "dot-location": [
-        "error",
-        "property"
-      ],
-      "func-style": [
-        "error",
-        "expression"
-      ],
       "max-len": [
         "warn",
         {
@@ -104,6 +115,9 @@
           "ignoreTrailingComments": true
         }
       ],
+      "no-extend-native": "error",
+      "no-unused-vars": "warn",
+      "no-var": "error",
       "object-curly-spacing": [
         "error",
         "always",
@@ -125,8 +139,29 @@
           "allowAllPropertiesOnSameLine": true
         }
       ],
-      "require-jsdoc": "warn"
+      "object-shorthand": ["error", "always"],
+      "prefer-arrow-callback": "error",
+      "prefer-const": "error",
+      "prefer-object-spread": "error",
+      "prefer-spread": "error",
+      "quotes": [
+        "warn",
+        "double"
+      ],
+      "require-jsdoc": "warn",
+      "rest-spread-spacing": "error",
+      "semi": [
+        "warn",
+        "never"
+      ],
+      "space-before-blocks": "error"
     }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.stories.*"
+    ]
   },
   "browserslist": {
     "production": [

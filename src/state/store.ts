@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { QuestionGenerationConfig } from "../lib"
 import questionConfig from "./questions.config"
-// import worksheetState from "./questions"
+// Import worksheetState from "./questions"
 
 /** The root reducer */
 const reducer = combineReducers({
@@ -21,7 +21,7 @@ const reducer = combineReducers({
     //  *
     //  * @see WorksheetState
     //  */
-    // worksheetState,
+    // WorksheetState,
 })
 
 /** The application's Redux store. */

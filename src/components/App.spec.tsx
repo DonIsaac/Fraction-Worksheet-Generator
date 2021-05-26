@@ -1,6 +1,9 @@
 import React from "react"
 import ReactDOM, { unmountComponentAtNode } from "react-dom"
+import { Provider } from "react-redux"
+
 import App from "./App"
+import store from "../state"
 
 describe("<App />", () => {
     let mount: HTMLDivElement
@@ -8,7 +11,13 @@ describe("<App />", () => {
     beforeEach(() => {
         mount = document.createElement("div")
         document.body.appendChild(mount)
-        ReactDOM.render(<App />, mount)
+        ReactDOM.render(
+            <Provider store={store}>
+                <App />
+            </Provider>
+            ,
+            mount,
+        )
     })
 
     afterEach(() => {

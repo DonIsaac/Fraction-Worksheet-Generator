@@ -9,16 +9,16 @@ const TEST_ITERS = 16
 
 describe.each(Array(TEST_ITERS).fill(1))
 ("generateQuestion()", () => {
-    let gen = ([min, max]: [number, number]) => randomInt(min, max)
+    const gen = ([min, max]: [number, number]) => randomInt(min, max)
 
     beforeAll(() => {
         expect(typeof gen([1, 10])).toBe("number")
     })
     afterAll(() => {
-        // jest.spyOn(global.Math, "random").mockRestore()
+        // Jest.spyOn(global.Math, "random").mockRestore()
     })
     afterEach(() => {
-        // gen.mockClear()
+        // Gen.mockClear()
     })
 
     it("generates valid fractions with default parameters", () => {

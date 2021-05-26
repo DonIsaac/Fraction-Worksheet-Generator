@@ -43,9 +43,9 @@ export const FractionBase: FC<FractionBaseProps> = ({
     isNegative,
 }) => (
     <div className="fraction">
-        {/* open parenthesis, if specified */}
+        {/* Open parenthesis, if specified */}
         {parens && <span className="paren fullheight">(</span>}
-        {/* sign */}
+        {/* Sign */}
         {isNegative && <span className="fraction-sign">-</span>}
         {/* <div className="fraction-sign">{isNegative ? "-" : "\t"}</div> */}
         {/* Displays the numerator and denominator */}
@@ -61,7 +61,7 @@ export const FractionBase: FC<FractionBaseProps> = ({
             </div>
         </div>
         {/* <div className="fraction-sign"></div> */}
-        {/* closing parenthesis, if specified */}
+        {/* Closing parenthesis, if specified */}
         {parens && <span className="paren fullheight">)</span>}
     </div>
 )

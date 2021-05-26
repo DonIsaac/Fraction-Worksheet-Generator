@@ -4,23 +4,23 @@ import { randomInt } from "../util"
 const SEED = "some string to use as a seed"
 const TEST_ITERS = 16
 
-// hacky `TEST_ITERS.times |x|`
+// Hacky `TEST_ITERS.times |x|`
 describe.each(Array(TEST_ITERS).fill(1))
 ("generateFraction", () => {
-    let gen = ([min, max]: [number, number]) => randomInt(min, max)
+    const gen = ([min, max]: [number, number]) => randomInt(min, max)
 
     beforeAll(() => {
         expect(typeof gen([1, 10])).toBe("number")
     })
     afterAll(() => {
-        // jest.spyOn(global.Math, "random").mockRestore()
+        // Jest.spyOn(global.Math, "random").mockRestore()
     })
     afterEach(() => {
-        // gen.mockClear()
+        // Gen.mockClear()
     })
 
     it("creates positive fractions if negative == false", () => {
-        // for(let i = 0; i < TEST_ITERS; i++) {
+        // For(let i = 0; i < TEST_ITERS; i++) {
         expect(generateFraction(gen)({
             negative:       false,
             range:          [1, 10],
@@ -29,7 +29,7 @@ describe.each(Array(TEST_ITERS).fill(1))
         // }
     })
     it("creates negative fractions if negative == true", () => {
-        // for(let i = 0; i < TEST_ITERS; i++) {
+        // For(let i = 0; i < TEST_ITERS; i++) {
         expect(generateFraction(gen)({
             negative:       true,
             range:          [1, 10],
@@ -39,7 +39,7 @@ describe.each(Array(TEST_ITERS).fill(1))
     })
     it("should respect the value range", () => {
         const range: [number, number] = [1, 10]
-        let f = generateFraction(gen)({
+        const f = generateFraction(gen)({
             negative:       false,
             range,
             mixedFractions: false,

@@ -4,7 +4,7 @@ import logo from "./logo.svg"
 import "./App.scss"
 import { Fraction, Operation } from "../lib"
 import { Question } from "../lib"
-// import { FillBlanksQuestion } from "./question/FillBlanksQuestion"
+// Import { FillBlanksQuestion } from "./question/FillBlanksQuestion"
 import { QuestionGrid } from "./page/QuestionGrid"
 import { Worksheet } from "./page/Worksheet"
 
@@ -19,9 +19,7 @@ const App = () => {
         new Fraction(7, 8),
         new Fraction(4, 5, true),
     ]
-    const testQuestions: Question[] = [
-        { left: new Fraction(1, 2), right: new Fraction(1, 2), operation: Operation.Addition },
-    ]
+    const testQuestions: Question[] = [{ left: new Fraction(1, 2), right: new Fraction(1, 2), operation: Operation.Addition }]
 
     return (
         <div className="App">

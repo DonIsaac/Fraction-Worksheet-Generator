@@ -1,6 +1,6 @@
 
 import React from "react"
-// import ReactDOM, { unmountComponentAtNode } from "react-dom"
+// Import ReactDOM, { unmountComponentAtNode } from "react-dom"
 import {
     fireEvent,
     render,
@@ -112,9 +112,7 @@ describe("<FractionComponent />", () => {
             })
 
         })
-        describe.each([
-            [1, 2],
-        ])("Default behavior", (n, d) => {
+        describe.each([[1, 2]])("Default behavior", (n, d) => {
             let pos: Fraction, neg: Fraction
             beforeEach(() => {
                 pos = new Fraction(n, d, false)
@@ -122,12 +120,12 @@ describe("<FractionComponent />", () => {
             })
 
             it("Does not display parenthesis for positive fractions by default", () => {
-                let actual = render(<FractionComponent frac={pos} />)
+                const actual = render(<FractionComponent frac={pos} />)
                 expect(actual.container.querySelector(".paren")).toBeNull()
             })
 
             it("Does not display parenthesis for negative fractions by default", () => {
-                let actual = render(<FractionComponent frac={neg} />)
+                const actual = render(<FractionComponent frac={neg} />)
                 expect(actual.container.querySelector(".paren")).toBeNull()
             })
         })
@@ -160,9 +158,7 @@ describe("<FractionInput />", () => {
         expect(denominator).toHaveLength(1)
     })
 
-    xdescribe.each([
-        ["1", "2"],
-    ])("when valid input is plugged in", (n, d) => {
+    xdescribe.each([["1", "2"]])("when valid input is plugged in", (n, d) => {
 
         beforeEach(() => {
             actual = render(<FractionInput onChange={onChange} />)

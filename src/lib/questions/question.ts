@@ -14,7 +14,7 @@ export type Question =
         left: Fraction
         right: Question
     }
-    ;;
+    ;
 
 export interface SolveQuestionOpts {
 

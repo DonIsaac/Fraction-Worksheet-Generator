@@ -61,11 +61,11 @@ export const FractionInput: FC<FractionInputProps> = ({
     mode = "input",
     display,
 }) => {
-    // user input could be anything, so strings are used and validated upstream
+    // User input could be anything, so strings are used and validated upstream
     const [numerator, setNumerator] = useState<string>("")
     const [denominator, setDenominator] = useState<string>("")
     const readonly = !(mode === "input")
-    // onInput function for setNumerator or setDenominator
+    // OnInput function for setNumerator or setDenominator
     const updateValue: (fn: Dispatch<string>) => FormEventHandler<HTMLInputElement> =
         fn => e => fn(e.currentTarget.value)
 
@@ -88,7 +88,7 @@ export const FractionInput: FC<FractionInputProps> = ({
     }
 
     // Make both input boxes have the same width. Use the largest one, but no
-    // smaller than 1 character
+    // Smaller than 1 character
     const style: CSSProperties = {
         width: `${Math.max(numerator?.length ?? 0, denominator?.length ?? 0, 1)}ch`,
     }

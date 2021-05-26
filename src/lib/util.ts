@@ -34,7 +34,7 @@ export const lcm = (a: number, b: number): number => a * b / gcd(a, b)
  * @param num
  * @param scale Used for recursive calls. Do not use this.
  */
-export const floatToInt = (num: number, scale: number = 1): [number, number] =>
+export const floatToInt = (num: number, scale = 1): [number, number] =>
     Number.isInteger(num) && (num < Number.MAX_VALUE / 100)
         ? [num, scale]
         : floatToInt(num * 10, scale * 10)

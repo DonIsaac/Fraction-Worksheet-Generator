@@ -66,7 +66,7 @@ const questionConfig = createSlice({
     },
 })
 
-// export default questionConfig
+// Export default questionConfig
 export const {
     addOperation,
     removeOperation,

@@ -29,7 +29,7 @@ export class Fraction {
      */
     constructor(
         numerator: number,
-        denominator: number = 1,
+        denominator = 1,
         isNegative: boolean | null = null,
     ) {
         if (
@@ -51,7 +51,7 @@ export class Fraction {
         this.numerator = Math.abs(numerator)
         this.denominator = denominator
         this.isNegative = numerator < 0 || !!isNegative
-        // this.simplify()
+        // This.simplify()
     }
 
     public toDecimal(): number {
@@ -67,11 +67,11 @@ export class Fraction {
      * @returns `true` if the two fractions are exactly equal, `false` otherwise.
      */
     public strictEq(other: Fraction) {
-        // same object pointer
+        // Same object pointer
         return this === other ||
             // Both are 0
             (this.numerator === 0 && other.numerator === 0) ||
-            // numerator, denominator, and sign are the same
+            // Numerator, denominator, and sign are the same
             (this.numerator === other.numerator &&
                 this.denominator === other.denominator &&
                 this.isNegative === other.isNegative)
@@ -85,7 +85,7 @@ export class Fraction {
      * @returns `true` if they are equal, `false` otherwise.
      */
     public eq(other: Fraction): boolean {
-        // return this.toDecimial() === other?.toDecimial()
+        // Return this.toDecimial() === other?.toDecimial()
         if (
             this === other ||
             (this.numerator === 0 && other.numerator === 0)
