@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { QuestionGenerationConfig } from "../lib"
 import questionConfig from "./questions.config"
-// Import worksheetState from "./questions"
+import worksheet from "./questions"
 
 /** The root reducer */
 const reducer = combineReducers({
@@ -16,17 +16,16 @@ const reducer = combineReducers({
      */
     questionConfig,
 
-    // /**
-    //  * Active worksheet state. Includes list of current questions, etc.
-    //  *
-    //  * @see WorksheetState
-    //  */
-    // WorksheetState,
+    /**
+     * Active worksheet state. Includes list of current questions, etc.
+     *
+     * @see WorksheetState
+     */
+    worksheet,
 })
 
 /** The application's Redux store. */
 const store = configureStore({ reducer })
-
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

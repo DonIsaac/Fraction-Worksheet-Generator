@@ -45,7 +45,12 @@ export const QuestionGrid: FC<QuestionGridProps> = ({
         {zip(questions, userSolutions).map(([q, s], i) =>
             <li key={q.toString?.() ?? i}>
                 <span>
-                    <FillBlanksQuestion question={q} userSolution={s} isDone={isDone} onChange={f => onChange(f, i)} />
+                    <FillBlanksQuestion
+                        question={q}
+                        userSolution={s}
+                        isDone={isDone}
+                        onChange={f => onChange(f, i)}
+                    />
                 </span>
             </li>,
         )}

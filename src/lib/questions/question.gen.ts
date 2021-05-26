@@ -3,6 +3,15 @@ import type { Question } from "."
 import { randomInt } from "../util"
 import { Fraction, generators } from "../fractions"
 
+/**
+ * Creates a random question.
+ *
+ * @param args fraction and question generation settings
+ *
+ * @returns a newly created `Question`.
+ *
+ * @see Question
+ */
 export const generateQuestion: (args?: QuestionGenerationConfig) => Question =
     ({ // Arguments are unpacked/repacked to establish defaults
         operations = [Operation.Addition],

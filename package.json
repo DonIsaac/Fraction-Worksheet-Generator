@@ -27,6 +27,7 @@
     "@types/node": "^14.14.16",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "bootstrap": "^5.0.1",
     "classnames": "^2.2.6",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
@@ -94,7 +95,10 @@
         "error",
         "property"
       ],
-      "eqeqeq": ["error", "smart"],
+      "eqeqeq": [
+        "error",
+        "smart"
+      ],
       "func-style": [
         "error",
         "expression"
@@ -124,6 +128,7 @@
         }
       ],
       "no-extend-native": "error",
+      "no-sequences": "off",
       "no-unused-vars": "warn",
       "no-var": "error",
       "object-curly-spacing": [
@@ -147,7 +152,10 @@
           "allowAllPropertiesOnSameLine": true
         }
       ],
-      "object-shorthand": ["error", "always"],
+      "object-shorthand": [
+        "error",
+        "always"
+      ],
       "prefer-arrow-callback": "error",
       "prefer-const": "error",
       "prefer-object-spread": "error",
@@ -167,8 +175,15 @@
         "error",
         "always",
         {
-          "markers": ["*", "/"],
-          "exceptions": ["-", "=", "*"]
+          "markers": [
+            "*",
+            "/"
+          ],
+          "exceptions": [
+            "-",
+            "=",
+            "*"
+          ]
         }
       ]
     }
