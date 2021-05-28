@@ -1,25 +1,18 @@
 import React, { FC } from "react"
 import { shallowEqual, useDispatch, useSelector } from "react-redux"
-import Debug from "debug"
 
 import {
     RootState,
-    answerQuestion,
     setDone,
     clearQuestions,
-    setQuestions,
 } from "../../state"
-import { Fraction } from "../../lib"
 import { Button } from "../button/Button"
-import { FillBlanksQuestion } from "../question"
 
 import "./FlowWorksheet.scss"
 import { generateQuestions } from "../../state/dispatchers"
 import { ConnectedFillBlanksQuestion } from "../question/FillBlanksQuestion"
 import { times } from "ramda"
 import { BsArrowClockwise, BsCheckCircle } from "react-icons/bs"
-
-const debug = Debug("frac:view:FlowWorksheet")
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface FlowWorksheetProps { }

@@ -4,7 +4,7 @@ import Debug from "debug"
 const debug = Debug("frac:state:middleware")
 
 export const logger: Middleware = store => next => action => {
-    debug("dispatching action: %O", action)
+    debug("dispatching action '%s': %O", action.type, action)
     const result = next(action)
     debug("next state: %O", store.getState())
 

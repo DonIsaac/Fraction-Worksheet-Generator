@@ -5,7 +5,7 @@ import {
     useSelector
 } from "react-redux"
 import { BsCheck, BsExclamationTriangle, BsXCircle } from "react-icons/bs"
-import { Nullable, Question, solveQuestion } from "../../lib"
+import { Question, solveQuestion } from "../../lib"
 import { answerQuestion, QuestionState, RootState } from "../../state"
 import {
     FractionInput,

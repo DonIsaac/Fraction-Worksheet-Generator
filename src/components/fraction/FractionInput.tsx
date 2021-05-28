@@ -6,7 +6,7 @@ import React, {
     FormEventHandler,
     InputHTMLAttributes,
 } from "react"
-import Debug from "debug"
+// import Debug from "debug"
 import { FractionBase } from "./Fraction"
 import { FractionInputEventHandler, FractionInputMode } from "./types"
 

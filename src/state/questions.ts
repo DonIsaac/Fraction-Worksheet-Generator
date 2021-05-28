@@ -1,11 +1,7 @@
 /* eslint-disable max-len */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import {
-    Fraction, Question, raise, zip,
-} from "../lib"
-import Debug from "debug"
+import { Question, raise } from "../lib"
 
-const debug = Debug("frac:state:questions")
 
 /**
  * State for a single question
@@ -83,7 +79,6 @@ const worksheet = createSlice({
                 }: PayloadAction<{ i: number, answer: [n: string, d: string] }>
             ) => (
                 // Throw if worksheet is finished or question number is out of bounds
-                debug("answerQuestion reducer called"),
                 state.isDone && raise(`Cannot answer question #${i}, the worksheet has already been completed.`),
                 !state.questions.length && raise("List of questions is empty"),
                 state.questions.length <= i && raise(`Question #${i} does not exist and is out of bounds`),
