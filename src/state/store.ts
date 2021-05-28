@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+// eslint-disable-next-line
 import { QuestionGenerationConfig } from "../lib"
 import questionConfig from "./questions.config"
-// Import worksheetState from "./questions"
+import worksheet from "./questions"
+import { logger, crashReporter } from "./middleware"
 
 /** The root reducer */
 const reducer = combineReducers({
@@ -16,17 +18,21 @@ const reducer = combineReducers({
      */
     questionConfig,
 
-    // /**
-    //  * Active worksheet state. Includes list of current questions, etc.
-    //  *
-    //  * @see WorksheetState
-    //  */
-    // WorksheetState,
+    /**
+     * Active worksheet state. Includes list of current questions, etc.
+     *
+     * @see WorksheetState
+     */
+    worksheet,
 })
 
 /** The application's Redux store. */
-const store = configureStore({ reducer })
-
+const store = configureStore({
+    reducer,
+    middleware: defaults => defaults({
+        serializableCheck: false, // TODO(don): Probably shouldn't do this, but we need to store fractions ¯\_(ツ)_/¯
+    }).concat(logger, crashReporter),
+})
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

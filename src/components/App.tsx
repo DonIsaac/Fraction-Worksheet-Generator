@@ -1,15 +1,17 @@
 import React, { FC } from "react"
 // import { BrowserRouter as Router, Link } from "react-router-dom"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import logo from "./logo.svg"
 import "./App.scss"
-import { Worksheet } from "./page/Worksheet"
+import { FlowWorksheet } from "./page/FlowWorksheet"
+import { dispatchers } from "../state"
 
 const App: FC = () => {
-
+    dispatchers.generateQuestions(24)
     return (
         <div className="App">
             <header className="App-header">
-                <Worksheet cols={5} rows={16} />
+                <FlowWorksheet />
             </header>
         </div>
     )

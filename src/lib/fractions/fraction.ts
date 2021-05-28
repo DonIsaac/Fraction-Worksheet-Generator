@@ -30,12 +30,15 @@ export class Fraction {
     constructor(
         numerator: number,
         denominator = 1,
-        isNegative: boolean | null = null,
+        isNegative: boolean | null = null
     ) {
         if (
             !Number.isInteger(numerator)
         ) {
-            throw new RangeError(`Illegal numerator ${numerator}: must be a finite integer greater than or equal to 0`)
+            throw new RangeError(
+                `Illegal numerator ${numerator}: must be a ` +
+                "finite integer greater than or equal to 0"
+            )
         }
         if (numerator < 0 && isNegative === false) {
             throw new Error("Numerator value was negative, but fraction was explicitly declared positive")
@@ -45,7 +48,10 @@ export class Fraction {
             denominator <= 0 ||
             !Number.isInteger(denominator)
         ) {
-            throw new RangeError(`Illegal denominator ${denominator}: must be a positive finite integer`)
+            throw new RangeError(
+                `Illegal denominator ${denominator}: must be a ` +
+                "positive finite integer"
+            )
         }
 
         this.numerator = Math.abs(numerator)
@@ -66,7 +72,7 @@ export class Fraction {
      *
      * @returns `true` if the two fractions are exactly equal, `false` otherwise.
      */
-    public strictEq(other: Fraction) {
+    public strictEq(other: Fraction): boolean {
         // Same object pointer
         return this === other ||
             // Both are 0
@@ -113,7 +119,7 @@ export class Fraction {
         return new Fraction(
             this.numerator / divisor,
             this.denominator / divisor,
-            this.isNegative,
+            this.isNegative
         )
     }
 
@@ -164,7 +170,7 @@ export class Fraction {
         return new Fraction(
             this.numerator * other.numerator,
             this.denominator * other.denominator,
-            this.sign * other.sign < 0,
+            this.sign * other.sign < 0
         ).simplify()
     }
 

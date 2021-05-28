@@ -22,7 +22,7 @@ describe.each(Array(TEST_ITERS).fill(1))
     })
 
     it("generates valid fractions with default parameters", () => {
-        const question = generateQuestion({ operations: [Operation.Addition]})
+        const question = generateQuestion({ operations: [Operation.Addition] })
         expect(reduceQuestion(question, []).length).toBeGreaterThanOrEqual(2)
         expect(reduceQuestion(question, []).length).toBeLessThanOrEqual(3)
 

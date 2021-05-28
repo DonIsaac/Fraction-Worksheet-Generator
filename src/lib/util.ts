@@ -58,9 +58,9 @@ export const randomInt = (min: number, max: number): number =>
  * Calls a function a certain number of times
  * @param n the number of iterations
  */
-export const times = (n: number) => (fn: (i: number) => any) => (
+export const times = (n: number) => <T>(fn: (i: number) => T): T[] => (
     n = Math.max(n, 0),
-    Array(n).fill(n).forEach((_, i) => fn(i))
+    Array(n).fill(n).map((_, i) => fn(i))
 )
 
 /**
@@ -90,7 +90,7 @@ export const symbolFor = (op: Operation): string => {
 /**
  * Zips two arrays into one array where each element is a pair of values from the
  * first and the second arrays. Only supposed to be called on arrays of equal length.
- * 
+ *
  * @param a first array
  * @param b second array
  * @returns array of pairs of values from the two arrays

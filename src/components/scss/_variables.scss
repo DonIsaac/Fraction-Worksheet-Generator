@@ -4,6 +4,7 @@
 ///
 /// Helpful resources
 /// - Flexbox cheat sheet: @link https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+/// - Bootstrap variables: @link https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
 ////
 
 
@@ -12,7 +13,11 @@
 // =============================================================================
 
 $question-font-family: 'Courier New', Courier, monospace;
-
+$worksheet-colors: (
+  "correct": #0b3,
+  "incorrect": #f30,
+  "incomplete": #666,
+);
 
 
 

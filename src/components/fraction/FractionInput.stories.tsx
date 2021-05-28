@@ -18,11 +18,13 @@ const Template: Story<Omit<FractionInputProps, "onChange">> = args =>
 export const InputEmpty = Template.bind({})
 export const Correct = Template.bind({})
 Correct.args = {
-    mode:    "correct",
-    display: new Fraction(1, 2),
+    mode:        "correct",
+    numerator:   "1",
+    denominator: "2",
 }
 export const Incorrect = Template.bind({})
 Incorrect.args = {
-    mode:    "incorrect",
-    display: new Fraction(1, 2),
+    mode:        "incorrect",
+    numerator:   "1",
+    denominator: "2",
 }
