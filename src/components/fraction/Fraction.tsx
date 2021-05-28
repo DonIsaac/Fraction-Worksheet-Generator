@@ -1,15 +1,8 @@
-import {
-    CSSProperties,
-    Dispatch,
-    FC,
-    FormEventHandler,
-    InputHTMLAttributes,
-    useEffect,
-    useState,
-} from "react"
+import { FC } from "react"
 import { Fraction } from "../../lib"
 import classNames from "classnames"
 import "./Fraction.scss"
+import React from "react"
 
 export interface FractionComponentProps {
     frac: Fraction
@@ -29,20 +22,24 @@ export const FractionComponent: FC<FractionComponentProps> = ({
 }) => <FractionBase {...{ parens, ...frac }} />
 
 // =============================================================================
-
 export type FractionBaseProps = {
     parens?: boolean
     numerator: number | string | JSX.Element
     denominator: number | string | JSX.Element
     isNegative: boolean
+    className?: string | string[]
 }
-export const FractionBase: FC<FractionBaseProps> = ({
+export const FractionBase = React.forwardRef<
+    HTMLDivElement,
+    FractionBaseProps
+>(({
     parens = false,
     numerator,
     denominator,
     isNegative,
-}) => (
-    <div className="fraction">
+    className,
+}, ref) => (
+    <div className={classNames("fraction", className)} ref={ref}>
         {/* Open parenthesis, if specified */}
         {parens && <span className="paren fullheight">(</span>}
         {/* Sign */}
@@ -64,4 +61,4 @@ export const FractionBase: FC<FractionBaseProps> = ({
         {/* Closing parenthesis, if specified */}
         {parens && <span className="paren fullheight">)</span>}
     </div>
-)
+))

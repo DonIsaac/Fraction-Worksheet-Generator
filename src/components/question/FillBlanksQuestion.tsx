@@ -1,13 +1,22 @@
-import React, { FC } from "react"
-import { Fraction, Question, solveQuestion } from "../../lib"
-import { FractionInput } from "../fraction"
+import React, { FC, useMemo } from "react"
+import {
+    MapStateToProps, MapStateToPropsParam, shallowEqual, useDispatch, useSelector
+} from "react-redux"
+import {
+    Fraction, Nullable, Question, solveQuestion,
+} from "../../lib"
+import { answerQuestion, QuestionState, RootState } from "../../state"
+import { FractionInput, FractionInputMode, FractionInputProps } from "../fraction"
+import { FractionInputEventHandler } from "../fraction/types"
+import { getDisplayMode, userInputToFraction } from "../fraction/util"
 import { QuestionBody } from "./QuestionBody"
 
 export interface FillBlanksQuestionProps {
     question: Question
-    userSolution: Fraction | null
     isDone: boolean
-    onChange: (frac: Fraction) => void
+    onChange: FractionInputEventHandler
+    numerator: string
+    denominator: string
 }
 
 /**
@@ -21,23 +30,94 @@ export interface FillBlanksQuestionProps {
  */
 export const FillBlanksQuestion: FC<FillBlanksQuestionProps> = ({
     question,
-    userSolution,
     isDone,
-    onChange,
+    numerator,
+    denominator,
+    ...rest
 }) => {
-    const isCorrect = userSolution !== null && userSolution.eq(solveQuestion(question))
+    const solution = useMemo(() => solveQuestion(question), [question])
+    const isCorrect = useMemo(
+        () => {
+
+            const f = userInputToFraction(numerator, denominator)
+            return typeof f !== "string" && f.eq(solution)
+        },
+        [numerator, denominator, solution]
+    )
+    const mode = useMemo(
+        () => getDisplayMode({
+            isDone,
+            isCorrect,
+            userSolution: [numerator, denominator],
+        }),
+        [isDone, isCorrect, numerator, denominator]
+    )
+    const props: FractionInputProps = {
+        mode,
+        numerator,
+        denominator,
+        ...rest,
+    }
     return (
         <QuestionBody question={question}>
             <span className="operation">=</span>
-            <FractionInput onChange={onChange} />
+            <FractionInput {...props} />
             {
                 // FIXME you know what to do
-                !isDone ? null :
-                    isCorrect ?
-                        <span>Correct!</span> :
-                        <span>Wrong! Answer is { solveQuestion(question).toString() }</span>
+                // !isDone ? null :
+                //     isCorrect ?
+                //         <span>Correct!</span> :
+                //         <span>Wrong! Answer is {
+                //             solveQuestion(question).toString()
+                //         }
+                //         </span>
             }
         </QuestionBody>
 
     )
 }
+
+export interface ConnectedFillBlanksQuestionProps {
+    questionNum: number
+}
+
+export const ConnectedFillBlanksQuestion: FC<ConnectedFillBlanksQuestionProps> = ({
+    questionNum,
+}) => {
+    const dispatch = useDispatch()
+    const {
+        question,
+        answer: [numerator = "", denominator = ""],
+    } = useSelector<RootState, QuestionState>(
+        state => state.worksheet.questions[questionNum],
+        shallowEqual
+    )
+
+    const isDone = useSelector<RootState, boolean>(
+        state => state.worksheet.isDone,
+        shallowEqual
+    )
+    const onAnswerChange: FractionInputEventHandler = (field, val) => {
+        if(field === "numerator") {
+            dispatch(answerQuestion(questionNum, val, denominator))
+        } else {
+            dispatch(answerQuestion(questionNum, numerator, val))
+        }
+    }
+
+    const props: FillBlanksQuestionProps = {
+        onChange: onAnswerChange,
+        question,
+        isDone,
+        numerator,
+        denominator,
+    }
+    return <FillBlanksQuestion {...props} />
+}
+// const mapStateToProps: MapStateToProps<
+//     FillBlanksQuestionProps,
+//     ConnectedFillBlanksQuestionProps,
+//     RootState
+// > = (state, ownProps) => {
+
+// }

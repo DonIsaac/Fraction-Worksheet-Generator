@@ -16,7 +16,7 @@ describe("<App />", () => {
                 <App />
             </Provider>
             ,
-            mount,
+            mount
         )
     })
 

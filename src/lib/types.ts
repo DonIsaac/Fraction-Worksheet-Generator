@@ -71,3 +71,4 @@ export type FractionGeneratorFactory<T extends any[] = NumGenArgs> = (
     gen: (...args: T) => number
 ) => FractionGenerator
 export type Strategies = "default"
+export type Nullable<T> = T | null | undefined

@@ -1,47 +1,33 @@
+/* eslint-disable capitalized-comments */
 
 import React, {
     CSSProperties,
-    Dispatch,
     FC,
     FormEventHandler,
     InputHTMLAttributes,
-    useEffect,
-    useState,
 } from "react"
-import { Fraction } from "../../lib"
+import Debug from "debug"
 import { FractionBase } from "./Fraction"
+import { FractionInputEventHandler, FractionInputMode } from "./types"
 
-const VALID_INT_REGEX = /^-?[0-9]+$/
-const VALID_POSITIVE_INT_REGEX = /^[0-9]+$/
-const invalidFrac = (n: string, d: string) =>
-    !n.length ||
-    !d.length ||
-    !VALID_INT_REGEX.test(n) ||
-    !VALID_POSITIVE_INT_REGEX.test(d)
+import "./FractionInput.scss"
+
+// const debug = Debug("frac:view:FractionInput")
 
 export interface FractionInputProps {
 
     /** Callback that is called when the user inputs a new valid Fraction value. */
-    onChange: (frac: Fraction) => void
+    onChange: FractionInputEventHandler
 
     /**
-     * Display mode. Defaults to `"input"`.
-     *
-     * - `input`: User may insert their answer into the input fields.
-     * - `correct`: User input is disabled, and the correct answer is being
-     *    displayed in the input fields.
-     * - `incorrect`: User input is disabled, and the incorrect answer is being
-     *    displayed in the input fields.
+     * Current display and input mode. Defaults to `"input"`.
      *
      * @default "input"
+     * @see FractionInputMode
      */
-    mode?: "input" | "correct" | "incorrect"
-
-    /**
-     * The fraction to display. Required if `mode` is `"correct"` or `"incorrect"`,
-     * ignored if `mode` is `"input"`.
-     */
-    display?: Fraction
+    mode?: FractionInputMode
+    numerator: string
+    denominator: string
 }
 
 /**
@@ -59,33 +45,12 @@ export interface FractionInputProps {
 export const FractionInput: FC<FractionInputProps> = ({
     onChange,
     mode = "input",
-    display,
+    numerator,
+    denominator,
 }) => {
-    // User input could be anything, so strings are used and validated upstream
-    const [numerator, setNumerator] = useState<string>("")
-    const [denominator, setDenominator] = useState<string>("")
     const readonly = !(mode === "input")
-    // OnInput function for setNumerator or setDenominator
-    const updateValue: (fn: Dispatch<string>) => FormEventHandler<HTMLInputElement> =
-        fn => e => fn(e.currentTarget.value)
-
-    useEffect(() => {
-        if (invalidFrac(numerator, denominator))
-            return
-
-        const n = Number.parseInt(numerator),
-            d = Number.parseInt(denominator)
-
-        if (d === 0)
-            return
-
-        onChange(new Fraction(n, d))
-    }, [numerator, denominator, onChange])
-
-    // Display prop must be provided when in a display mode
-    if (readonly && !display) {
-        throw new Error("A display fraction must be provided when FractionInput is not in 'input' mode.")
-    }
+    const updateValue: (field: "numerator" | "denominator") => FormEventHandler<HTMLInputElement> =
+        field => e => onChange(field, e.currentTarget.value)
 
     // Make both input boxes have the same width. Use the largest one, but no
     // Smaller than 1 character
@@ -99,13 +64,13 @@ export const FractionInput: FC<FractionInputProps> = ({
         disabled: readonly,
     }
 
-    return mode === "input"
-        ? <FractionBase
+    return (
+        <FractionBase
             isNegative={false}
             numerator={
                 <input
                     name="numerator"
-                    onInput={updateValue(setNumerator)}
+                    onInput={updateValue("numerator")}
                     title={"numerator"}
                     value={numerator}
                     {...commonInputProps}
@@ -114,30 +79,12 @@ export const FractionInput: FC<FractionInputProps> = ({
             denominator={
                 <input
                     name="denominator"
-                    onInput={updateValue(setDenominator)}
+                    onInput={updateValue("denominator")}
                     title={"denominator"}
                     value={denominator}
                     {...commonInputProps}
                 ></input>
             }
         />
-        : <FractionBase
-            isNegative={display!.isNegative}
-            numerator={
-                <input
-                    name="numerator"
-                    title={"numerator"}
-                    value={display!.numerator}
-                    {...commonInputProps}
-                ></input>
-            }
-            denominator={
-                <input
-                    name="denominator"
-                    title={"denominator"}
-                    value={display!.denominator}
-                    {...commonInputProps}
-                ></input>
-            }
-        />
+    )
 }

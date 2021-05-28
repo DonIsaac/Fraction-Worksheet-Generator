@@ -1,12 +1,24 @@
 import React, { FC } from "react"
-import { shallowEqual, useSelector } from "react-redux"
+import { shallowEqual, useDispatch, useSelector } from "react-redux"
+import Debug from "debug"
 
+import {
+    RootState,
+    answerQuestion,
+    setDone,
+    clearQuestions,
+    setQuestions,
+} from "../../state"
 import { Fraction } from "../../lib"
-import store, { RootState, answerQuestion, setDone } from "../../state"
 import { Button } from "../button/Button"
 import { FillBlanksQuestion } from "../question"
 
 import "./FlowWorksheet.scss"
+import { generateQuestions } from "../../state/dispatchers"
+import { ConnectedFillBlanksQuestion } from "../question/FillBlanksQuestion"
+import { times } from "ramda"
+
+const debug = Debug("frac:view:FlowWorksheet")
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface FlowWorksheetProps { }
@@ -19,31 +31,53 @@ export interface FlowWorksheetProps { }
  * @param props Component props
  */
 export const FlowWorksheet: FC<FlowWorksheetProps> = () => {
-    const {
-        questions,
-        isDone,
-    } = useSelector<RootState, RootState["worksheet"]>(
-        state => state.worksheet,
-        shallowEqual,
+    const isDone = useSelector<RootState, boolean>(
+        state => state.worksheet.isDone,
+        shallowEqual
     )
-
+    const numQuestions = useSelector<RootState, number>(
+        state => state.worksheet.questions.length,
+        shallowEqual
+    )
+    const dispatch = useDispatch()
+    const finishWorksheet = () => dispatch(setDone())
+    const resetWorksheet = () => {
+        dispatch(clearQuestions())
+        generateQuestions(24)
+    }
     return (
         <form className="worksheet container">
             <div className="page row">
-                {questions.map(([question, answer], i) =>
-                    <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-2 col-xxl-1">
-                        <span>
-                            <FillBlanksQuestion
-                                question={question}
-                                userSolution={answer}
-                                isDone={isDone}
-                                onChange={f => answerQuestion(i, f)}
-                            />
-                        </span>
-                    </div>,
+                {times(
+                    i => (
+                        <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <span className="question-number">{i + "."}</span>
+                            <span className="question-wrapper">
+                                <ConnectedFillBlanksQuestion questionNum={i} />
+                            </span>
+                        </div>
+                    ),
+                    numQuestions
                 )}
             </div>
-            <Button type="button" role="submit" primary onClick={setDone}>Finish</Button>
+            {!isDone &&
+                <Button
+                    type="button"
+                    role="submit"
+                    primary
+                    onClick={finishWorksheet}
+                >
+                    Finish
+                </Button>
+            }
+            <Button
+                type="button"
+                role="reset"
+                primary={isDone}
+                onClick={resetWorksheet}
+            >
+                Reset
+            </Button>
         </form>
     )
 }

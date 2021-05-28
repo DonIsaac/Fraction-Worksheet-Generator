@@ -32,7 +32,7 @@ export interface SolveQuestionOpts {
  */
 export const solveQuestion = (
     q: Question,
-    opts: SolveQuestionOpts = {},
+    opts: SolveQuestionOpts = {}
 ): Fraction => {
     const { simplify = false } = opts
 

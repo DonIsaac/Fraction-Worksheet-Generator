@@ -3,11 +3,20 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import {
     Fraction, Question, raise, zip,
 } from "../lib"
+import Debug from "debug"
+
+const debug = Debug("frac:state:questions")
 
 /**
  * State for a single question
  */
-export type QuestionState = [question: Question, answer: Fraction | null]
+// export type QuestionState = [question: Question, answer: Fraction | null]
+export type QuestionState = {
+    question: Question
+
+    /** The user-provided answer. Not the "correct" solution. */
+    answer: [n: string, d: string]
+}
 export interface WorksheetState {
 
     /**
@@ -48,9 +57,8 @@ const worksheet = createSlice({
             state.isDone && raise("Cannot set questions, the worksheet has already been completed."),
             {
                 ...state,
-                questions: zip(
-                    action.payload,
-                    Array(action.payload.length).fill(null) as null[],
+                questions: action.payload.map(
+                    question => ({ question, answer: ["", ""] })
                 ),
             }),
 
@@ -61,24 +69,26 @@ const worksheet = createSlice({
 
             /**
              *
-             * @param i The question number
-             * @param answer The user's answer to the question
+             * @param i             The question number
+             * @param numerator     The answer's numerator
+             * @param denominator   The answer's denominator
              */
-            prepare: (i: number, answer: Fraction) => ({
-                payload: { i, answer },
+            prepare: (i: number, numerator: string, denominator: string) => ({
+                payload: { i, answer: [numerator, denominator] as [string, string] },
             }),
             reducer: (
                 state,
                 {
                     payload: { i, answer },
-                }: PayloadAction<{ i: number, answer: Fraction }>,
+                }: PayloadAction<{ i: number, answer: [n: string, d: string] }>
             ) => (
                 // Throw if worksheet is finished or question number is out of bounds
+                debug("answerQuestion reducer called"),
                 state.isDone && raise(`Cannot answer question #${i}, the worksheet has already been completed.`),
                 !state.questions.length && raise("List of questions is empty"),
                 state.questions.length <= i && raise(`Question #${i} does not exist and is out of bounds`),
                 // Set answer for question i
-                state.questions[i][1] = answer,
+                state.questions[i].answer = answer,
                 state
             ),
         },
