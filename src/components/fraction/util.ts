@@ -59,7 +59,7 @@ export const getDisplayMode = (
 
     if (userSolution instanceof Array) {
         const f = userInputToFraction(...userSolution)
-        return f instanceof String ? "incomplete": "incorrect"
+        return typeof f === "string" ? "incomplete": "incorrect"
     } else {
         return userSolution ? "incorrect": "incomplete"
     }

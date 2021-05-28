@@ -7,4 +7,8 @@
     .operation {
         line-height: $frac-height;
     }
+
+    input[type=text] {
+        overflow-x: hidden;
+    }
 }

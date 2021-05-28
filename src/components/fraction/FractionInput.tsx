@@ -66,6 +66,7 @@ export const FractionInput: FC<FractionInputProps> = ({
 
     return (
         <FractionBase
+            className={mode}
             isNegative={false}
             numerator={
                 <input

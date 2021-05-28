@@ -10,6 +10,13 @@
 
   margin: auto;
   padding: 1em;
+  overflow: hidden;
+
+  // question cell
+  .row > * {
+    overflow: hidden;
+    max-width: 100%;
+  }
 }
 
 .page {
@@ -43,6 +50,10 @@
                map-get($spacers, 5)
                map-get($spacers, 5)
                map-get($spacers, 2);
+
+      input[type=text] {
+        max-width: 3 * map-get($spacers, 5);
+      }
     }
   }
 }

@@ -1,0 +1,13 @@
+@import "../scss/variables";
+// modes
+@each $mode in correct, incorrect, incomplete {
+    $c: map-get($worksheet-colors, $mode);
+
+    .#{$mode} {
+        color: $c;
+
+        input[type="text"] {
+            color: $c;
+        }
+    }
+}

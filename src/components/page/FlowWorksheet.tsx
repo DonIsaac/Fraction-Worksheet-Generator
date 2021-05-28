@@ -50,7 +50,7 @@ export const FlowWorksheet: FC<FlowWorksheetProps> = () => {
             <div className="page row">
                 {times(
                     i => (
-                        <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div key={i} className="col-12 col-sm-6 col-md-4 col-xxl-2">
                             <span className="question-number">{i + "."}</span>
                             <span className="question-wrapper">
                                 <ConnectedFillBlanksQuestion questionNum={i} />
