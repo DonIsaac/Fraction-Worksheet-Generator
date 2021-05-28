@@ -1,6 +1,6 @@
 export { FractionComponent } from "./Fraction"
 export { FractionInput } from "./FractionInput"
-export { getDisplayMode } from "./util"
+export { getDisplayMode, userInputToFraction } from "./util"
 
 // Types are exported seperately because of --isolatedModules flag
 export * from "./types"

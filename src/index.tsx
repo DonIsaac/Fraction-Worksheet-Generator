@@ -9,6 +9,7 @@ import reportWebVitals from "./reportWebVitals"
 
 import "./index.css"
 
+// Namespaces need to be manually enabled because webpack weirdness
 const namespaces = process.env.DEBUG || (
     process.env.NODE_ENV === "production"
         ? ""

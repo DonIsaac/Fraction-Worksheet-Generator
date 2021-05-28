@@ -17,18 +17,26 @@
     overflow: hidden;
     max-width: 100%;
   }
+
+  .buttons {
+    button:not(:last-child) {
+      margin-right: $spacer;
+    }
+  }
 }
 
-.page {
+.grid {
   // columns: 3;
   font-family: $question-font-family;
   column-gap: 0;
   margin: auto;
+  margin-bottom: $spacer;
   padding: 0;
   list-style-position: inside;
   text-align: left;
   max-width: 100%;
   overflow: hidden;
+  font-size: $grid-font-scale * $font-size-lg;
 
   & > li,
   & > div {

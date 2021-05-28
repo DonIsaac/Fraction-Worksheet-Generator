@@ -10,9 +10,7 @@ const App: FC = () => {
     dispatchers.generateQuestions(24)
     return (
         <div className="App">
-            <header className="App-header">
-                <FlowWorksheet />
-            </header>
+            <FlowWorksheet />
         </div>
     )
 }
