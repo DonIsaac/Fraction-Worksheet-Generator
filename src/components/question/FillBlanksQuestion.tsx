@@ -1,22 +1,48 @@
 import React, { FC, useMemo } from "react"
 import {
-    MapStateToProps, MapStateToPropsParam, shallowEqual, useDispatch, useSelector
+    shallowEqual,
+    useDispatch,
+    useSelector
 } from "react-redux"
-import {
-    Fraction, Nullable, Question, solveQuestion,
-} from "../../lib"
+import { BsCheck, BsExclamationTriangle, BsXCircle } from "react-icons/bs"
+import { Nullable, Question, solveQuestion } from "../../lib"
 import { answerQuestion, QuestionState, RootState } from "../../state"
-import { FractionInput, FractionInputMode, FractionInputProps } from "../fraction"
-import { FractionInputEventHandler } from "../fraction/types"
-import { getDisplayMode, userInputToFraction } from "../fraction/util"
+import {
+    FractionInput,
+    FractionInputProps,
+    FractionInputEventHandler,
+    getDisplayMode,
+    userInputToFraction,
+    FractionInputMode
+} from "../fraction"
 import { QuestionBody } from "./QuestionBody"
+import { IconBaseProps } from "react-icons"
+import classNames from "classnames"
 
+const QuestionModeIcon: FC<{ mode: FractionInputMode } & IconBaseProps> =
+    ({ mode, ...props }) => {
+        switch(mode) {
+            case "input":      return null
+            case "correct":    return <BsCheck {...props} />
+            case "incorrect":  return <BsXCircle {...props} />
+            case "incomplete": return <BsExclamationTriangle {...props} />
+        }
+    }
+
+// const modeToIcon: Record<FractionInputMode, Nullable<JSX.Element>> = {
+//     "input":      null,
+//     "correct":    <BsCheck />,
+//     "incorrect":  <BsXCircle />,
+//     "incomplete": <BsExclamationTriangle />,
+
+// }
 export interface FillBlanksQuestionProps {
     question: Question
     isDone: boolean
     onChange: FractionInputEventHandler
     numerator: string
     denominator: string
+    questionNum?: number
 }
 
 /**
@@ -33,17 +59,22 @@ export const FillBlanksQuestion: FC<FillBlanksQuestionProps> = ({
     isDone,
     numerator,
     denominator,
+    questionNum,
     ...rest
 }) => {
+    // Calculate correct answer to question
     const solution = useMemo(() => solveQuestion(question), [question])
+    // Check user answer against solution
     const isCorrect = useMemo(
         () => {
 
             const f = userInputToFraction(numerator, denominator)
+            // Strings mean error messages -> incorrect
             return typeof f !== "string" && f.eq(solution)
         },
         [numerator, denominator, solution]
     )
+    // Derive mode from above checks + worksheet state
     const mode = useMemo(
         () => getDisplayMode({
             isDone,
@@ -52,28 +83,30 @@ export const FillBlanksQuestion: FC<FillBlanksQuestionProps> = ({
         }),
         [isDone, isCorrect, numerator, denominator]
     )
+    // Pack it all up, send it down
     const props: FractionInputProps = {
         mode,
         numerator,
         denominator,
         ...rest,
     }
-    return (
-        <QuestionBody question={question}>
-            <span className="operation">=</span>
-            <FractionInput {...props} />
-            {
-                // FIXME you know what to do
-                // !isDone ? null :
-                //     isCorrect ?
-                //         <span>Correct!</span> :
-                //         <span>Wrong! Answer is {
-                //             solveQuestion(question).toString()
-                //         }
-                //         </span>
-            }
-        </QuestionBody>
 
+    return (
+        <>
+            {questionNum != null &&
+                <span className="question-number">
+                    {(questionNum + 1) + "."}
+                    &nbsp;
+                    <QuestionModeIcon mode={mode} className={classNames("icon", mode)} />
+                </span>
+            }
+            <span className="question-wrapper">
+                <QuestionBody question={question}>
+                    <span className="operation">=</span>
+                    <FractionInput {...props} />
+                </QuestionBody>
+            </span>
+        </>
     )
 }
 
@@ -111,13 +144,7 @@ export const ConnectedFillBlanksQuestion: FC<ConnectedFillBlanksQuestionProps> =
         isDone,
         numerator,
         denominator,
+        questionNum,
     }
     return <FillBlanksQuestion {...props} />
 }
-// const mapStateToProps: MapStateToProps<
-//     FillBlanksQuestionProps,
-//     ConnectedFillBlanksQuestionProps,
-//     RootState
-// > = (state, ownProps) => {
-
-// }

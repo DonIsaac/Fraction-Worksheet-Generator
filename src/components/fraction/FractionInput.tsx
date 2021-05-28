@@ -48,7 +48,12 @@ export const FractionInput: FC<FractionInputProps> = ({
     numerator,
     denominator,
 }) => {
+
+    /** Is `mode` a display mode? */
     const readonly = !(mode === "input")
+
+    /** Is `mode` a display mode and do the input fields have populated values? */
+    const filled = mode === "correct" || mode === "incorrect"
     const updateValue: (field: "numerator" | "denominator") => FormEventHandler<HTMLInputElement> =
         field => e => onChange(field, e.currentTarget.value)
 
@@ -56,12 +61,16 @@ export const FractionInput: FC<FractionInputProps> = ({
     // Smaller than 1 character
     const style: CSSProperties = {
         width: `${Math.max(numerator?.length ?? 0, denominator?.length ?? 0, 1)}ch`,
+        ...(filled
+            ? { backgroundColor: "#282c34", borderStyle: "hidden" }
+            : {}),
     }
     const commonInputProps: InputHTMLAttributes<HTMLInputElement> = {
         style,
-        type:     "text",
-        pattern:  "^-?[0-9]*$",
-        disabled: readonly,
+        type:            "text",
+        pattern:         "^-?[0-9]*$",
+        disabled:        readonly,
+        "aria-disabled": readonly,
     }
 
     return (

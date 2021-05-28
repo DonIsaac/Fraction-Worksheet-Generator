@@ -7,18 +7,25 @@
 /// - Bootstrap variables: @link https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
 ////
 
+// $font-size: calc(10px + 2vmin);
+$font-size: 14px;
 
 // =============================================================================
 // ============================== WORKSHEET ====================================
 // =============================================================================
 
+/// @group Worksheet
 $question-font-family: 'Courier New', Courier, monospace;
+/// @group Worksheet
 $worksheet-colors: (
   "correct": #0b3,
   "incorrect": #f30,
   "incomplete": #666,
 );
 
+/// scale factor for question font size inside worksheet grid
+/// @group Worksheet
+$grid-font-scale: 1.25;
 
 
 // =============================================================================

@@ -39,7 +39,12 @@ export const FractionBase = React.forwardRef<
     isNegative,
     className,
 }, ref) => (
-    <div className={classNames("fraction", className)} ref={ref}>
+    <div
+        className={classNames("fraction", className)}
+        ref={ref}
+        role="math"
+        aria-label={`${isNegative ? "-" : ""}${numerator}/${denominator}`}
+    >
         {/* Open parenthesis, if specified */}
         {parens && <span className="paren fullheight">(</span>}
         {/* Sign */}

@@ -17,6 +17,7 @@ import "./FlowWorksheet.scss"
 import { generateQuestions } from "../../state/dispatchers"
 import { ConnectedFillBlanksQuestion } from "../question/FillBlanksQuestion"
 import { times } from "ramda"
+import { BsArrowClockwise, BsCheckCircle } from "react-icons/bs"
 
 const debug = Debug("frac:view:FlowWorksheet")
 
@@ -47,37 +48,40 @@ export const FlowWorksheet: FC<FlowWorksheetProps> = () => {
     }
     return (
         <form className="worksheet container">
-            <div className="page row">
+            <div className="grid row" role="list">
                 {times(
                     i => (
-                        <div key={i} className="col-12 col-sm-6 col-md-4 col-xxl-2">
-                            <span className="question-number">{i + "."}</span>
-                            <span className="question-wrapper">
-                                <ConnectedFillBlanksQuestion questionNum={i} />
-                            </span>
+                        <div
+                            key={i}
+                            className="col-12 col-sm-6 col-md-4 col-xxl-2"
+                            role="listitem"
+                        >
+                            <ConnectedFillBlanksQuestion questionNum={i} />
                         </div>
                     ),
                     numQuestions
                 )}
             </div>
-            {!isDone &&
+            <div className="buttons">
+                {!isDone &&
                 <Button
                     type="button"
                     role="submit"
                     primary
                     onClick={finishWorksheet}
                 >
-                    Finish
+                    <BsCheckCircle /> Finish
                 </Button>
-            }
-            <Button
-                type="button"
-                role="reset"
-                primary={isDone}
-                onClick={resetWorksheet}
-            >
-                Reset
-            </Button>
+                }
+                <Button
+                    type="button"
+                    role="reset"
+                    primary={isDone}
+                    onClick={resetWorksheet}
+                >
+                    <BsArrowClockwise /> Reset
+                </Button>
+            </div>
         </form>
     )
 }

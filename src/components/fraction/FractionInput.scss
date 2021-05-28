@@ -1,4 +1,4 @@
-@import "../scss/variables";
+@import "../scss/base";
 // modes
 @each $mode in correct, incorrect, incomplete {
     $c: map-get($worksheet-colors, $mode);
@@ -9,5 +9,12 @@
         input[type="text"] {
             color: $c;
         }
+    }
+}
+
+.fraction {
+    input[type=text] {
+        // border-radius: 5px;
+        border-radius: $border-radius-lg;
     }
 }
