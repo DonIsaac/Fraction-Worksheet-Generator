@@ -5,18 +5,16 @@ name: Node CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
     paths-ignore:
-      - '*.md'
+      - "*.md"
   pull_request:
-    branches: [ master ]
+    branches: [master]
     paths-ignore:
-      - '*.md'
-
+      - "*.md"
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,16 +23,21 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - uses: actions/cache@v2
-      with:
-        path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-    - run: yarn --frozen
-    - run: yarn lint      # Check for style violations
-    - run: yarn typecheck # Run TSC without outputting files or bundling. Type checking only
-    - run: yarn test      # Run test suite
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn --frozen
+        # Check for style violations
+      - run: yarn lint
+        # Run TSC without outputting files or bundling. Type checking only
+      - run: yarn typecheck
+        # Run test suite
+      - run: yarn test --coverage
+      # - name: Upload test coverage
+      #   uses: paambaati/codeclimate-action@v2.2.4

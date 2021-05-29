@@ -84,7 +84,7 @@ export const FractionInput: FC<FractionInputProps> = ({
                     title={"numerator"}
                     value={numerator}
                     {...commonInputProps}
-                ></input>
+                />
             }
             denominator={
                 <input
@@ -93,7 +93,7 @@ export const FractionInput: FC<FractionInputProps> = ({
                     title={"denominator"}
                     value={denominator}
                     {...commonInputProps}
-                ></input>
+                />
             }
         />
     )
