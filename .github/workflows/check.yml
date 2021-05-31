@@ -1,0 +1,37 @@
+name: Lint and Typecheck
+
+on:
+  push:
+    paths-ignore:
+      - "*.md"
+  pull_request:
+    paths-ignore:
+      - "*.md"
+
+jobs:
+  lint-and-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # set up node
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # cache node_modules
+      - uses: actions/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      # install dependencies
+      - run: yarn --frozen
+
+      # check for style violations
+      - run: yarn lint
+
+      # run TSC without outputting files or bundling. Type checking only
+      - run: yarn typecheck
