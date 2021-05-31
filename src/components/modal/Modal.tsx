@@ -16,7 +16,7 @@ const modalVariants: Variants = {
         display:    "none",
         opacity:    0,
         transition: {
-            // Delay: 0.5,
+            delay: 0.5,
         },
     },
 }
@@ -40,6 +40,7 @@ export interface ModalProps {
     visible?: boolean
     title?: string | JSX.Element
 }
+
 export const Modal = React.forwardRef<HTMLDivElement, PropsWithChildren<ModalProps>>(
     ({
         children,
