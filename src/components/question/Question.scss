@@ -1,18 +1,18 @@
-@import "../scss/_variables.scss";
-@import "../scss/_util.scss";
+@import "../scss/variables";
+@import "../scss/util";
 
 .question {
-    @include frac-container;
+  @include frac-container;
 
-    .operation {
-        line-height: $frac-height;
-    }
+  .operation {
+    line-height: $frac-height;
+  }
 
-    input[type=text] {
-        overflow-x: hidden;
-    }
+  input[type=text] {
+    overflow-x: hidden;
+  }
 
-    svg {
-        vertical-align: text-top;
-    }
+  svg {
+    vertical-align: text-top;
+  }
 }

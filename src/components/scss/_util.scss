@@ -1,13 +1,13 @@
 // @import "variables";
-@import "~bootstrap/scss/_functions.scss";
-@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
 
-@mixin full-height {
+// @mixin full-height {
 
-}
+// }
 
 @mixin frac-container {
-    display: inline-flex;
-    justify-content: center;
-    font-family: $question-font-family;
+  display: inline-flex;
+  font-family: $question-font-family;
+  justify-content: center;
 }

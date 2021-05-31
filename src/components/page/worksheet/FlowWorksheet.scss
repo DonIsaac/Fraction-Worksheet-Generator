@@ -1,26 +1,25 @@
-@import "../../scss/_base.scss";
+@import "../../scss/base";
 
 .worksheet {
+  box-sizing: border-box;
   // display: flex;
 
   height: 100%;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-
   margin: auto;
-  padding: 1em;
+  max-width: 100%;
   overflow: hidden;
+  padding: 1em;
   text-align: center;
+  width: 100%;
 
-  & > .row {
+  > .row {
     justify-content: center;
 
     // question cell
-    & > * {
-      overflow: hidden;
+    > * {
       // justify-content: center;
       max-width: 100%;
+      overflow: hidden;
     }
   }
 
@@ -32,37 +31,38 @@
 }
 
 .grid {
+  column-gap: 0;
   // columns: 3;
   font-family: $question-font-family;
-  column-gap: 0;
+  font-size: $grid-font-scale * $font-size-lg;
+  list-style-position: inside;
   margin: auto;
   margin-bottom: $spacer;
-  padding: 0;
-  list-style-position: inside;
-  text-align: left;
   max-width: 100%;
   overflow: hidden;
-  font-size: $grid-font-scale * $font-size-lg;
+  padding: 0;
+  text-align: left;
 
-  & > li,
-  & > div {
+  > li,
+  > div {
+    border: 1px solid;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
-    border: 1px solid;
     padding-top: map-get($spacers, 2);
     // padding: 0.5em 4em 4em 0.5em;
 
     .question-number {
+      box-sizing: border-box;
       margin-right: map-get($spacers, 1);
-      box-sizing: border-box;
     }
+
     .question-wrapper {
-      display: inline-block;
       box-sizing: border-box;
+      display: inline-block;
       padding: map-get($spacers, 2) map-get($spacers, 5) map-get($spacers, 5) map-get($spacers, 2);
 
-      input[type="text"] {
+      input[type=text] {
         max-width: 3 * map-get($spacers, 5);
       }
     }

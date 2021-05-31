@@ -1,61 +1,67 @@
-@import "../scss/_variables.scss";
-@import "../scss/_util.scss";
+@import "../scss/variables";
+@import "../scss/util";
 
 $paren-height-scalar: -0.04;
 
 .fraction {
-    @include frac-container;
-    text-align: center;
+  @include frac-container;
 
-    .paren {
-        // line-height: $frac-height;
-        // font-size: $frac-height * 1em;
-        margin-top: $paren-height-scalar * $frac-height;
-        // margin-top: -0.04 * 2.5em;
-        font-size: $frac-height;
-        // vertical-align: middle;
-    }
-    .fraction-sign {
-        display: inline;
-        line-height: $frac-height;
-        margin-right: $frac-sign-space;
-        // line-height: 2em + 4 * $bar-width;
-    }
-    .fraction-body-wrapper {
-        // display: inline-block;
-        display: inline-flex;
+  text-align: center;
 
-        .fraction-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+  .paren {
+    // margin-top: -0.04 * 2.5em;
+    font-size: $frac-height;
+    // line-height: $frac-height;
+    // font-size: $frac-height * 1em;
+    margin-top: $paren-height-scalar * $frac-height;
+    // vertical-align: middle;
+  }
 
-            .number {
-                display: inline-block;
-            }
+  .fraction-sign {
+    display: inline;
+    line-height: $frac-height;
+    margin-right: $frac-sign-space;
+    // line-height: 2em + 4 * $bar-width;
+  }
 
-            &:not(.negative) {
-                margin-left: $frac-margin;
-                margin-right: $frac-margin;
-            }
+  .number {
+    margin: 0 $frac-sign-space;
 
-            &.negative {
-                // margin-left: 12px + $frac-sign-space;
-                margin-right: $frac-margin + $frac-sign-space;
-            }
-        }
+    input {
+      padding: 0 2px;
     }
-    .bar {
-        // line-height: .6em;
-        margin: 1px;
-        margin-bottom: 2px;
-        border-style: solid;
-        // border-width: $bar-width;
+  }
+
+  .fraction-body-wrapper {
+    // display: inline-block;
+    display: inline-flex;
+
+    .fraction-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .number {
+        display: inline-block;
+      }
+
+      &:not(.negative) {
+        margin-left: $frac-margin;
+        margin-right: $frac-margin;
+      }
+
+      &.negative {
+        // margin-left: 12px + $frac-sign-space;
+        margin-right: $frac-margin + $frac-sign-space;
+      }
     }
-    .number {
-        margin: 0 $frac-sign-space;
-        input {
-            padding: 0 2px;
-        }
-    }
+  }
+
+  .bar {
+    border-style: solid;
+    // line-height: .6em;
+    margin: 1px;
+    margin-bottom: 2px;
+    // border-width: $bar-width;
+  }
 }

@@ -8,16 +8,14 @@
 ////
 
 $font-size: 14px;
-$font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-
+$font-family: "Nunito Sans", "Helvetica Neue", helvetica, arial, sans-serif;
 
 // =============================================================================
 // ============================== WORKSHEET ====================================
 // =============================================================================
 
 /// @group Worksheet
-$question-font-family: 'Courier New', Courier, monospace;
+$question-font-family: "Courier New", courier, monospace;
 /// @group Worksheet
 $worksheet-colors: (
   "correct": #0b3,
@@ -28,8 +26,6 @@ $worksheet-colors: (
 /// scale factor for question font size inside worksheet grid
 /// @group Worksheet
 $grid-font-scale: 1.25;
-
-
 
 // =============================================================================
 // ============================== FRACTIONS ====================================
