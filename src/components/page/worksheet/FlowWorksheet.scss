@@ -1,4 +1,4 @@
-@import "../scss/_base.scss";
+@import "../../scss/_base.scss";
 
 .worksheet {
   // display: flex;
@@ -11,11 +11,17 @@
   margin: auto;
   padding: 1em;
   overflow: hidden;
+  text-align: center;
 
-  // question cell
-  .row > * {
-    overflow: hidden;
-    max-width: 100%;
+  & > .row {
+    justify-content: center;
+
+    // question cell
+    & > * {
+      overflow: hidden;
+      // justify-content: center;
+      max-width: 100%;
+    }
   }
 
   .buttons {
@@ -48,18 +54,15 @@
     // padding: 0.5em 4em 4em 0.5em;
 
     .question-number {
-      margin-right: map-get($spacers, 1);;
+      margin-right: map-get($spacers, 1);
       box-sizing: border-box;
     }
     .question-wrapper {
       display: inline-block;
       box-sizing: border-box;
-      padding: map-get($spacers, 2)
-               map-get($spacers, 5)
-               map-get($spacers, 5)
-               map-get($spacers, 2);
+      padding: map-get($spacers, 2) map-get($spacers, 5) map-get($spacers, 5) map-get($spacers, 2);
 
-      input[type=text] {
+      input[type="text"] {
         max-width: 3 * map-get($spacers, 5);
       }
     }

@@ -7,8 +7,8 @@ import React, {
     InputHTMLAttributes,
 } from "react"
 // import Debug from "debug"
-import { FractionBase } from "./Fraction"
-import { FractionInputEventHandler, FractionInputMode } from "./types"
+import { FractionBase } from "../FractionBase"
+import { FractionInputEventHandler, FractionInputMode } from "../types"
 
 import "./FractionInput.scss"
 

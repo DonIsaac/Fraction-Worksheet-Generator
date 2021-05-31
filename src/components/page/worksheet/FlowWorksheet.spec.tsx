@@ -4,7 +4,7 @@ import ReactDOM, { unmountComponentAtNode } from "react-dom"
 import { Provider } from "react-redux"
 
 import { FlowWorksheet } from "./FlowWorksheet"
-import store from "../../state"
+import store from "../../../state"
 
 describe("<FlowWorksheet />", () => {
     let mount: HTMLDivElement

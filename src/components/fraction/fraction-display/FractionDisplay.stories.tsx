@@ -1,11 +1,11 @@
 
 import { Story, Meta } from "@storybook/react/types-6-0"
-import { Operation, Fraction } from "../../lib"
-import { FractionComponent, FractionComponentProps } from "./Fraction"
+import { Fraction } from "../../../lib"
+import { FractionDisplay, FractionDisplayProps } from "./FractionDisplay"
 
 export default {
     title:     "Fractions/Fraction Displays",
-    component: FractionComponent,
+    component: FractionDisplay,
     argTypes:  {
         numerator: {
             type:        "number",
@@ -45,7 +45,7 @@ const Template: Story<FractionComponentStoryProps> = ({
     isNegative,
     numerator: num,
     denominator: denom,
-}) => <FractionComponent parens={parens} frac={new Fraction(num, denom, isNegative)} />
+}) => <FractionDisplay parens={parens} frac={new Fraction(num, denom, isNegative)} />
 
 export const Basic = Template.bind({})
 Basic.args = {

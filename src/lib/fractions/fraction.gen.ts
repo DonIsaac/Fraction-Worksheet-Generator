@@ -26,7 +26,7 @@ export const generateFraction: FractionGeneratorFactory = gen => ({
     negative,
     range,
     mixedFractions,
-}): Fraction => {
+}) => {
     // Generate a random denominator value
     const denominator = gen(range)
     // Generate a random numerator value. Use random scalar to increase value if

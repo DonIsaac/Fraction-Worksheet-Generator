@@ -1,8 +1,7 @@
-
 import React from "react"
 import { render, RenderResult } from "@testing-library/react"
-import { Fraction } from "../../lib/fractions"
-import { FractionComponent } from "./Fraction"
+import { Fraction } from "../../../lib/fractions"
+import { FractionDisplay } from "./FractionDisplay"
 
 describe("<FractionComponent />", () => {
 
@@ -16,7 +15,7 @@ describe("<FractionComponent />", () => {
 
         beforeEach(() => {
             const frac = new Fraction(n, d)
-            actual = render(<FractionComponent frac={frac} />)
+            actual = render(<FractionDisplay frac={frac} />)
         })
 
         afterEach(() => {
@@ -52,7 +51,7 @@ describe("<FractionComponent />", () => {
 
         beforeEach(() => {
             const frac = new Fraction(n, d, true)
-            actual = render(<FractionComponent frac={frac} />)
+            actual = render(<FractionDisplay frac={frac} />)
         })
 
         afterEach(() => {
@@ -84,7 +83,7 @@ describe("<FractionComponent />", () => {
 
             beforeEach(() => {
                 const frac = new Fraction(1, 3)
-                actual = render(<FractionComponent frac={frac} parens />)
+                actual = render(<FractionDisplay frac={frac} parens />)
             })
 
             it("Contains two parenthasis elements", () => {
@@ -113,12 +112,12 @@ describe("<FractionComponent />", () => {
             })
 
             it("Does not display parenthesis for positive fractions by default", () => {
-                const actual = render(<FractionComponent frac={pos} />)
+                const actual = render(<FractionDisplay frac={pos} />)
                 expect(actual.container.querySelector(".paren")).toBeNull()
             })
 
             it("Does not display parenthesis for negative fractions by default", () => {
-                const actual = render(<FractionComponent frac={neg} />)
+                const actual = render(<FractionDisplay frac={neg} />)
                 expect(actual.container.querySelector(".paren")).toBeNull()
             })
         })

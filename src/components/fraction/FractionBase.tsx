@@ -1,27 +1,8 @@
-import { FC } from "react"
-import { Fraction } from "../../lib"
+import React, { FC } from "react"
 import classNames from "classnames"
-import "./Fraction.scss"
-import React from "react"
 
-export interface FractionComponentProps {
-    frac: Fraction
-    parens?: boolean
-}
+import "./FractionBase.scss"
 
-/**
- * Displays an existing Function.
- *
- * @param props
- *
- * @see Function
- */
-export const FractionComponent: FC<FractionComponentProps> = ({
-    parens = false,
-    frac,
-}) => <FractionBase {...{ parens, ...frac }} />
-
-// =============================================================================
 export type FractionBaseProps = {
     parens?: boolean
     numerator: number | string | JSX.Element

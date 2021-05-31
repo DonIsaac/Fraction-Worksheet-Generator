@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes } from "react"
 import "./Button.scss"
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface BaseButtonProps {
 
   /**
    * Is this the principal call to action on the page?
@@ -29,10 +29,15 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
 }
 
+export type ButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLButtonElement>
+
 /**
  * Primary UI component for user interaction
  */
-export const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = React.forwardRef<
+    HTMLButtonElement,
+    ButtonProps
+>( ({
     primary = false,
     size = "medium",
     type = "button",
@@ -40,16 +45,18 @@ export const Button: React.FC<ButtonProps> = ({
     label,
     children,
     ...props
-}) => {
+},
+ref) => {
     const mode = primary ? "primary" : "secondary"
     return (
         <button
             type={type}
-            className={["storybook-button", size, mode].join(" ")}
+            className={["button", size, mode].join(" ")}
             style={{ backgroundColor }}
+            ref={ref}
             {...props}
         >
             {children ?? label ?? ""}
         </button>
     )
-}
+})
