@@ -7,8 +7,10 @@
 /// - Bootstrap variables: @link https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
 ////
 
-// $font-size: calc(10px + 2vmin);
 $font-size: 14px;
+$font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
 
 // =============================================================================
 // ============================== WORKSHEET ====================================
@@ -26,6 +28,7 @@ $worksheet-colors: (
 /// scale factor for question font size inside worksheet grid
 /// @group Worksheet
 $grid-font-scale: 1.25;
+
 
 
 // =============================================================================

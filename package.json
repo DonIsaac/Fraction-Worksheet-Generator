@@ -31,6 +31,7 @@
     "bootstrap": "^5.0.1",
     "classnames": "^2.2.6",
     "debug": "^4.3.1",
+    "framer-motion": "^4.1.17",
     "normalize.css": "^8.0.1",
     "ramda": "^0.27.1",
     "react": "^17.0.1",
@@ -45,13 +46,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@storybook/addon-actions": "^6.1.11",
-    "@storybook/addon-essentials": "^6.1.11",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
     "@storybook/addon-jest": "^6.2.9",
-    "@storybook/addon-links": "^6.1.11",
-    "@storybook/node-logger": "^6.1.11",
-    "@storybook/preset-create-react-app": "^3.1.5",
-    "@storybook/react": "^6.1.11",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/node-logger": "^6.2.9",
+    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/react": "^6.2.9",
     "@types/classnames": "^2.2.11",
     "@types/debug": "^4.1.5",
     "@types/ramda": "^0.27.40",
@@ -68,6 +69,7 @@
       "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
+      "@typescript-eslint/no-empty-interface": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-non-null-assertion": "off",
       "array-bracket-newline": [
@@ -92,7 +94,7 @@
         {
           "ignoreInlineComments": true,
           "ignoreConsecutiveComments": true,
-          "ignorePattern": "import|const|let"
+          "ignorePattern": "import|const|let|expect|describe|it|console|debug"
         }
       ],
       "comma-dangle": [

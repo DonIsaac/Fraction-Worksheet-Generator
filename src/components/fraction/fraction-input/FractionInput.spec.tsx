@@ -5,7 +5,7 @@ import {
     render,
     RenderResult,
 } from "@testing-library/react"
-import { Fraction } from "../../lib/fractions"
+import { Fraction } from "../../../lib/fractions"
 import { FractionInput } from "./FractionInput"
 
 describe("<FractionInput />", () => {

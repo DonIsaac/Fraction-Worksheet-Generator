@@ -1,0 +1,10 @@
+@import "../../scss/base";
+
+footer {
+    padding: $spacer;
+    text-align: center;
+
+    a:visited {
+        color: white
+    }
+}

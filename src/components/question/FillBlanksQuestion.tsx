@@ -23,9 +23,9 @@ const QuestionModeIcon: FC<{ mode: FractionInputMode } & IconBaseProps> =
     ({ mode, ...props }) => {
         switch(mode) {
             case "input":      return null
-            case "correct":    return <BsCheck {...props} />
-            case "incorrect":  return <BsXCircle {...props} />
-            case "incomplete": return <BsExclamationTriangle {...props} />
+            case "correct":    return <BsCheck title={mode} { ...props} />
+            case "incorrect":  return <BsXCircle title={mode} {...props} />
+            case "incomplete": return <BsExclamationTriangle title={mode} {...props} />
         }
     }
 

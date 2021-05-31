@@ -1,6 +1,8 @@
-@import "../scss/base";
-// modes
+@import "../../scss/base";
+
+// create a class for each mode
 @each $mode in correct, incorrect, incomplete {
+    // color for the current mode
     $c: map-get($worksheet-colors, $mode);
 
     .#{$mode} {

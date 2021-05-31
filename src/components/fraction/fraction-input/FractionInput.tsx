@@ -7,8 +7,8 @@ import React, {
     InputHTMLAttributes,
 } from "react"
 // import Debug from "debug"
-import { FractionBase } from "./Fraction"
-import { FractionInputEventHandler, FractionInputMode } from "./types"
+import { FractionBase } from "../FractionBase"
+import { FractionInputEventHandler, FractionInputMode } from "../types"
 
 import "./FractionInput.scss"
 
@@ -84,7 +84,7 @@ export const FractionInput: FC<FractionInputProps> = ({
                     title={"numerator"}
                     value={numerator}
                     {...commonInputProps}
-                ></input>
+                />
             }
             denominator={
                 <input
@@ -93,7 +93,7 @@ export const FractionInput: FC<FractionInputProps> = ({
                     title={"denominator"}
                     value={denominator}
                     {...commonInputProps}
-                ></input>
+                />
             }
         />
     )

@@ -9,6 +9,7 @@ import type { Fraction } from "./fractions"
 export interface QuestionGenerationConfig {
 
     /**
+     * Possible operations that questions may use.
      *
      * @default [Operation.Addition]
      */
@@ -24,6 +25,7 @@ export interface QuestionGenerationConfig {
 
     /**
      * Range of number values that may appear in numerator/denominator.
+     *
      * @default [1,10]
      */
     range?: [min: number, max: number]
@@ -54,6 +56,8 @@ export interface QuestionGenerationConfig {
 
 /**
  * Available operations in questions.
+ *
+ * @see Question
  */
 export enum Operation {
     Addition = "add",
@@ -63,12 +67,23 @@ export enum Operation {
 }
 
 export type NumGenArgs = [range: [number, number]]
-// Export type FractionGenerator = (digitCount: number, sign?: boolean) => Fraction;
+
+/**
+ * A function that creates a random fraction.
+ */
 export type FractionGenerator = (
     config: Required<Pick<QuestionGenerationConfig, "negative" | "range" | "mixedFractions">>
 ) => Fraction
+
+/**
+ * Factory function for fraction generators.
+ *
+ * @see FractionGenerator
+ */
 export type FractionGeneratorFactory<T extends any[] = NumGenArgs> = (
     gen: (...args: T) => number
 ) => FractionGenerator
 export type Strategies = "default"
+
+/** Lets `T` be nullish. */
 export type Nullable<T> = T | null | undefined

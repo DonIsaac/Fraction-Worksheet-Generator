@@ -4,15 +4,23 @@ import { Question, raise } from "../lib"
 
 
 /**
- * State for a single question
+ * State for a single question on a worksheet.
+ *
+ * @see WorksheetState
  */
-// export type QuestionState = [question: Question, answer: Fraction | null]
 export type QuestionState = {
     question: Question
 
     /** The user-provided answer. Not the "correct" solution. */
     answer: [n: string, d: string]
 }
+
+/**
+ * Active state for a worksheet. Includes info such as the questions on the
+ * worksheet. Does not contain configuration.
+ *
+ * @see QuestionGenerationConfig worksheet config state for generating random questions
+ */
 export interface WorksheetState {
 
     /**
@@ -22,6 +30,11 @@ export interface WorksheetState {
      * If they have not yet answered the question, answer is undefined.
      */
     questions: QuestionState[],
+
+    /**
+     * Whether or not the user has finished working on the worksheet. Finished
+     * worksheets display correct answers and user answers may not be modified.
+     */
     isDone: boolean,
 }
 
@@ -56,7 +69,8 @@ const worksheet = createSlice({
                 questions: action.payload.map(
                     question => ({ question, answer: ["", ""] })
                 ),
-            }),
+            }
+        ),
 
         /**
          * Sets the user's answer to a specific question.
@@ -64,10 +78,13 @@ const worksheet = createSlice({
         answerQuestion: {
 
             /**
+             * Creates the `answerQuestion` action object.
              *
              * @param i             The question number
              * @param numerator     The answer's numerator
              * @param denominator   The answer's denominator
+             *
+             * @returns final action object
              */
             prepare: (i: number, numerator: string, denominator: string) => ({
                 payload: { i, answer: [numerator, denominator] as [string, string] },
