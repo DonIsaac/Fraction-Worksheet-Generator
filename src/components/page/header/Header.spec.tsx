@@ -1,7 +1,5 @@
 import React from "react"
-// Import ReactDOM, { unmountComponentAtNode } from "react-dom"
 import {
-    fireEvent,
     render,
     RenderResult,
 } from "@testing-library/react"

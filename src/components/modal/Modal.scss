@@ -33,15 +33,14 @@
     }
 
     .close {
+      background-color: inherit;
+      border: hidden;
+      color: $danger;
+      cursor: pointer;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-bold;
       position: relative;
       right: 0;
-      border: hidden;
-
-      background-color: inherit;
-      color: $danger;
-      font-weight: $font-weight-bold;
-      font-size: $font-size-lg;
-      cursor: pointer;
 
       svg {
         stroke-width: 1px;

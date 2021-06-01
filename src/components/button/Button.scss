@@ -18,9 +18,9 @@
 
   &.secondary {
     background-color: transparent;
+    border: $border-width solid $white;
     box-shadow: rgba($white, 0.15) 0 0 0 1px inset;
     color: $white;
-    border: $border-width solid $white;
   }
 
   &.small {
@@ -44,11 +44,11 @@
 }
 
 .button-group {
-    .button:not(:last-child) {
-      margin-right: $spacer;
-    }
+  .button:not(:last-child) {
+    margin-right: $spacer;
+  }
 
-    &.centered {
-      text-align: center;
-    }
+  &.centered {
+    text-align: center;
+  }
 }

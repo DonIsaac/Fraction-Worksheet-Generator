@@ -25,7 +25,7 @@ export const SettingsForm: FC<SettingsFormProps> = ({ onDone }) => {
     const {
         operations,
         range: [valueMin = 1, valueMax = 10] = [],
-        countRange: [countMin = 2, countMax = 3] = [],
+        // CountRange: [countMin = 2, countMax = 3] = [],
         mixedFractions = false,
         negative = false,
     } = useSelector<RootState, QuestionGenerationConfig>(

@@ -2,7 +2,6 @@
 import React from "react"
 // Import ReactDOM, { unmountComponentAtNode } from "react-dom"
 import {
-    fireEvent,
     render,
     RenderResult,
 } from "@testing-library/react"
@@ -11,7 +10,6 @@ import { Footer } from "./Footer"
 describe("<Footer />", () => {
 
     let actual: RenderResult
-    const onChange = jest.fn()
 
     beforeEach(() => {
         actual = render(<Footer />)
@@ -19,7 +17,6 @@ describe("<Footer />", () => {
 
     afterEach(() => {
         actual?.unmount()
-        onChange.mockClear()
         actual = null as unknown as RenderResult
     })
 

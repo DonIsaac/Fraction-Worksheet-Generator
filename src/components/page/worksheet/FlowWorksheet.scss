@@ -31,26 +31,26 @@
 }
 
 .grid {
-  // column-gap: 0;
-  // columns: 3;
-  padding: 0;
+  border: $border-width solid $border-color;
+  border-radius: $border-radius-lg;
   font-family: $question-font-family;
   font-size: $grid-font-scale * $font-size-lg;
   list-style-position: inside;
-  text-align: left;
   margin: auto;
   margin-bottom: $spacer;
   max-width: 100%;
   overflow: hidden;
-  border: $border-width solid $border-color;
-  border-radius: $border-radius-lg;
+  // column-gap: 0;
+  // columns: 3;
+  padding: 0;
+  text-align: left;
 
   > li,
   > div {
+    border: $border-width solid $border-color;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
-    border: $border-width solid $border-color;
     padding-top: map-get($spacers, 2);
     // padding: 0.5em 4em 4em 0.5em;
 

@@ -1,9 +1,8 @@
 
 import { Story, Meta } from "@storybook/react/types-6-0"
 import { Provider } from "react-redux"
-import { createStore } from "redux"
 import { Fraction, Operation } from "../../../lib"
-import store, { QuestionState, RootState, setQuestions } from "../../../state"
+import store, { QuestionState, setQuestions } from "../../../state"
 // import store from "../../../state"
 import { FlowWorksheet, FlowWorksheetProps } from "./FlowWorksheet"
 
