@@ -50,13 +50,14 @@ describe("css classes", () => {
 
     beforeEach(() => {
         res = render(<Button className={classname} onClick={onClick}>{text}</Button>)
-        actual = res.container.children[0]
+        actual = res.container.children[0] as HTMLElement
     })
 
     afterEach(() => {
         res?.unmount()
         onClick.mockClear()
-        actual = null as unknown as RenderResult
+        res = null as unknown as RenderResult
+        actual = null as unknown as HTMLElement
     })
 
     it("Appends additional class names to class list", () => {
