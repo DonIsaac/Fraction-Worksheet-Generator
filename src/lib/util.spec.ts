@@ -15,12 +15,18 @@ describe("randomInt([min, max])", () => {
         expect(Number.isInteger(x)).toBeTruthy()
     })
 
-    it("fails if max <= min", () => {
+    it.each([
         // Can't be equal
-        expect(() => randomInt(10, 10)).toThrowError(RangeError)
+        [10, 10],
+        [0, 0],
+        [-5, -5],
         // Can't be less
-        expect(() => randomInt(10, 0)).toThrowError(RangeError)
-        expect(() => randomInt(-4, -8)).toThrowError(RangeError)
+        [10, 0],
+        [-4, -8],
+        [1, 0],
+        [0, -1],
+    ])("fails if max <= min", (a, b) => {
+        expect(() => randomInt(a, b)).toThrowError(RangeError)
     })
 
     describe.each([
@@ -29,6 +35,9 @@ describe("randomInt([min, max])", () => {
         [-15, 0],
         [-20, -10],
         [-5, 5],
+        [0, 1],
+        [-1, 0],
+        [-1046691, 11838459],
     ])("bound checks: [%d, %d]", (min, max) => {
         let x: number
         beforeAll(() => {

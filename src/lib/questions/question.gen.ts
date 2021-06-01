@@ -12,22 +12,23 @@ import { Fraction, generators } from "../fractions"
  *
  * @see Question
  */
-export const generateQuestion: (args?: QuestionGenerationConfig) => Question =
-    ({ // Arguments are unpacked/repacked to establish defaults
-        operations = [Operation.Addition],
-        strategy = "default",
-        negative = false,
-        range = [1, 10] as [number, number],
-        countRange = [2, 3] as [number, number],
-        mixedFractions = false,
-    } = {}) => _genQuestion({
-        operation: operations[randomInt(0, operations.length)],
-        negative,
-        range,
-        count:     randomInt(...countRange),
-        gen:       generators[strategy],
-        mixedFractions,
-    })
+export const generateQuestion: (
+    args?: Partial<QuestionGenerationConfig>
+) => Question = ({ // Arguments are unpacked/repacked to establish defaults
+    operations = [Operation.Addition],
+    strategy = "default",
+    negative = false,
+    range = [1, 10] as [number, number],
+    countRange = [2, 3] as [number, number],
+    mixedFractions = false,
+} = {}) => _genQuestion({
+    operation: operations[randomInt(0, operations.length)],
+    negative,
+    range,
+    count:     randomInt(...countRange),
+    gen:       generators[strategy],
+    mixedFractions,
+})
 
 type GenQuestionArgs = Required<Omit<QuestionGenerationConfig, "strategy" | "countRange" | "operations">> & {
 

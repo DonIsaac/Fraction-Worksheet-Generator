@@ -1,7 +1,7 @@
 @import "../scss/base";
 
 .modal {
-  background-color: rgba($gray-600, 0.4);
+  background-color: rgba($gray-900, 0.5);
   bottom: 0;
   display: flex;
   font-size: $font-size;
@@ -33,19 +33,27 @@
     }
 
     .close {
-      background-color: inherit;
-      border: hidden;
-      cursor: pointer;
       position: relative;
       right: 0;
+      border: hidden;
+
+      background-color: inherit;
+      color: $danger;
+      font-weight: $font-weight-bold;
+      font-size: $font-size-lg;
+      cursor: pointer;
+
+      svg {
+        stroke-width: 1px;
+      }
     }
   }
 
   .modal-body {
-    background-color: $light;
+    background-color: $dark;
     border-color: $border-color;
     border-radius: $border-radius-lg;
-    box-shadow: 10px 10px 20px 0 $gray-800;
+    box-shadow: 10px 10px 20px 0 $black;
     height: auto;
     margin: auto;
     max-height: 90%;

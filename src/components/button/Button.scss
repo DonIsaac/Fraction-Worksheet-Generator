@@ -6,20 +6,21 @@
   border-radius: 3em;
   cursor: pointer;
   display: inline-block;
-  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  // font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: $font-weight-bold;
   line-height: 1;
 
   &.primary {
-    background-color: #1ea7fd;
-    color: #fff;
+    // background-color: #1ea7fd;
+    background-color: $primary;
+    color: $white;
   }
 
   &.secondary {
     background-color: transparent;
-    box-shadow: rgba(200, 200, 200, 0.15) 0 0 0 1px inset;
-    color: #fff;
-    border: 1px solid #fff;
+    box-shadow: rgba($white, 0.15) 0 0 0 1px inset;
+    color: $white;
+    border: $border-width solid $white;
   }
 
   &.small {
@@ -45,5 +46,9 @@
 .button-group {
     .button:not(:last-child) {
       margin-right: $spacer;
+    }
+
+    &.centered {
+      text-align: center;
     }
 }

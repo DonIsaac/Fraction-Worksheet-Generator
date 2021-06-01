@@ -4,8 +4,9 @@ import { Button } from "../../button"
 
 import "./Header.scss"
 
+export type HeaderLinkName = "settings"
 export interface HeaderProps {
-    onClick: (linkName: string) => void
+    onClick: (linkName: HeaderLinkName) => void
 }
 
 export const Header: FC<HeaderProps> = ({

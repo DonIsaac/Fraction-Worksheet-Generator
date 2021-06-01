@@ -13,7 +13,7 @@ export interface QuestionGenerationConfig {
      *
      * @default [Operation.Addition]
      */
-    operations?: Operation[]
+    operations: Operation[]
 
     /**
      * If false, neither the fractions in question or in the answer should
@@ -33,7 +33,7 @@ export interface QuestionGenerationConfig {
     /**
      * [min, max] number of fractions that may appear in each problem
      *
-     * @default [2,2]
+     * @default [2,3]
      */
     countRange?: [min: number, max: number]
 
