@@ -21,6 +21,10 @@ const questionConfig = createSlice({
     initialState,
     reducers: {
 
+        reset() {
+            return initialState
+        },
+
         /**
          * Adds an operation to the list of possible question types.
          *
@@ -56,6 +60,26 @@ const questionConfig = createSlice({
             state.range = action.payload
         },
 
+        /**
+         * Updates the minimum numerator/denominator value.
+         *
+         * @param state
+         * @param action
+         */
+        setValueMin(state, action: PayloadAction<number>) {
+            state.range && (state.range[0] = action.payload)
+        },
+
+        /**
+         * Updates the maximum numerator/denominator value.
+         *
+         * @param state
+         * @param action
+         */
+        setValueMax(state, action: PayloadAction<number>) {
+            state.range && (state.range[1] = action.payload)
+        },
+
         setStrategy(state, action: PayloadAction<Strategies>) {
             state.strategy = action.payload
         },
@@ -63,15 +87,23 @@ const questionConfig = createSlice({
         setMixedFractions(state, action: PayloadAction<boolean>) {
             state.mixedFractions = action.payload
         },
+
+        setNegatives(state, action: PayloadAction<boolean>) {
+            state.negative = action.payload
+        },
     },
 })
 
 // Export default questionConfig
 export const {
+    reset,
     addOperation,
     removeOperation,
     setValueRange,
+    setValueMin,
+    setValueMax,
     setStrategy,
     setMixedFractions,
+    setNegatives,
 } = questionConfig.actions
 export default questionConfig.reducer

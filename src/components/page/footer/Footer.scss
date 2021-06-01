@@ -4,7 +4,15 @@ footer {
   padding: $spacer;
   text-align: center;
 
+  a,
   a:visited {
     color: #fff;
+    text-decoration: none;
+    transition: text-decoration 0.5s ease;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    transition: text-decoration 0.5s ease;
   }
 }

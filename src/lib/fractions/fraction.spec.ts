@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Fraction } from "./fraction"
 // Const SEED = 7403854
 

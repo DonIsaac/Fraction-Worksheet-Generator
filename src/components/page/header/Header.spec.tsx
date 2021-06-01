@@ -1,7 +1,5 @@
 import React from "react"
-// Import ReactDOM, { unmountComponentAtNode } from "react-dom"
 import {
-    fireEvent,
     render,
     RenderResult,
 } from "@testing-library/react"
@@ -10,15 +8,15 @@ import { Header } from "./Header"
 describe("<NavBar />", () => {
 
     let actual: RenderResult
-    const onChange = jest.fn()
+    const onClick = jest.fn()
 
     beforeEach(() => {
-        actual = render(<Header />)
+        actual = render(<Header onClick={onClick} />)
     })
 
     afterEach(() => {
         actual?.unmount()
-        onChange.mockClear()
+        onClick.mockClear()
         actual = null as unknown as RenderResult
     })
 

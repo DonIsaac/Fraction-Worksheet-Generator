@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect } from "react"
+import React, { MouseEventHandler, PropsWithChildren, useEffect } from "react"
 import { Variants, motion } from "framer-motion"
 import { BsXCircle } from "react-icons/bs"
 
@@ -16,7 +16,7 @@ const modalVariants: Variants = {
         display:    "none",
         opacity:    0,
         transition: {
-            // Delay: 0.5,
+            delay: 0.75,
         },
     },
 }
@@ -31,6 +31,7 @@ const bodyVariants: Variants = {
         scale:      0,
         transition: {
             type: "spring",
+            // Delay: 0.5,
         },
     },
 }
@@ -40,6 +41,7 @@ export interface ModalProps {
     visible?: boolean
     title?: string | JSX.Element
 }
+
 export const Modal = React.forwardRef<HTMLDivElement, PropsWithChildren<ModalProps>>(
     ({
         children,
@@ -51,6 +53,8 @@ export const Modal = React.forwardRef<HTMLDivElement, PropsWithChildren<ModalPro
             e.key?.toLowerCase().includes("esc")
             onClose()
         }
+
+        const doNotClose: MouseEventHandler = e => e.stopPropagation()
 
         useEffect(() => {
             document.addEventListener("keydown", handleKeyPress)
@@ -67,13 +71,14 @@ export const Modal = React.forwardRef<HTMLDivElement, PropsWithChildren<ModalPro
                 className="modal-body"
                 ref={ref}
                 variants={bodyVariants}
+                onClick={doNotClose}
             >
                 <header className="modal-header">
                     <span className="title">
                         {typeof title === "string" ? <h2>{title}</h2> : title}
                     </span>
-                    <button className="close" aria-label="close">
-                        <BsXCircle color={"#F00"} />
+                    <button className="close" aria-label="close" onClick={onClose}>
+                        <BsXCircle />
                     </button>
                 </header>
                 <div className="modal-content">

@@ -56,7 +56,7 @@ export const FlowWorksheet: FC<FlowWorksheetProps> = () => {
                         numQuestions
                     )}
                 </div>
-                <div className="buttons">
+                <div className="button-group">
                     {!isDone &&
                 <Button
                     type="button"

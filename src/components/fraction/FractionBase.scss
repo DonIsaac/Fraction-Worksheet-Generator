@@ -58,10 +58,9 @@ $paren-height-scalar: -0.04;
   }
 
   .bar {
-    border-style: solid;
-    // line-height: .6em;
+    border-style: hidden;
+    border-bottom-style: solid;
+    border-width: $frac-bar-width;
     margin: 1px;
-    margin-bottom: 2px;
-    // border-width: $bar-width;
   }
 }

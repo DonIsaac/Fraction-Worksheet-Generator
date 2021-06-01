@@ -23,16 +23,16 @@
     }
   }
 
-  .buttons {
-    button:not(:last-child) {
-      margin-right: $spacer;
-    }
-  }
+  // .buttons {
+  //   button:not(:last-child) {
+  //     margin-right: $spacer;
+  //   }
+  // }
 }
 
 .grid {
-  column-gap: 0;
-  // columns: 3;
+  border: $border-width solid $border-color;
+  border-radius: $border-radius-lg;
   font-family: $question-font-family;
   font-size: $grid-font-scale * $font-size-lg;
   list-style-position: inside;
@@ -40,12 +40,14 @@
   margin-bottom: $spacer;
   max-width: 100%;
   overflow: hidden;
+  // column-gap: 0;
+  // columns: 3;
   padding: 0;
   text-align: left;
 
   > li,
   > div {
-    border: 1px solid;
+    border: $border-width solid $border-color;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;

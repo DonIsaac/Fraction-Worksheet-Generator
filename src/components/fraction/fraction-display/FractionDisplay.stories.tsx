@@ -1,7 +1,7 @@
 
 import { Story, Meta } from "@storybook/react/types-6-0"
 import { Fraction } from "../../../lib"
-import { FractionDisplay, FractionDisplayProps } from "./FractionDisplay"
+import { FractionDisplay } from "./FractionDisplay"
 
 export default {
     title:     "Fractions/Fraction Displays",

@@ -1,7 +1,6 @@
 import { generateFraction } from "./fraction.gen"
 import { randomInt } from "../util"
 
-const SEED = "some string to use as a seed"
 const TEST_ITERS = 16
 
 // Hacky `TEST_ITERS.times |x|`

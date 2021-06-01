@@ -1,10 +1,9 @@
 import { generateQuestion } from "./question.gen"
 import { randomInt } from "../util"
-import { QuestionGenerationConfig, Operation } from "../types"
+import { Operation } from "../types"
 import { Question } from "./question"
 import { Fraction } from "../fractions"
 
-const SEED = "some string to use as a seed"
 const TEST_ITERS = 16
 
 describe.each(Array(TEST_ITERS).fill(1))

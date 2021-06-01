@@ -1,4 +1,5 @@
 import React, { ButtonHTMLAttributes } from "react"
+import classNames from "classnames"
 import "./Button.scss"
 
 export interface BaseButtonProps {
@@ -44,6 +45,7 @@ export const Button: React.FC<ButtonProps> = React.forwardRef<
     backgroundColor,
     label,
     children,
+    className,
     ...props
 },
 ref) => {
@@ -51,7 +53,7 @@ ref) => {
     return (
         <button
             type={type}
-            className={["button", size, mode].join(" ")}
+            className={classNames(["button", size, mode, className])}
             style={{ backgroundColor }}
             ref={ref}
             {...props}

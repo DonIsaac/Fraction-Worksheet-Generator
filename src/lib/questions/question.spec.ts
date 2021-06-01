@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Fraction } from "../fractions"
 import { Operation } from "../types"
 import { Question, solveQuestion } from "./question"
