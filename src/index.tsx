@@ -7,7 +7,7 @@ import App from "./components/App"
 import store from "./state"
 import reportWebVitals from "./reportWebVitals"
 
-import "./index.css"
+import "./index.scss"
 
 // Namespaces need to be manually enabled because webpack weirdness
 const namespaces = process.env.DEBUG || (

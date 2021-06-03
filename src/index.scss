@@ -1,0 +1,25 @@
+@import "./components/scss/base";
+
+html,
+body,
+.root {
+  height: 100vh;
+  min-height: auto;
+  background-color: $dark;
+  color: $light;
+  font-family: $font-family;
+  font-size: $font-size;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+#root {
+  height: 100%;
+}

@@ -1,8 +1,11 @@
 import React, { FC } from "react"
+import { ActionCreatorWithPayload, PayloadAction } from "@reduxjs/toolkit"
 import { shallowEqual, useDispatch, useSelector } from "react-redux"
 import { BsCheckCircle, BsArrowClockwise } from "react-icons/bs"
+
 import { Operation, QuestionGenerationConfig, symbolFor } from "../../../lib"
 import {
+    RootState,
     addOperation,
     removeOperation,
     setValueMax,
@@ -11,8 +14,8 @@ import {
     setMixedFractions,
     reset
 } from "../../../state"
-import { RootState } from "../../../state"
 import { Button } from "../../button"
+import { Checkbox, CheckboxProps } from "./FormComponents"
 
 import "./SettingsForm.scss"
 
@@ -34,62 +37,45 @@ export const SettingsForm: FC<SettingsFormProps> = ({ onDone }) => {
     )
     return (
         <form className="container">
-            <OperationsInputGroup operations={operations} />
-            <br />
-            <div className="form-group">
-                <label htmlFor="value-min,value-max">Value Range: </label>
+            <div className="form-row">
+                <OperationsInputGroup operations={operations} />
                 <br />
-                <input
-                    id="value-min"
-                    name="value-min"
-                    type="number"
-                    min={0}
-                    value={valueMin}
-                    className="form-input"
-                    onChange={
-                        e => dispatch(setValueMin(Number.parseInt(e.target.value)))
-                    }
-                /> To <input
-                    id="value-max"
-                    name="value-max"
-                    type="number"
-                    min={1}
-                    value={valueMax}
-                    onChange={
-                        e => dispatch(setValueMax(Number.parseInt(e.target.value)))
-                    }
-                />
-            </div>
-            <br />
-            <div className="form-row form-group">
-                <div className="col form-check form-check-inline">
-                    <label htmlFor="negatives" className="form-check-label">Negatives?</label>
+                <div className="form-group">
+                    <label htmlFor="value-min,value-max">Value Range: </label>
+                    <br />
                     <input
-                        id="negatives"
-                        name="negatives"
-                        type="checkbox"
-                        checked={negative}
-                        className="form-check-input"
+                        id="value-min"
+                        name="value-min"
+                        type="number"
+                        min={0}
+                        value={valueMin}
+                        className="form-input"
                         onChange={
-                            () => dispatch(setNegatives(!negative))
+                            e => dispatch(setValueMin(Number.parseInt(e.target.value)))
+                        }
+                    /> To <input
+                        id="value-max"
+                        name="value-max"
+                        type="number"
+                        min={1}
+                        value={valueMax}
+                        onChange={
+                            e => dispatch(setValueMax(Number.parseInt(e.target.value)))
                         }
                     />
                 </div>
-                <div className="col form-check form-check-inline">
-                    <label htmlFor="mixed-fractions" className="form-check-label">Mixed Fractions?</label>
-                    <input
-                        id="mixed-fractions"
-                        name="mixed-fractions"
-                        type="checkbox"
-                        checked={mixedFractions}
-                        className="form-check-input"
-                        onChange={
-                            () => dispatch(setMixedFractions(!mixedFractions))
-                        }
-                    />
+                <br />
+                <div className="form-row form-group">
+                    <div className="col form-check form-check-inline">
+                        <label htmlFor="negatives" className="form-check-label">Negatives?</label>
+                        <Checkbox name="negatives" value={negative} action={setNegatives} />
+                    </div>
+                    <div className="col form-check form-check-inline">
+                        <label htmlFor="mixed-fractions" className="form-check-label">Mixed Fractions?</label>
+                        <Checkbox name="mixed-fractions" value={mixedFractions} action={setMixedFractions} />
+                    </div>
                 </div>
             </div>
-
             <div className="button-group centered">
                 <Button role="submit" primary onClick={onDone}>
                     <BsCheckCircle /> Done
@@ -102,10 +88,17 @@ export const SettingsForm: FC<SettingsFormProps> = ({ onDone }) => {
     )
 }
 
+type OnOpChange = (checked: boolean) => PayloadAction<string>
 const OperationsInputGroup: FC<{ operations: Operation[] }> = ({
     operations,
 }) => {
     const dispatch = useDispatch()
+    type NewType = ActionCreatorWithPayload<boolean>
+
+    const onChange: (op: Operation) => OnOpChange =
+        op => checked => checked
+            ? addOperation(op)
+            : removeOperation(op)
 
     return (
 
@@ -118,29 +111,15 @@ const OperationsInputGroup: FC<{ operations: Operation[] }> = ({
                     Operation as Record<string, string>
                 )[opName] as Operation
                 const display = symbolFor(op)
-                const checked: boolean = operations.includes(op)
-                const onChange = () => checked
-                    ? dispatch(removeOperation(op))
-                    : dispatch(addOperation(op))
-                const props: Partial<React.DetailedHTMLProps<
-                    React.InputHTMLAttributes<HTMLInputElement>,
-                    HTMLInputElement
-                >> = {
+                const props = {
                     name,
-                    checked,
-                    onChange,
-                    value:     opName,
-                    id:        opName,
-                    className: "form-check-input",
-                }
+                    value:  operations.includes(op),
+                    action: onChange(op),
+                } as CheckboxProps<OnOpChange>
 
                 return (
                     <div className="form-check form-check-inline">
-
-                        <input
-                            type="checkbox"
-                            {...props}
-                        />
+                        <Checkbox {...props} />
                         <label htmlFor={name} className="form-check-label">{display}</label>
                         &nbsp;
                     </div>
