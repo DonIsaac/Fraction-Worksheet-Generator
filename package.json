@@ -1,6 +1,14 @@
 {
   "name": "fractions",
   "version": "0.1.0",
+  "description": "An application for creating custom fractions practice worksheets",
+  "author":{
+    "name": "Don Isaac",
+    "url": "https://donisaac.dev"
+  },
+  "homepage": "https://donisaac.dev/Fraction-Worksheet-Generator",
+  "repository": "https://github.com/DonIsaac/Fraction-Worksheet-Generator",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
