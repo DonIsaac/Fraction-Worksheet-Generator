@@ -33,7 +33,7 @@ export interface BaseButtonProps {
 export type ButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLButtonElement>
 
 /**
- * Primary UI component for user interaction
+ * A styled button component.
  */
 export const Button: React.FC<ButtonProps> = React.forwardRef<
     HTMLButtonElement,
