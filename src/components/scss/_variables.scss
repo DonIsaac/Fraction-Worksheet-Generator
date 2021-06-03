@@ -7,8 +7,14 @@
 /// - Bootstrap variables: @link https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
 ////
 
+// fonts
+
 $font-size: 14px;
-$font-family: "Nunito Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+$font-family: -apple-system, system-ui, "Nunito Sans", "Roboto", "Oxygen", "Helvetica Neue", helvetica, arial,
+  sans-serif;
+$font-family-code: source-code-pro, Menlo, Monaco, Consolas, "Courier New", courier, monospace;
+
+// theme overrides
 $dark: #282c34;
 
 // =============================================================================
@@ -16,7 +22,7 @@ $dark: #282c34;
 // =============================================================================
 
 /// @group Worksheet
-$question-font-family: "Courier New", courier, monospace;
+$question-font-family: $font-family-code;
 /// @group Worksheet
 $worksheet-colors: (
   "correct": #0b3,

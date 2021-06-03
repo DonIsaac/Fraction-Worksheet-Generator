@@ -9,7 +9,10 @@ export type ButtonLinkProps =
 
 
 /**
- * Primary UI component for user interaction
+ * A link element styled as a Button. It looks the same as `Button` and is used
+ * in the same manner.
+ *
+ * @see Button
  */
 export const ButtonLink: React.FC<ButtonLinkProps> = React.forwardRef<
     HTMLAnchorElement,
