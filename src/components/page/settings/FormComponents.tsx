@@ -1,9 +1,9 @@
-import React, { FC } from "react"
-import { AnyAction, PayloadActionCreator } from "@reduxjs/toolkit"
+import React from "react"
+import { AnyAction } from "@reduxjs/toolkit"
 import { useDispatch } from "react-redux"
 
-export type CheckboxProps<
-    A extends (checked: boolean) => AnyAction// = PayloadActionCreator<boolean>
+export type InputProps<
+    P, A extends (arg: P) => AnyAction // PayloadActionCreator<P>
 > = {
 
     /**
@@ -12,22 +12,28 @@ export type CheckboxProps<
     name: string
 
     /**
-     * Current value of checkbox.
+     * Current value of input
      */
-    value: boolean
+    value: P
 
     /**
-     * Creates action that is dispatched when checkbox is clicked.
+     * Creates action that is dispatched when value is changed.
      */
     action: A
 }
-type CheckboxFnType = <
-    A extends (checked: boolean) => AnyAction// = PayloadActionCreator<boolean>
->(props: CheckboxProps<A>) => React.ReactElement | null;
-export const Checkbox: CheckboxFnType = (
-    ({ name, value, action }) => {
-        const dispatch = useDispatch()
-        return <input
+
+/**
+ * A form input field that dispatches an action when its value changes.
+ */
+type InputComponent<P> = <A extends (arg: P) => AnyAction>(
+    props: InputProps<P, A>
+) => React.ReactElement | null
+
+export const CheckboxInput: InputComponent<boolean> = ({ name, value, action }) => {
+    const dispatch = useDispatch()
+
+    return (
+        <input
             id={name}
             name={name}
             type="checkbox"
@@ -37,4 +43,23 @@ export const Checkbox: CheckboxFnType = (
                 () => dispatch(action(!value))
             }
         />
-    })
+    )
+}
+
+export const NumberInput: InputComponent<number> = ({ name, value, action }) => {
+    const dispatch = useDispatch()
+
+    return (
+        <input
+            id={name}
+            name={name}
+            type="number"
+            min={0}
+            value={value}
+            className="form-input"
+            onChange={
+                e => dispatch(action(Number.parseInt(e.target.value)))
+            }
+        />
+    )
+}
