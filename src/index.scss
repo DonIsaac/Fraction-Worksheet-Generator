@@ -3,23 +3,30 @@
 html,
 body,
 .root {
-  height: 100vh;
-  min-height: auto;
   background-color: $dark;
   color: $light;
   font-family: $font-family;
   font-size: $font-size;
+  height: 100vh;
+  min-height: auto;
 }
 
 body {
-  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
 }
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family:
+    source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Courier New",
     monospace;
 }
+
 #root {
   height: 100%;
 }
