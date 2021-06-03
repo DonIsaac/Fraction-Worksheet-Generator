@@ -13,7 +13,8 @@ import {
     FractionInputEventHandler,
     getDisplayMode,
     userInputToFraction,
-    FractionInputMode
+    FractionInputMode,
+    FractionDisplay
 } from "../fraction"
 import { QuestionBody } from "./QuestionBody"
 import { IconBaseProps } from "react-icons"
@@ -36,12 +37,9 @@ const QuestionModeIcon: FC<{ mode: FractionInputMode } & IconBaseProps> =
 //     "incomplete": <BsExclamationTriangle />,
 
 // }
-export interface FillBlanksQuestionProps {
+export type FillBlanksQuestionProps = Pick<FractionInputProps, "numerator" | "denominator" | "onChange"> & {
     question: Question
     isDone: boolean
-    onChange: FractionInputEventHandler
-    numerator: string
-    denominator: string
     questionNum?: number
 }
 
@@ -64,16 +62,15 @@ export const FillBlanksQuestion: FC<FillBlanksQuestionProps> = ({
 }) => {
     // Calculate correct answer to question
     const solution = useMemo(() => solveQuestion(question), [question])
-    // Check user answer against solution
-    const isCorrect = useMemo(
-        () => {
 
-            const f = userInputToFraction(numerator, denominator)
-            // Strings mean error messages -> incorrect
-            return typeof f !== "string" && f.eq(solution)
-        },
-        [numerator, denominator, solution]
-    )
+    // Check user answer against solution
+    const isCorrect = useMemo( () => {
+        const f = userInputToFraction(numerator, denominator)
+        // Strings mean error messages, therefore incorrect
+        return typeof f !== "string" && f.eq(solution)
+    },
+    [numerator, denominator, solution])
+
     // Derive mode from above checks + worksheet state
     const mode = useMemo(
         () => getDisplayMode({
@@ -83,6 +80,8 @@ export const FillBlanksQuestion: FC<FillBlanksQuestionProps> = ({
         }),
         [isDone, isCorrect, numerator, denominator]
     )
+    const shouldDisplaySolution = mode === "incorrect" || mode === "incomplete"
+
     // Pack it all up, send it down
     const props: FractionInputProps = {
         mode,
@@ -104,6 +103,8 @@ export const FillBlanksQuestion: FC<FillBlanksQuestionProps> = ({
                 <QuestionBody question={question}>
                     <span className="operation">=</span>
                     <FractionInput {...props} />
+                    {shouldDisplaySolution &&
+                        <FractionDisplay frac={solution} className="solution" />}
                 </QuestionBody>
             </span>
         </>

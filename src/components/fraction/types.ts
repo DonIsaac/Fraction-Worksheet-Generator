@@ -24,6 +24,14 @@
  * @see FractionInput
  */
 export type FractionInputMode = "input" | "correct" | "incorrect" | "incomplete"
+
+/**
+ * An event handler function for a fraction input component. Called each time
+ * the input value changes.
+ *
+ * @param field Which part of the fraction was updated
+ * @param val   The new value of `field`
+ */
 export type FractionInputEventHandler = (field: "numerator" | "denominator", val: string) => void
 
 /**

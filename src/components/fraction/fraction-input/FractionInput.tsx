@@ -26,7 +26,11 @@ export interface FractionInputProps {
      * @see FractionInputMode
      */
     mode?: FractionInputMode
+
+    /** The numerator value to display. */
     numerator: string
+
+    /** The denominator value to display. */
     denominator: string
 }
 

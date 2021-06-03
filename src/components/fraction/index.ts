@@ -1,4 +1,4 @@
-export { FractionDisplay as FractionComponent } from "./fraction-display/FractionDisplay"
+export { FractionDisplay } from "./fraction-display/FractionDisplay"
 export { FractionInput } from "./fraction-input/FractionInput"
 // Needed by question components
 export { getDisplayMode, userInputToFraction } from "./util"

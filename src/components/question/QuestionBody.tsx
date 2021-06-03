@@ -1,7 +1,7 @@
 import { FC } from "react"
 import classNames from "classnames"
 import { Fraction, Question } from "../../lib"
-import { FractionComponent } from "../fraction"
+import { FractionDisplay } from "../fraction"
 import { symbolFor } from "../../lib/util"
 
 import "./Question.scss"
@@ -31,14 +31,14 @@ export const QuestionBody: FC<QuestionBodyProps> = ({ question, children }) => (
 
 const QuestionNode: FC<QuestionBodyProps> = ({ question }) => {
     if (question instanceof Fraction) {
-        return <FractionComponent frac={question} />
+        return <FractionDisplay frac={question} />
     }
 
     const { left, right, operation } = question
 
     return (
         <>
-            <FractionComponent frac={left} />
+            <FractionDisplay frac={left} />
             <span className={classNames("operation", operation)}>{symbolFor(operation)}</span>
             <QuestionNode question={right} />
         </>

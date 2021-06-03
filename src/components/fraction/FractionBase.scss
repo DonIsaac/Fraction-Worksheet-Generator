@@ -17,6 +17,7 @@ $paren-height-scalar: -0.04;
     // vertical-align: middle;
   }
 
+  /// Negative sign
   .fraction-sign {
     display: inline;
     line-height: $frac-height;
@@ -24,6 +25,7 @@ $paren-height-scalar: -0.04;
     // line-height: 2em + 4 * $bar-width;
   }
 
+  /// Styles for the numerator and denominator elements
   .number {
     margin: 0 $frac-sign-space;
 
@@ -62,5 +64,11 @@ $paren-height-scalar: -0.04;
     border-bottom-style: solid;
     border-width: $frac-bar-width;
     margin: 1px;
+  }
+
+  &.solution {
+    color: $gray-600;
+    font-style: italic;
+    padding-left: map-get($spacers, 2);
   }
 }

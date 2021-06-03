@@ -6,6 +6,7 @@ import { FractionBase } from "../FractionBase"
 export interface FractionDisplayProps {
     frac: Fraction
     parens?: boolean
+    className?: string | string[]
 }
 
 /**
@@ -18,6 +19,7 @@ export interface FractionDisplayProps {
 export const FractionDisplay: FC<FractionDisplayProps> = ({
     parens = false,
     frac,
-}) => <FractionBase {...{ parens, ...frac }} />
+    className,
+}) => <FractionBase {...{ parens, className, ...frac }} />
 
 // =============================================================================
