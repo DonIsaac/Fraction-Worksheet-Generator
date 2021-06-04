@@ -16,7 +16,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
 }
-
+input, button, select, optgroup, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+form {
+  font-size: 1.15rem;
+}
+fieldset {
+  border-radius: $border-radius-lg;
+}
 code {
   font-family:
     source-code-pro,

@@ -15,7 +15,7 @@ import {
     reset
 } from "../../../state"
 import { Button } from "../../button"
-import { CheckboxInput, NumberInput } from "./FormComponents"
+import { CheckboxInput, NumberInput, FormGroup } from "./FormComponents"
 
 import "./SettingsForm.scss"
 
@@ -36,13 +36,13 @@ export const SettingsForm: FC<SettingsFormProps> = ({ onDone }) => {
         shallowEqual
     )
     return (
-        <form className="container">
-            <div className="form-row">
+        <form>
+            <div className="row">
+                {/* Operations */}
                 <OperationsInputGroup operations={operations} />
-                <br />
-                <div className="form-group">
-                    <label htmlFor="value-min,value-max">Value Range: </label>
-                    <br />
+
+                {/* Value Range */}
+                <FormGroup legend="Value Range">
                     <NumberInput
                         name="value-min"
                         value={valueMin}
@@ -52,9 +52,10 @@ export const SettingsForm: FC<SettingsFormProps> = ({ onDone }) => {
                         value={valueMax}
                         action={setValueMax}
                     />
-                </div>
-                <br />
-                <div className="form-row form-group">
+                </FormGroup>
+
+                {/* Negatives and Mixed Fractions */}
+                <FormGroup legend="Fraction Properties">
                     <div className="col form-check form-check-inline">
                         <label htmlFor="negatives" className="form-check-label">Negatives?</label>
                         <CheckboxInput name="negatives" value={negative} action={setNegatives} />
@@ -63,15 +64,19 @@ export const SettingsForm: FC<SettingsFormProps> = ({ onDone }) => {
                         <label htmlFor="mixed-fractions" className="form-check-label">Mixed Fractions?</label>
                         <CheckboxInput name="mixed-fractions" value={mixedFractions} action={setMixedFractions} />
                     </div>
-                </div>
+                </FormGroup>
             </div>
-            <div className="button-group centered">
-                <Button role="submit" primary onClick={onDone}>
-                    <BsCheckCircle /> Done
-                </Button>
-                <Button role="clear" onClick={() => dispatch(reset())}>
-                    <BsArrowClockwise /> Reset
-                </Button>
+
+            {/* Control Buttons */}
+            <div className="button-group row centered">
+                <div className="col-12">
+                    <Button role="submit" primary onClick={onDone}>
+                        <BsCheckCircle /> Done
+                    </Button>
+                    <Button role="clear" onClick={() => dispatch(reset())}>
+                        <BsArrowClockwise /> Reset
+                    </Button>
+                </div>
             </div>
         </form>
     )
@@ -89,9 +94,8 @@ const OperationsInputGroup: FC<{ operations: Operation[] }> = ({
 
     return (
 
-        <div className="form-group">
-            <label>Operations: </label>
-            <br />
+        <FormGroup legend="Operations">
+            {/* <label className="form-label">Operations: </label> */}
             {Object.keys(Operation).map(opName => {
                 const name = `op-${opName.toLowerCase()}`
                 const op: Operation = (
@@ -112,6 +116,6 @@ const OperationsInputGroup: FC<{ operations: Operation[] }> = ({
                     </div>
                 )
             })}
-        </div>
+        </FormGroup>
     )
 }

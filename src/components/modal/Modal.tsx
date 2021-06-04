@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, PropsWithChildren, useEffect } from "react"
 import { Variants, motion } from "framer-motion"
-import { BsXCircle } from "react-icons/bs"
+import { BsX } from "react-icons/bs"
 
 import "./Modal.scss"
 
@@ -74,15 +74,16 @@ export const Modal = React.forwardRef<HTMLDivElement, PropsWithChildren<ModalPro
                 onClick={doNotClose}
             >
                 <header className="modal-header">
-                    <span className="title">
-                        {typeof title === "string" ? <h2>{title}</h2> : title}
-                    </span>
-                    <button className="close" aria-label="close" onClick={onClose}>
-                        <BsXCircle />
-                    </button>
+                    <div className="modal-controls">
+                        <button className="close" aria-label="close" onClick={onClose}>
+                            <BsX />
+                        </button>
+                    </div>
+                    <div className="modal-title">
+                        {typeof title === "string" ? <h2 className="title">{title}</h2> : title}
+                    </div>
                 </header>
                 <div className="modal-content">
-
                     {children}
                 </div>
             </motion.div>

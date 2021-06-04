@@ -1,4 +1,5 @@
-import React from "react"
+import React, { PropsWithChildren, FC } from "react"
+import classNames from "classnames"
 import { AnyAction } from "@reduxjs/toolkit"
 import { useDispatch } from "react-redux"
 
@@ -63,3 +64,20 @@ export const NumberInput: InputComponent<number> = ({ name, value, action }) => 
         />
     )
 }
+
+type FormGroupProps = {
+    className?: string
+    legend: string
+}
+
+export const FormGroup: FC<PropsWithChildren<FormGroupProps>> =
+    ({ className, legend, children }) => (
+        <div className={classNames("col-12 form-group mb-3", className)}>
+            <fieldset>
+                <legend>{legend}</legend>
+                <div className="text-center">
+                    {children}
+                </div>
+            </fieldset>
+        </div>
+    )
