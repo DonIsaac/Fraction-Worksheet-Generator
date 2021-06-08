@@ -50,8 +50,9 @@ export const Modal = React.forwardRef<HTMLDivElement, PropsWithChildren<ModalPro
         title = "",
     }, ref) => {
         const handleKeyPress = (e: KeyboardEvent) => {
-            e.key?.toLowerCase().includes("esc")
-            onClose()
+            if (e.key?.toLowerCase().includes("esc")) {
+                onClose()
+            }
         }
 
         const doNotClose: MouseEventHandler = e => e.stopPropagation()

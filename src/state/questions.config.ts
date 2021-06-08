@@ -2,7 +2,59 @@ import {
     createSlice,
     PayloadAction,
 } from "@reduxjs/toolkit"
+import Debug from "debug"
 import { Operation, Strategies, QuestionGenerationConfig } from "../lib"
+
+const debug = Debug("frac:state:questionConfig")
+
+/** Key where question config store object is stored in local storage. */
+const LOCALSTORAGE_KEY = "question-config-state"
+
+/**
+ * Gets the initial state for the question config store.
+ *
+ * This function checks if question config preferences have been cached in
+ * local storage from previous sessions. If found, this value is used as the
+ * initial state. If not found (e.g. this is the user's first time using the
+ * app) the initial question config state is used.
+ *
+ * @returns A question generation config object to use as the initial state.
+ *
+ * @see initialState the default initial state
+ * @see saveQuestionConfigStore saves the store to local storage
+ */
+const loadQuestionConfigStore = (): QuestionGenerationConfig => {
+    debug("loading state from local storage")
+
+    try {
+        const serialized = localStorage.getItem(LOCALSTORAGE_KEY)
+        return serialized
+            ? (JSON.parse(serialized) as QuestionGenerationConfig)
+            : initialState
+    } catch (err) {
+        console.error("Failed to load question config state:", err)
+        return initialState
+    }
+}
+
+/**
+ * Saves the current value of the question config store into local storage.
+ * This cached value is used as the store's initial state each time the
+ * application starts, allowing the application to remember user preferences.
+ *
+ * @param store The question config store to save to local storage.
+ *
+ * @see loadQuestionConfigStore loads the saved store from local storage
+ */
+const saveQuestionConfigStore = (store: QuestionGenerationConfig): void => {
+    debug("saving state to local storage")
+    try {
+        const serialized = JSON.stringify(store)
+        localStorage.setItem(LOCALSTORAGE_KEY, serialized)
+    } catch (err) {
+        console.error("Failed to save question config state:", err)
+    }
+}
 
 /**
  * Initial state object for question slice
@@ -17,9 +69,9 @@ const initialState: QuestionGenerationConfig = {
 }
 
 const questionConfig = createSlice({
-    name:     "questionConfig",
-    initialState,
-    reducers: {
+    name:         "questionConfig",
+    initialState: loadQuestionConfigStore(),
+    reducers:     {
 
         reset() {
             return initialState
@@ -106,4 +158,5 @@ export const {
     setMixedFractions,
     setNegatives,
 } = questionConfig.actions
+export { saveQuestionConfigStore }
 export default questionConfig.reducer
