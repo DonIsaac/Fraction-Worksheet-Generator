@@ -24,3 +24,15 @@ export const generateQuestions = (num: number): void => {
 
     store.dispatch(setQuestions(questions))
 }
+
+// TODO: Move this out of dispatchers. Need to extract questions state into
+// separate folder first.
+/**
+ * Checks if the user has not started answering questions yet.
+ *
+ * @returns `true` if all answers are empty, `false` otherwise.
+ */
+export const isWorksheetEmpty = (): boolean => store.getState().worksheet.questions
+    .map(q => q.answer)                      // Extract worksheet answers
+    .map(([n, d]) => !n.length && !d.length) // Each el is true if n & d are empty
+    .reduce((acc, el) => acc && el)          // Logical and it all together
