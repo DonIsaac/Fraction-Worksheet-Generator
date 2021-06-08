@@ -30,9 +30,13 @@ const App: FC = () => {
         state => state.questionConfig,
         shallowEqual
     )
+    const isDone = useSelector<RootState, boolean>(
+        state => state.worksheet.isDone,
+        shallowEqual
+    )
 
     // First-time question generation, run only on first render
-    if (!questionsGenerated) {
+    if (!(questionsGenerated || isDone)) {
         debug("Running first-time question generation")
         generateQuestions(NUM_QUESTIONS)
         setQuestionsGenerated(true)
@@ -41,8 +45,12 @@ const App: FC = () => {
     const onSettingsDone = () => {
         debug("onSettingsDone() called")
 
-        // Create a new questions set, but don't clobber existing work
-        if (isWorksheetEmpty() && !shallowEqual(oldQuestionConfig, questionConfig)) {
+        // Create new worksheet if convenient and possible
+        if (
+            !isDone &&
+            isWorksheetEmpty() &&
+            !shallowEqual(oldQuestionConfig, questionConfig)
+        ) {
             generateQuestions(NUM_QUESTIONS)
         }
 
