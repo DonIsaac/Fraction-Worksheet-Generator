@@ -38,6 +38,11 @@ const bodyVariants: Variants = {
 
 export interface ModalProps {
     onClose: () => void;
+
+    /**
+     * Whether or not the Modal is visible and displayed.
+     * @default true
+     */
     visible?: boolean
     title?: string | JSX.Element
 }
@@ -50,7 +55,7 @@ export const Modal = React.forwardRef<HTMLDivElement, PropsWithChildren<ModalPro
         title = "",
     }, ref) => {
         const handleKeyPress = (e: KeyboardEvent) => {
-            if (e.key?.toLowerCase().includes("esc")) {
+            if (visible && e.key?.toLowerCase().includes("esc")) {
                 onClose()
             }
         }
@@ -59,6 +64,10 @@ export const Modal = React.forwardRef<HTMLDivElement, PropsWithChildren<ModalPro
 
         useEffect(() => {
             document.addEventListener("keydown", handleKeyPress)
+
+            return () => {
+                document.removeEventListener("keydown", handleKeyPress)
+            }
         })
 
         return <motion.div

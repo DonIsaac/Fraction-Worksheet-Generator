@@ -1,13 +1,24 @@
 // $font-size: 12px;
 @import "../scss/base";
 
-@mixin make-button-variant($bg-color, $color: $white, $bg-color-hover: lighten($bg-color, 10%)) {
+/// How much to lighten a button's color and background color when cursor is
+/// hovering over it.
+$hover-lighten: 10%;
+
+/// Sets color settings for a button
+@mixin make-button-variant(
+  $bg-color,
+  $color: $white,
+  $bg-color-hover: lighten($bg-color, $hover-lighten),
+  $color-hover: lighten($color, $hover-lighten)
+) {
   background-color: $bg-color;
   color: $color;
   transition: $btn-transition;
 
   &:hover {
     background-color: $bg-color-hover;
+    color: $color-hover;
     transition: $btn-transition;
   }
 }

@@ -1,4 +1,6 @@
 import React, { FC, useState } from "react"
+import { shallowEqual, useSelector } from "react-redux"
+import Debug from "debug"
 
 import {
     FlowWorksheet,
@@ -14,10 +16,10 @@ import { Modal } from "./modal"
 import logo from "./logo.svg"
 import "./App.scss"
 import { ErrorBoundary } from "./boundary/ErrorBoundary"
-import { shallowEqual, useSelector } from "react-redux"
 
 // TODO: make this configurable
 const NUM_QUESTIONS = 24
+const debug = Debug("frac:view:App")
 
 const App: FC = () => {
     const [modalVisible, setModalVisible] = useState(false)
@@ -31,11 +33,14 @@ const App: FC = () => {
 
     // First-time question generation, run only on first render
     if (!questionsGenerated) {
+        debug("Running first-time question generation")
         generateQuestions(NUM_QUESTIONS)
         setQuestionsGenerated(true)
     }
 
     const onSettingsDone = () => {
+        debug("onSettingsDone() called")
+
         // Create a new questions set, but don't clobber existing work
         if (isWorksheetEmpty() && !shallowEqual(oldQuestionConfig, questionConfig)) {
             generateQuestions(NUM_QUESTIONS)
@@ -49,6 +54,8 @@ const App: FC = () => {
     }
 
     const onHeaderClick = (linkName: HeaderLinkName) => {
+        debug("onHeaderClick('%s') called", linkName)
+
         if (linkName == "settings") {
             setOldQuestionConfig(questionConfig)
             setModalVisible(!modalVisible)

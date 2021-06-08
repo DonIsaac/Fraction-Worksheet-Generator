@@ -1,4 +1,5 @@
 @import "../scss/base";
+@import "../button/Button";
 
 /// Root modal element. Grays out the page behind it.
 .modal {
@@ -31,24 +32,30 @@
       display: inline-block;
     }
 
+    // Control buttons inside modal header
     .modal-controls {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
 
+      & > * {
+        font-size: 1.25 * $font-size-lg;
+        font-weight: $font-weight-bold;
+      }
+
+      // Close button
       .close {
-        background-color: inherit;
+        @include make-button-variant(transparent, $danger);
+        background-color: transparent;
         border: hidden;
         color: $danger;
         cursor: pointer;
-        font-size: $font-size-lg;
-        font-weight: $font-weight-bold;
         position: relative;
         padding: 0;
         right: 0;
       }
       svg {
-        stroke-width: 1px;
+        stroke-width: 2px;
       }
     }
 

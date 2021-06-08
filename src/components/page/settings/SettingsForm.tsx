@@ -109,7 +109,7 @@ const OperationsInputGroup: FC<{ operations: Operation[] }> = ({
                 }
 
                 return (
-                    <div className="form-check form-check-inline">
+                    <div className="form-check form-check-inline" key={name}>
                         <CheckboxInput {...props} />
                         <label htmlFor={name} className="form-check-label">{display}</label>
                         &nbsp;
