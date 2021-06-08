@@ -17,7 +17,6 @@
   border-radius: 3em;
   cursor: pointer;
   display: inline-block;
-  // font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: $font-weight-bold;
   line-height: 1;
 
@@ -26,15 +25,12 @@
   }
 
   &.secondary {
-    // @include make-button-variant(transparent, $white, rgba($white, 0.2));
     @include make-button-variant(transparent, $white);
-    // background-color: transparent;
     border: $border-width solid $white;
     box-shadow: rgba($white, 0.15) 0 0 10px 2px inset;
     &:hover {
       box-shadow: rgba($white, 0.25) 0 0 15px 7px inset;
     }
-    // color: $white;
   }
 
   &.small {

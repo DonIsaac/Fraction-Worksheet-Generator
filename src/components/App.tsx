@@ -22,6 +22,7 @@ const NUM_QUESTIONS = 24
 const App: FC = () => {
     const [modalVisible, setModalVisible] = useState(false)
     const [questionsGenerated, setQuestionsGenerated] = useState(false)
+    const [oldQuestionConfig, setOldQuestionConfig] = useState<RootState["questionConfig"] | undefined>()
     const { generateQuestions, isWorksheetEmpty } = dispatchers
     const questionConfig = useSelector<RootState, RootState["questionConfig"]>(
         state => state.questionConfig,
@@ -36,7 +37,7 @@ const App: FC = () => {
 
     const onSettingsDone = () => {
         // Create a new questions set, but don't clobber existing work
-        if (isWorksheetEmpty()) {
+        if (isWorksheetEmpty() && !shallowEqual(oldQuestionConfig, questionConfig)) {
             generateQuestions(NUM_QUESTIONS)
         }
 
@@ -49,6 +50,7 @@ const App: FC = () => {
 
     const onHeaderClick = (linkName: HeaderLinkName) => {
         if (linkName == "settings") {
+            setOldQuestionConfig(questionConfig)
             setModalVisible(!modalVisible)
         }
     }

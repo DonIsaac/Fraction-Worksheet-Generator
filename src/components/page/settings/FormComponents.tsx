@@ -1,3 +1,8 @@
+/**
+ * @file FormComponents.tsx
+ *
+ * Contains components used by SettingsForm.tsx
+ */
 import React, { PropsWithChildren, FC } from "react"
 import classNames from "classnames"
 import { AnyAction } from "@reduxjs/toolkit"
@@ -30,6 +35,13 @@ type InputComponent<P> = <A extends (arg: P) => AnyAction>(
     props: InputProps<P, A>
 ) => React.ReactElement | null
 
+/**
+ * Inline checkbox input component.
+ *
+ * @see {@link https://getbootstrap.com/docs/4.0/components/forms/#inline}
+ *
+ * @param props
+ */
 export const CheckboxInput: InputComponent<boolean> = ({ name, value, action }) => {
     const dispatch = useDispatch()
 
@@ -67,14 +79,19 @@ export const NumberInput: InputComponent<number> = ({ name, value, action }) => 
 
 type FormGroupProps = {
     className?: string
-    legend: string
+    legend?: string
 }
 
+/**
+ * @see {@link https://getbootstrap.com/docs/4.0/components/forms/#form-groups}
+ *
+ * @param props
+ */
 export const FormGroup: FC<PropsWithChildren<FormGroupProps>> =
     ({ className, legend, children }) => (
         <div className={classNames("col-12 form-group mb-3", className)}>
             <fieldset>
-                <legend>{legend}</legend>
+                {legend && <legend>{legend}</legend>}
                 <div className="text-center">
                     {children}
                 </div>
