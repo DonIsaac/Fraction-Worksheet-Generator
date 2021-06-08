@@ -1,6 +1,17 @@
 // $font-size: 12px;
 @import "../scss/base";
 
+@mixin make-button-variant($bg-color, $color: $white, $bg-color-hover: lighten($bg-color, 10%)) {
+  background-color: $bg-color;
+  color: $color;
+  transition: $btn-transition;
+
+  &:hover {
+    background-color: $bg-color-hover;
+    transition: $btn-transition;
+  }
+}
+
 .button {
   border: 0;
   border-radius: 3em;
@@ -11,16 +22,19 @@
   line-height: 1;
 
   &.primary {
-    // background-color: #1ea7fd;
-    background-color: $primary;
-    color: $white;
+    @include make-button-variant($primary, $white);
   }
 
   &.secondary {
-    background-color: transparent;
+    // @include make-button-variant(transparent, $white, rgba($white, 0.2));
+    @include make-button-variant(transparent, $white);
+    // background-color: transparent;
     border: $border-width solid $white;
-    box-shadow: rgba($white, 0.15) 0 0 0 1px inset;
-    color: $white;
+    box-shadow: rgba($white, 0.15) 0 0 10px 2px inset;
+    &:hover {
+      box-shadow: rgba($white, 0.25) 0 0 15px 7px inset;
+    }
+    // color: $white;
   }
 
   &.small {
