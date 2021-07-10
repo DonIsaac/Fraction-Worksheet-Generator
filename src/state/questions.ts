@@ -57,20 +57,20 @@ const worksheet = createSlice({
         /**
          * Populates the questions list with a clean set of questions.
          *
-         * @param state
-         * @param action
-         *
          * @throws if the worksheet has already been completed (i.e. `isDone === true`)
          */
-        setQuestions: (state, action: PayloadAction<Question[]>) => (
-            state.isDone && raise("Cannot set questions, the worksheet has already been completed."),
-            {
-                ...state,
-                questions: action.payload.map(
-                    question => ({ question, answer: ["", ""] })
-                ),
-            }
-        ),
+        setQuestions: {
+            prepare: (questions: Question[]) => ({ payload: questions }),
+            reducer: (state, action: PayloadAction<Question[]>) => (
+                state.isDone && raise("Cannot set questions, the worksheet has already been completed."),
+                {
+                    ...state,
+                    questions: action.payload.map(
+                        question => ({ question, answer: ["", ""] })
+                    ),
+                }
+            ),
+        },
 
         /**
          * Sets the user's answer to a specific question.

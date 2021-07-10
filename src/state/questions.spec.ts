@@ -60,67 +60,117 @@ const testCases: WorksheetState[] = [
 ]
 
 describe.each(testCases)
-("setDone", state => {
+("When a setDone() action is dispatched", state => {
     let res: WorksheetState
 
     beforeAll(() => {
         res = questionsReducer(state, setDone())
     })
 
-    it("resulting isDone is always true", () => {
+    it("the worksheet is marked as done", () => {
         expect(res.isDone).toBeTruthy()
     })
 })
 
 describe.each(testCases)
-("clearQuestions", state => {
+("When a clearQuestions() action is dispatched", state => {
     let res: WorksheetState
 
     beforeAll(() => {
         res = questionsReducer(state, clearQuestions())
     })
 
-    it("question list is empty", () => {
+    it("clears the questions list", () => {
         expect(res.questions).toHaveLength(0)
     })
 
-    it("isDone is false", () => {
+    it("marks the worksheet as not done", () => {
         expect(res.isDone).toBeFalsy()
     })
 })
 
-describe("answerQuestion", () => {
-    const validAction = answerQuestion(0, "1", "2")
-    const outOfBoundsAction = answerQuestion(questions.length, "1", "2")
+describe("The answerQuestion() action creator", () => {
+    let action: ReturnType<typeof answerQuestion>
 
-    it("Answers questions when worksheet is in progress", () => {
-        const { questions } = questionsReducer(state, validAction)
-        const [numerator, denominator] = questions[0].answer
-        expect(numerator).toBe("1")
-        expect(denominator).toBe("2")
+    beforeEach(() => {
+        action = answerQuestion(1, "5", "2")
     })
 
-    it("Throws if worksheet has been completed", () => {
-        expect(
-            () => questionsReducer(stateDone, validAction)
-        ).toThrow()
+    it("creates an action storing an answer in the shape [numerator, denominator]", () => {
+        expect(action.payload).toMatchObject({
+            i:      1,
+            answer: ["5", "2"],
+        })
     })
 
-    it("Throws if questions list is empty", () => {
-        expect(
-            () => questionsReducer(empty, validAction)
-        ).toThrow()
+    describe("when its action is dispatched", () => {
+
+        const test = (state: WorksheetState) => questionsReducer(state, action)
+
+        describe("when the worksheet is in progress", () => {
+            const nextState = test(state)
+
+            it("sets the user's answer to a question", () => {
+                expect(nextState.questions[1].answer).toEqual(["5", "2"])
+            })
+
+            it("does not affect the worksheet completion status", () => {
+                expect(nextState.isDone).toEqual(state.isDone)
+            })
+        })
+
+
+        it("when the list of questions is empty, an error is thrown", () => {
+            expect(() => test(empty)).toThrow()
+        })
+
+        it("when the worksheet is marked as complete, an error is thrown", () => {
+            expect(() => test(stateDone)).toThrow()
+        })
+
+        it.each(testCases)("when the question number is out of bounds, and error is thrown", state => {
+            expect(() => questionsReducer(
+                state,
+                answerQuestion(-1, "5", "2"))
+            ).toThrow()
+            expect(() => questionsReducer(
+                state,
+                answerQuestion(state.questions.length + 1, "5", "2"))
+            ).toThrow()
+        })
+
     })
 
-    it("Throws if question index is out of bounds", () => {
-        expect(
-            () => questionsReducer(state, outOfBoundsAction)
-        ).toThrow()
-    })
 })
 
-describe("setQuestions", () => {
-    it("Throws if worksheet has been completed", () => {
+describe("When an setQuestions() action is dispatched", () => {
+    describe("when the worksheet is in progress", () => {
+        const newQuestions = questions.slice(2, 4).map(q => q.question)
+        // let nextState: WorksheetState
+        let nextQuestions: QuestionState[]
+
+        beforeEach(() => {
+            nextQuestions = questionsReducer(
+                state,
+                setQuestions(newQuestions)
+            ).questions
+        })
+
+        it("sets the worksheet's questions to the questions the action was dispatched with", () => {
+            expect(nextQuestions).toHaveLength(newQuestions.length)
+            for (let i = 0; i < nextQuestions.length; i++) {
+                expect(nextQuestions[i].question).toEqual(newQuestions[i])
+            }
+        })
+
+        it("after being set, the new questions have blank answers", () => {
+            for (const question of nextQuestions) {
+                expect(question.answer).toEqual(["", ""])
+            }
+        })
+    })
+
+    it("when the worksheet is complete, an error is thrown", () => {
         const qs = questions.map(q => q.question)
         expect(
             () => questionsReducer(stateDone, setQuestions(qs))
