@@ -65,7 +65,7 @@ const App: FC = () => {
     const onHeaderClick = (linkName: HeaderLinkName) => {
         debug("onHeaderClick('%s') called", linkName)
 
-        if (linkName == "settings") {
+        if (linkName === "settings") {
             setOldQuestionConfig(questionConfig)
             setModalVisible(!modalVisible)
         }

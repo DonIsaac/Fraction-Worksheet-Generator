@@ -63,7 +63,10 @@ export default class Fraction {
      * the generated numerator value is `[1, MIXED_FRAC_SCALAR)`.
      */
     private static MIXED_FRAC_SCALAR = 3
-    private static generators: Record<Strategies, (opts: FractionGeneratorOpts) => number> = {
+    private static generators: Record<
+        Strategies,
+        (opts: FractionGeneratorOpts) => number
+    > = {
         "default": ({ range: [min, max] }) => randomInt(min, max),
     }
     public readonly numerator: number

@@ -25,6 +25,7 @@ export const invalidFrac = (n: string, d: string): string | false =>
         && "Numerator must be a whole number") ||
     (!VALID_POSITIVE_INT_REGEX.test(d)
         && "Denominator must be a strictly positive whole number") ||
+    // eslint-disable-next-line eqeqeq
     ((d as unknown) == 0 // Better than 'd === "0"' cuz "000" is still 0.
         && "Denominator cannot be zero")
 
