@@ -5,7 +5,7 @@ import {
     render,
     RenderResult,
 } from "@testing-library/react"
-import { Modal } from "./Modal"
+import Modal from "./Modal"
 
 const isModalVisible = (modal: HTMLElement) => modal.style.display !== "none"
 

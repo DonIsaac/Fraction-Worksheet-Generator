@@ -47,7 +47,7 @@ export interface ModalProps {
     title?: string | JSX.Element
 }
 
-export const Modal = React.forwardRef<HTMLDivElement, PropsWithChildren<ModalProps>>(
+const Modal = React.forwardRef<HTMLDivElement, PropsWithChildren<ModalProps>>(
     ({
         children,
         onClose,
@@ -99,3 +99,5 @@ export const Modal = React.forwardRef<HTMLDivElement, PropsWithChildren<ModalPro
             </motion.div>
         </motion.div>
     })
+
+export default Modal

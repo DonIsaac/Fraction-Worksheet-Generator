@@ -2,7 +2,7 @@
 
 import React, { PropsWithChildren } from "react"
 import { Story, Meta } from "@storybook/react"
-import { Modal, ModalProps } from "./Modal"
+import Modal, { ModalProps } from "./Modal"
 
 export default {
     title:     "Components/Modal",
