@@ -3,7 +3,7 @@ import { shallowEqual, useSelector } from "react-redux"
 import Debug from "debug"
 
 import {
-    FlowWorksheet,
+    ConnectedFlowWorksheet,
     Footer,
     Header,
     HeaderLinkName,
@@ -17,7 +17,7 @@ import Modal from "../components/modal"
 import logo from "./logo.svg"
 import "./App.scss"
 import { ErrorBoundary } from "../components/boundary/ErrorBoundary"
-import { saveQuestionConfigStore } from "../features/worksheet/question-config.store"
+import { saveQuestionConfigStore } from "../features/worksheet/state"
 
 // TODO: make this configurable
 const NUM_QUESTIONS = 24
@@ -62,12 +62,16 @@ const App: FC = () => {
         setModalVisible(false)
     }
 
+    const onSettings = () => {
+        setOldQuestionConfig(questionConfig)
+        setModalVisible(!modalVisible)
+    }
+
     const onHeaderClick = (linkName: HeaderLinkName) => {
         debug("onHeaderClick('%s') called", linkName)
 
         if (linkName === "settings") {
-            setOldQuestionConfig(questionConfig)
-            setModalVisible(!modalVisible)
+            onSettings()
         }
     }
 
@@ -79,12 +83,12 @@ const App: FC = () => {
                 title="Settings"
                 onClose={onSettingsDone}
             >
-                <ErrorBoundary>
+                {/* <ErrorBoundary>
                     <SettingsForm onDone={onSettingsDone}/>
-                </ErrorBoundary>
+                </ErrorBoundary> */}
             </Modal>
             <ErrorBoundary>
-                <FlowWorksheet />
+                <ConnectedFlowWorksheet onSettingsOpen={onSettings} />
             </ErrorBoundary>
             <Footer />
         </>
