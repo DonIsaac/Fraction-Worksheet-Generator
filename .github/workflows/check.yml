@@ -4,9 +4,13 @@ on:
   push:
     paths-ignore:
       - "*.md"
+    branches-ignore:
+      - master
   pull_request:
     paths-ignore:
       - "*.md"
+    branches-ignore:
+      - master
 
 jobs:
   lint-and-check:

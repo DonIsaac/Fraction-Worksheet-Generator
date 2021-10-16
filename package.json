@@ -26,7 +26,7 @@
     ".": "=============================== LINT ===============================",
     "lint": "yarn lint:code && yarn lint:styles",
     "lint:fix": "yarn lint:code:fix && yarn lint:styles:fix",
-    "lint:code": "eslint src/",
+    "lint:code": "node_modules/.bin/eslint src/",
     "lint:code:fix": "yarn lint:code --fix",
     "lint:styles": "stylelint **/*.scss",
     "lint:styles:fix": "yarn lint:styles --fix",
