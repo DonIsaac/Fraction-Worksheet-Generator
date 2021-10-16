@@ -69,7 +69,6 @@
     "@storybook/node-logger": "^6.2.9",
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.2.9",
-    "@types/classnames": "^2.2.11",
     "@types/debug": "^4.1.5",
     "@types/ramda": "^0.27.40",
     "@types/react-router-dom": "^5.1.6",
@@ -250,5 +249,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "packageManager": "yarn@3.1.0-rc.9"
 }
