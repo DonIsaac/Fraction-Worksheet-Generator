@@ -1,5 +1,3 @@
-import { Operation } from "./types"
-
 /**
  * Finds the greatest common divisor between two numbers
  *
@@ -76,15 +74,6 @@ export const raise = (err: Error | string): never => {
     }
 
     throw err
-}
-
-export const symbolFor = (op: Operation): string => {
-    switch (op) {
-        case Operation.Addition: return "+"
-        case Operation.Subtraction: return "-"
-        case Operation.Multiplication: return "\u00d7"
-        case Operation.Division: return "\u00f7"
-    }
 }
 
 /**

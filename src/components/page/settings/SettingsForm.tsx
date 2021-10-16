@@ -3,22 +3,23 @@ import { PayloadAction } from "@reduxjs/toolkit"
 import { shallowEqual, useDispatch, useSelector } from "react-redux"
 import { BsCheckCircle, BsArrowClockwise } from "react-icons/bs"
 
-import { Operation, QuestionGenerationConfig, symbolFor } from "../../../lib"
+import { Operation, QuestionGenerationConfig, symbolFor } from "../../../features/question"
 import {
     RootState,
-    addOperation,
-    removeOperation,
-    setValueMax,
-    setValueMin,
-    setNegatives,
-    setMixedFractions,
-    reset
-} from "../../../state"
+} from "../../../app/state"
 import { Button } from "../../button"
 import { CheckboxInput, NumberInput, FormGroup } from "./FormComponents"
+import {
+    addOperation,
+    removeOperation,
+    reset,
+    setMixedFractions,
+    setNegatives,
+    setValueMax,
+    setValueMin
+} from "../../../features/worksheet/question-config.store"
 
 import "./SettingsForm.scss"
-
 export interface SettingsFormProps {
     onDone: () => void
 }

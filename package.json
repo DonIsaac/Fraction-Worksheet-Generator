@@ -14,22 +14,26 @@
     "start": "react-scripts start",
     "dev": "DEBUG=frac:* yarn start",
     "build": "react-scripts build",
+    "sb": "yarn storybook",
+    "clean": "rimraf .jest-test-results.json *.tsbuildinfo build coverage",
+    "": "=============================== TEST ================================",
     "test": "react-scripts test",
     "test:cov": "yarn test --coverage --watchAll",
     "test:sb": "yarn test --json --outputFile=.storybook/.jest-test-results.json",
-    "eject": "react-scripts eject",
+    "typecheck": "tsc --noEmit",
+    "typecheck:watch": "yarn typecheck --watch",
+    "verify": "yarn lint && yarn typecheck && yarn test --watchAll=false",
+    ".": "=============================== LINT ===============================",
     "lint": "yarn lint:code && yarn lint:styles",
     "lint:fix": "yarn lint:code:fix && yarn lint:styles:fix",
     "lint:code": "eslint src/",
     "lint:code:fix": "yarn lint:code --fix",
     "lint:styles": "stylelint **/*.scss",
     "lint:styles:fix": "yarn lint:styles --fix",
-    "typecheck": "tsc --noEmit",
-    "typecheck:watch": "yarn typecheck --watch",
-    "verify": "yarn lint && yarn check && yarn test",
+    "..": "============================== MISC ===============================",
     "storybook": "start-storybook -p 6006 -s public",
-    "sb": "yarn storybook",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
@@ -70,8 +74,10 @@
     "@types/ramda": "^0.27.40",
     "@types/react-router-dom": "^5.1.6",
     "@types/seedrandom": "^2.4.28",
+    "eslint-plugin-modules-newline": "^0.0.6",
     "node-sass": "^6.0.0",
     "react-is": "^17.0.1",
+    "rimraf": "^3.0.2",
     "seedrandom": "^3.0.5",
     "stylelint": "^13.13.1",
     "stylelint-config-sass-guidelines": "^8.0.0",
@@ -82,6 +88,9 @@
       "react-app",
       "react-app/jest",
       "plugin:@typescript-eslint/recommended"
+    ],
+    "plugins": [
+      "modules-newline"
     ],
     "rules": {
       "@typescript-eslint/no-empty-interface": "off",
@@ -103,6 +112,13 @@
         }
       ],
       "arrow-spacing": "error",
+      "brace-style": [
+        "warn",
+        "1tbs",
+        {
+          "allowSingleLine": true
+        }
+      ],
       "capitalized-comments": [
         "error",
         "always",
@@ -125,7 +141,10 @@
         "error",
         "property"
       ],
-      "eqeqeq": "off",
+      "eqeqeq": [
+        "warn",
+        "smart"
+      ],
       "func-style": [
         "error",
         "expression"
@@ -154,6 +173,8 @@
           "ignoreTrailingComments": true
         }
       ],
+      "modules-newline/import-declaration-newline": "off",
+      "modules-newline/export-declaration-newline": "off",
       "no-extend-native": "error",
       "no-sequences": "off",
       "no-unused-vars": "off",
@@ -163,7 +184,7 @@
         "always"
       ],
       "object-curly-newline": [
-        "error",
+        "warn",
         {
           "minProperties": 4,
           "consistent": true,
@@ -171,7 +192,7 @@
         }
       ],
       "object-property-newline": [
-        "error",
+        "warn",
         {
           "allowAllPropertiesOnSameLine": true
         }

@@ -3,8 +3,8 @@ import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
 import Debug from "debug"
 
-import App from "./components/App"
-import store from "./state"
+import App from "./app/App"
+import store from "./app/state"
 import reportWebVitals from "./reportWebVitals"
 
 import "./index.scss"

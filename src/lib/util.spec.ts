@@ -1,11 +1,9 @@
-import { Operation } from "."
 import {
     randomInt,
     raise,
     gcd,
     floatToInt,
     times,
-    symbolFor,
     lcm,
 } from "./util"
 
@@ -228,32 +226,5 @@ describe("times(n)(fn)", () => {
     it("Iterates 0 times if n < 0", () => {
         times(-1)(fn)
         expect(fn).toBeCalledTimes(0)
-    })
-})
-
-describe("symbolFor(op)", () => {
-    describe.each([
-        Operation.Addition,
-        Operation.Subtraction,
-        Operation.Multiplication,
-        Operation.Division,
-    ])("symbolFor(%s)", input => {
-        let actual: string
-
-        beforeAll(() => {
-            actual = symbolFor(input)
-        })
-
-        it("Returns a string", () => {
-            expect(typeof actual).toEqual("string")
-        })
-
-        it("Is a single character long", () => {
-            expect(actual).toHaveLength(1)
-        })
-
-        it("Is valid UTF", () => {
-            expect(actual.charCodeAt(0)).toBeLessThanOrEqual(0xffff)
-        })
     })
 })
