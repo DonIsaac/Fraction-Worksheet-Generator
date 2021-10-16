@@ -4,6 +4,7 @@
       "stylelint-config-sass-guidelines"
     ],
     "rules": {
+        "declaration-empty-line-before": null,
         "selector-max-id": 3,
         "max-nesting-depth": 5,
         "selector-max-compound-selectors": 5,

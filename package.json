@@ -15,7 +15,7 @@
     "dev": "DEBUG=frac:* yarn start",
     "build": "react-scripts build",
     "sb": "yarn storybook",
-    "clean": "rimraf .jest-test-results.json *.tsbuildinfo build coverage",
+    "clean": "rimraf .jest-test-results.json **/*.tsbuildinfo build coverage",
     "": "=============================== TEST ================================",
     "test": "react-scripts test",
     "test:cov": "yarn test --coverage --watchAll",
@@ -26,11 +26,12 @@
     ".": "=============================== LINT ===============================",
     "lint": "yarn lint:code && yarn lint:styles",
     "lint:fix": "yarn lint:code:fix && yarn lint:styles:fix",
-    "lint:code": "eslint src/",
+    "lint:code": "node_modules/.bin/eslint src/",
     "lint:code:fix": "yarn lint:code --fix",
     "lint:styles": "stylelint **/*.scss",
     "lint:styles:fix": "yarn lint:styles --fix",
     "..": "============================== MISC ===============================",
+    "purge": "yarn clean node_modules .yarn/cache .yarn/install-state.gz",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "eject": "react-scripts eject"
@@ -69,7 +70,6 @@
     "@storybook/node-logger": "^6.2.9",
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.2.9",
-    "@types/classnames": "^2.2.11",
     "@types/debug": "^4.1.5",
     "@types/ramda": "^0.27.40",
     "@types/react-router-dom": "^5.1.6",
@@ -250,5 +250,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "packageManager": "yarn@3.1.0-rc.9"
 }
