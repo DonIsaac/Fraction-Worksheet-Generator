@@ -33,7 +33,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       # install dependencies
-      - run: yarn --frozen
+      - run: yarn --immutable
 
       # run TSC without outputting files or bundling. Type checking only
       - run: yarn typecheck
