@@ -27,12 +27,24 @@ jobs:
 
       # cache node_modules
       - uses: actions/cache@v2
+        id: cache-modules
         with:
-          path: "**/node_modules"
+          path: |
+            **/node_modules
+            .yarn/cache
+            .yarn/install-state.gz
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-modules-
 
       # install dependencies
-      - run: yarn --immutable
+      - name: yarn install (cache miss)
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        run: yarn --immutable --check-cache
+
+      - name: yarn install (cache hit)
+        if: steps.cache-modules.outputs.cache-hit == 'true'
+        run: yarn --immutable
 
       # check for style violations
       - run: yarn lint

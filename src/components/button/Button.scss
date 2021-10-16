@@ -1,4 +1,3 @@
-// $font-size: 12px;
 @import "../../lib/scss/base";
 
 /// How much to lighten a button's color and background color when cursor is
@@ -39,6 +38,7 @@ $hover-lighten: 10%;
     @include make-button-variant(transparent, $white);
     border: $border-width solid $white;
     box-shadow: rgba($white, 0.15) 0 0 10px 2px inset;
+
     &:hover {
       box-shadow: rgba($white, 0.25) 0 0 15px 7px inset;
     }
