@@ -15,7 +15,7 @@
     "dev": "DEBUG=frac:* yarn start",
     "build": "react-scripts build",
     "sb": "yarn storybook",
-    "clean": "rimraf .jest-test-results.json *.tsbuildinfo build coverage",
+    "clean": "rimraf .jest-test-results.json **/*.tsbuildinfo build coverage",
     "": "=============================== TEST ================================",
     "test": "react-scripts test",
     "test:cov": "yarn test --coverage --watchAll",
@@ -31,6 +31,7 @@
     "lint:styles": "stylelint **/*.scss",
     "lint:styles:fix": "yarn lint:styles --fix",
     "..": "============================== MISC ===============================",
+    "purge": "yarn clean node_modules .yarn/cache .yarn/install-state.gz",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "eject": "react-scripts eject"
