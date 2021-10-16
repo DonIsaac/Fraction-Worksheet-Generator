@@ -37,7 +37,7 @@ export const SettingsForm: FC<SettingsFormProps> = ({ onDone }) => {
         shallowEqual
     )
     return (
-        <form>
+        <form className="settings-form">
             <div className="row">
                 {/* Operations */}
                 <OperationsInputGroup operations={operations} />

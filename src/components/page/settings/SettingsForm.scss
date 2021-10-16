@@ -1,5 +1,16 @@
 @import "../../../lib/scss/base";
 
-.form-check-inline .form-check-label {
-  vertical-align: middle;
+.settings-form {
+  .form-check-inline .form-check-label {
+    vertical-align: middle;
+  }
+
+  fieldset {
+    border: $border-width solid $border-color;
+    border-radius: $border-radius-lg;
+
+    legend {
+      padding: 0 2px;
+    }
+  }
 }

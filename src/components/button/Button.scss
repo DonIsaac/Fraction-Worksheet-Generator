@@ -7,7 +7,7 @@ $hover-lighten: 10%;
 /// Sets color settings for a button
 @mixin make-button-variant(
   $bg-color,
-  $color: $white,
+  $color: $light,
   $bg-color-hover: lighten($bg-color, $hover-lighten),
   $color-hover: lighten($color, $hover-lighten)
 ) {

@@ -20,10 +20,17 @@ $font-family-code: source-code-pro, menlo, monaco, consolas, "Courier New", cour
 
 // theme overrides
 $dark: #282c34;
+$light: $gray-200;
+$light-gray: $gray-600;
+
+$border-color: $light-gray;
+$border-width: 2px;
+$border-radius-lg: 0.4rem;
 
 // =============================================================================
 // ============================== WORKSHEET ====================================
 // =============================================================================
+
 /// @group Worksheet
 $question-font-family: $font-family-code;
 /// @group Worksheet
