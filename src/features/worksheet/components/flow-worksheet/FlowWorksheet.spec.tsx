@@ -1,12 +1,11 @@
-
 import React from "react"
 import ReactDOM, { unmountComponentAtNode } from "react-dom"
 import { Provider } from "react-redux"
 
-import { FlowWorksheet } from "./FlowWorksheet"
-import store from "../../app/state"
+import { ConnectedFlowWorksheet } from "./FlowWorksheet"
+import store from "../../../../app/state"
 
-describe("<FlowWorksheet />", () => {
+describe("<ConnectedFlowWorksheet />", () => {
     let mount: HTMLDivElement
 
     beforeEach(() => {
@@ -14,7 +13,7 @@ describe("<FlowWorksheet />", () => {
         document.body.appendChild(mount)
         ReactDOM.render(
             <Provider store={store}>
-                <FlowWorksheet />
+                <ConnectedFlowWorksheet />
             </Provider>
             ,
             mount

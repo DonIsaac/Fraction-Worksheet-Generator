@@ -1,4 +1,4 @@
-import { Fraction, Operation } from "../question"
+import { Fraction, Operation } from "../../question"
 import questionsReducer, {
     setDone,
     WorksheetState,

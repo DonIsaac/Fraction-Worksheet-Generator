@@ -1,14 +1,27 @@
 {
+  "ignoreFiles": [
+    "coverage",
+    "build"
+  ],
   "extends": [
-      "stylelint-config-standard",
-      "stylelint-config-sass-guidelines"
+    "stylelint-config-standard",
+    "stylelint-config-sass-guidelines"
+  ],
+  "rules": {
+    "declaration-empty-line-before": null,
+    "selector-max-id": 3,
+    "max-nesting-depth": 5,
+    "selector-max-compound-selectors": 5,
+    "selector-no-qualifying-type": [
+      true,
+      {
+        "ignore": [
+          "attribute",
+          "id",
+          "class"
+        ]
+      }
     ],
-    "rules": {
-        "declaration-empty-line-before": null,
-        "selector-max-id": 3,
-        "max-nesting-depth": 5,
-        "selector-max-compound-selectors": 5,
-        "selector-no-qualifying-type": [true, { "ignore": ["attribute", "id", "class"] }],
-        "string-quotes": "double"
-    }
+    "string-quotes": "double"
+  }
 }

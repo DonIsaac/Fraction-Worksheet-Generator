@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { raise } from "../../lib"
-import { Question } from "../question"
+import { raise } from "../../../lib"
+import { Question } from "../../question"
 
 type AnswerQuestionAction = PayloadAction<{ i: number, answer: [n: string, d: string] }>
 
@@ -121,6 +121,16 @@ const worksheet = createSlice({
         },
     },
 })
+
+/**
+ * Checks if a question has been answered.
+ *
+ * @param question The question being checked
+ *
+ * @returns `true` if the question is answered, `false` otherwise.
+ */
+export const isQuestionAnswered = (question: QuestionState): boolean =>
+    question.answer[0] !== ""  && question.answer[1] !== ""
 
 export const {
     clearQuestions,

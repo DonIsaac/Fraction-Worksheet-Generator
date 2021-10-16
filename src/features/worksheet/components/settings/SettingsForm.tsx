@@ -3,11 +3,11 @@ import { PayloadAction } from "@reduxjs/toolkit"
 import { shallowEqual, useDispatch, useSelector } from "react-redux"
 import { BsCheckCircle, BsArrowClockwise } from "react-icons/bs"
 
-import { Operation, QuestionGenerationConfig, symbolFor } from "../../../features/question"
+import { Operation, QuestionGenerationConfig, symbolFor } from "../../../question"
 import {
     RootState,
-} from "../../../app/state"
-import { Button } from "../../button"
+} from "../../../../app/state"
+import { Button } from "../../../../components/button"
 import { CheckboxInput, NumberInput, FormGroup } from "./FormComponents"
 import {
     addOperation,
@@ -17,7 +17,7 @@ import {
     setNegatives,
     setValueMax,
     setValueMin
-} from "../../../features/worksheet/question-config.store"
+} from "../../state"
 
 import "./SettingsForm.scss"
 export interface SettingsFormProps {

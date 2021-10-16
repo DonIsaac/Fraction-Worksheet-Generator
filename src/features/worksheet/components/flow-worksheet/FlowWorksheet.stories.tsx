@@ -1,14 +1,24 @@
 import { Story, Meta } from "@storybook/react/types-6-0"
 import { Provider } from "react-redux"
-import { Fraction, Operation } from "../question"
-import store from "../../app/state"
+import {
+    Fraction, Operation, FillBlanksQuestion, FractionDisplay, FractionInput
+} from "../../../question"
+import { Button } from "../../../../components/button"
+import store from "../../../../app/state"
 // import store from "../../../state"
-import { FlowWorksheet, FlowWorksheetProps } from "./FlowWorksheet"
-import { QuestionState, setQuestions } from "./worksheet.store"
+import { ConnectedFlowWorksheet, FlowWorksheet } from "./FlowWorksheet"
+import { QuestionState, setQuestions } from "../../state"
 
 export default {
-    title:      "Page/Flow Worksheet",
-    component:  FlowWorksheet,
+    title:         "Page/Flow Worksheet",
+    component:     ConnectedFlowWorksheet,
+    subcomponents: {
+        FlowWorksheet,
+        FillBlanksQuestion,
+        Button,
+        FractionDisplay,
+        FractionInput,
+    },
     parameters: {
         jest: "FlowWorksheet.spec.tsx",
     },
@@ -56,9 +66,9 @@ const questions: QuestionState[] = [
 ]
 
 store.dispatch(setQuestions(questions.map(q => q.question)))
-const Template: Story<FlowWorksheetProps> = () => (
+const Template: Story = () => (
     <Provider store={store}>
-        <FlowWorksheet />
+        <ConnectedFlowWorksheet />
     </Provider>
 )
 

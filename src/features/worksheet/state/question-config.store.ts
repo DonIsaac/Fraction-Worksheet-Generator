@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import Debug from "debug"
-import { Operation, QuestionGenerationConfig, Strategies } from "../question"
+import { QuestionGenerationConfig, Strategies } from "../../question"
+import { Operation } from "../../question/types"
 
 const debug = Debug("frac:state:questionConfig")
 

@@ -2,8 +2,9 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit"
 
 // eslint-disable-next-line
 import { QuestionGenerationConfig } from "../../features/question"
-import questionConfig from "../../features/worksheet/question-config.store"
-import worksheet from "../../features/worksheet/worksheet.store"
+// eslint-disable-next-line
+import type { WorksheetState } from "../../features/worksheet/state"
+import { questionConfigReducer, worksheetReducer } from "../../features/worksheet/state"
 import { logger, crashReporter } from "./middleware"
 
 /** The root reducer */
@@ -16,14 +17,14 @@ const reducer = combineReducers({
      *
      * @see QuestionGenerationConfig
      */
-    questionConfig,
+    questionConfig: questionConfigReducer,
 
     /**
      * Active worksheet state. Includes list of current questions, etc.
      *
      * @see WorksheetState
      */
-    worksheet,
+    worksheet: worksheetReducer,
 })
 
 /** The application's Redux store. */

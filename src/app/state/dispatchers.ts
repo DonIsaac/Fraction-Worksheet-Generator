@@ -1,6 +1,6 @@
 import Debug from "debug"
 import { generateQuestion, Question } from "../../features/question"
-import { setQuestions } from "../../features/worksheet/worksheet.store"
+import { setQuestions } from "../../features/worksheet/state"
 import store from "./store"
 
 const debug = Debug("frac:state:dispatch")

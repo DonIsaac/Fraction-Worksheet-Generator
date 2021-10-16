@@ -1,5 +1,5 @@
 import { AnyAction } from "@reduxjs/toolkit"
-import { Operation, QuestionGenerationConfig } from "../question"
+import { Operation, QuestionGenerationConfig } from "../../question"
 import questionConfigReducer, {
     addOperation, removeOperation, reset, setMixedFractions, setValueRange
 } from "./question-config.store"

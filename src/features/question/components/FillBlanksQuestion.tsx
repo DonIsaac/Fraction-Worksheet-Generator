@@ -19,7 +19,7 @@ import {
 import { QuestionBody } from "./QuestionBody"
 import { IconBaseProps } from "react-icons"
 import classNames from "classnames"
-import { answerQuestion, QuestionState } from "../../worksheet/worksheet.store"
+import { answerQuestion, QuestionState } from "../../worksheet/state"
 
 const QuestionModeIcon: FC<{ mode: FractionInputMode } & IconBaseProps> =
     ({ mode, ...props }) => {
