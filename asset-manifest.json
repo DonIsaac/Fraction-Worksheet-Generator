@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Fraction-Worksheet-Generator/static/css/main.bd52405e.chunk.css",
-    "main.js": "/Fraction-Worksheet-Generator/static/js/main.44636302.chunk.js",
-    "main.js.map": "/Fraction-Worksheet-Generator/static/js/main.44636302.chunk.js.map",
-    "runtime-main.js": "/Fraction-Worksheet-Generator/static/js/runtime-main.9ce7c007.js",
-    "runtime-main.js.map": "/Fraction-Worksheet-Generator/static/js/runtime-main.9ce7c007.js.map",
-    "static/css/2.70c372c2.chunk.css": "/Fraction-Worksheet-Generator/static/css/2.70c372c2.chunk.css",
-    "static/js/2.94296f60.chunk.js": "/Fraction-Worksheet-Generator/static/js/2.94296f60.chunk.js",
-    "static/js/2.94296f60.chunk.js.map": "/Fraction-Worksheet-Generator/static/js/2.94296f60.chunk.js.map",
-    "static/js/3.ca7451b1.chunk.js": "/Fraction-Worksheet-Generator/static/js/3.ca7451b1.chunk.js",
-    "static/js/3.ca7451b1.chunk.js.map": "/Fraction-Worksheet-Generator/static/js/3.ca7451b1.chunk.js.map",
+    "main.css": "/Fraction-Worksheet-Generator/static/css/main.540b1c99.chunk.css",
+    "main.js": "/Fraction-Worksheet-Generator/static/js/main.4c44055f.chunk.js",
+    "main.js.map": "/Fraction-Worksheet-Generator/static/js/main.4c44055f.chunk.js.map",
+    "runtime-main.js": "/Fraction-Worksheet-Generator/static/js/runtime-main.dcf85c14.js",
+    "runtime-main.js.map": "/Fraction-Worksheet-Generator/static/js/runtime-main.dcf85c14.js.map",
+    "static/css/2.72a278e2.chunk.css": "/Fraction-Worksheet-Generator/static/css/2.72a278e2.chunk.css",
+    "static/js/2.bb97cfd1.chunk.js": "/Fraction-Worksheet-Generator/static/js/2.bb97cfd1.chunk.js",
+    "static/js/2.bb97cfd1.chunk.js.map": "/Fraction-Worksheet-Generator/static/js/2.bb97cfd1.chunk.js.map",
+    "static/js/3.c990b187.chunk.js": "/Fraction-Worksheet-Generator/static/js/3.c990b187.chunk.js",
+    "static/js/3.c990b187.chunk.js.map": "/Fraction-Worksheet-Generator/static/js/3.c990b187.chunk.js.map",
     "index.html": "/Fraction-Worksheet-Generator/index.html",
-    "static/css/2.70c372c2.chunk.css.map": "/Fraction-Worksheet-Generator/static/css/2.70c372c2.chunk.css.map",
-    "static/css/main.bd52405e.chunk.css.map": "/Fraction-Worksheet-Generator/static/css/main.bd52405e.chunk.css.map",
-    "static/js/2.94296f60.chunk.js.LICENSE.txt": "/Fraction-Worksheet-Generator/static/js/2.94296f60.chunk.js.LICENSE.txt"
+    "static/css/2.72a278e2.chunk.css.map": "/Fraction-Worksheet-Generator/static/css/2.72a278e2.chunk.css.map",
+    "static/css/main.540b1c99.chunk.css.map": "/Fraction-Worksheet-Generator/static/css/main.540b1c99.chunk.css.map",
+    "static/js/2.bb97cfd1.chunk.js.LICENSE.txt": "/Fraction-Worksheet-Generator/static/js/2.bb97cfd1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.9ce7c007.js",
-    "static/css/2.70c372c2.chunk.css",
-    "static/js/2.94296f60.chunk.js",
-    "static/css/main.bd52405e.chunk.css",
-    "static/js/main.44636302.chunk.js"
+    "static/js/runtime-main.dcf85c14.js",
+    "static/css/2.72a278e2.chunk.css",
+    "static/js/2.bb97cfd1.chunk.js",
+    "static/css/main.540b1c99.chunk.css",
+    "static/js/main.4c44055f.chunk.js"
   ]
 }
