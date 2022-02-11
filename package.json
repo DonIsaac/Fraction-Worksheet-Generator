@@ -75,7 +75,7 @@
     "@types/react-router-dom": "^5.1.6",
     "@types/seedrandom": "^2.4.28",
     "eslint-plugin-modules-newline": "^0.0.6",
-    "node-sass": "^6.0.0",
+    "node-sass": "^7.0.0",
     "react-is": "^17.0.1",
     "rimraf": "^3.0.2",
     "seedrandom": "^3.0.5",
