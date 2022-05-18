@@ -15,8 +15,8 @@ export const crashReporter: Middleware = store => next => action => {
     try {
         return next(action)
     } catch (err) {
-        debug("State at error: %O", store.getState())
-        err.state = store
+        debug("State at error: %O", store.getState());
+        (err as Record<string, unknown>).state = store
 
         throw err
     }

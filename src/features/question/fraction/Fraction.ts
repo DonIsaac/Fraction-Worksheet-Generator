@@ -67,8 +67,8 @@ export default class Fraction {
         Strategies,
         (opts: FractionGeneratorOpts) => number
     > = {
-        "default": ({ range: [min, max] }) => randomInt(min, max),
-    }
+            "default": ({ range: [min, max] }) => randomInt(min, max),
+        }
     public readonly numerator: number
     public readonly denominator: number
     public readonly isNegative: boolean
@@ -186,8 +186,8 @@ export default class Fraction {
             s1 = denom / this.denominator,
             s2 = denom / other.denominator
 
-        const n1 = this.sign * this.numerator * s1,
-            n2 = other.sign * other.numerator * s2
+        const n1 = this.sign * this.numerator * s1
+        const n2 = other.sign * other.numerator * s2
 
         const numerator = n1 + n2
         const neg = numerator < 0
