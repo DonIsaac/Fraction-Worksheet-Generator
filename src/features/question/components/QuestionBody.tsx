@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, PropsWithChildren } from "react"
 import classNames from "classnames"
 
 import { Question, symbolFor } from ".."
@@ -22,7 +22,7 @@ export interface QuestionBodyProps {
  *
  * @see QuestionBodyProps
  */
-export const QuestionBody: FC<QuestionBodyProps> = ({ question, children }) => (
+export const QuestionBody: FC<PropsWithChildren<QuestionBodyProps>> = ({ question, children }) => (
     <div className="question">
         <QuestionNode question={question} />
         {children}
