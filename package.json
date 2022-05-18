@@ -75,13 +75,13 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/seedrandom": "^2.4.28",
     "eslint-plugin-modules-newline": "^0.0.6",
-    "node-sass": "^6.0.0",
+    "node-sass": "^7.0.1",
     "react-is": "^18.1.0",
     "rimraf": "^3.0.2",
     "seedrandom": "^3.0.5",
-    "stylelint": "^13.13.1",
-    "stylelint-config-sass-guidelines": "^8.0.0",
-    "stylelint-config-standard": "^22.0.0"
+    "stylelint": "^14.8.2",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-config-standard": "^25.0.0"
   },
   "eslintConfig": {
     "extends": [
