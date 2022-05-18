@@ -74,6 +74,7 @@
     "@types/ramda": "^0.28.12",
     "@types/react-router-dom": "^5.3.3",
     "@types/seedrandom": "^2.4.28",
+    "browserslist": "^4.20.3",
     "eslint-plugin-modules-newline": "^0.0.6",
     "node-sass": "^7.0.1",
     "react-is": "^18.1.0",
@@ -82,6 +83,9 @@
     "stylelint": "^14.8.2",
     "stylelint-config-sass-guidelines": "^9.0.1",
     "stylelint-config-standard": "^25.0.0"
+  },
+  "resolutions": {
+    "autoprefixer": "10.4.5"
   },
   "eslintConfig": {
     "extends": [
