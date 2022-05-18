@@ -5169,10 +5169,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/debug@npm:^4.1.5":
-  version: 4.1.5
-  resolution: "@types/debug@npm:4.1.5"
-  checksum: 36bdb74909be193aeeb8c9bb64ef45d691f35181dcf75285728ec1e07103cb91042be2e8294f0624fc5922d9b4f68482faf5ea3068288577ebdccee76cd7870c
+"@types/debug@npm:^4.1.7":
+  version: 4.1.7
+  resolution: "@types/debug@npm:4.1.7"
+  dependencies:
+    "@types/ms": "*"
+  checksum: 0a7b89d8ed72526858f0b61c6fd81f477853e8c4415bb97f48b1b5545248d2ae389931680b94b393b993a7cfe893537a200647d93defe6d87159b96812305adc
   languageName: node
   linkType: hard
 
@@ -5435,6 +5437,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/ms@npm:*":
+  version: 0.7.31
+  resolution: "@types/ms@npm:0.7.31"
+  checksum: daadd354aedde024cce6f5aa873fefe7b71b22cd0e28632a69e8b677aeb48ae8caa1c60e5919bb781df040d116b01cb4316335167a3fc0ef6a63fa3614c0f6da
+  languageName: node
+  linkType: hard
+
 "@types/node-fetch@npm:^2.5.7":
   version: 2.5.10
   resolution: "@types/node-fetch@npm:2.5.10"
@@ -5536,12 +5545,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ramda@npm:^0.27.40":
-  version: 0.27.40
-  resolution: "@types/ramda@npm:0.27.40"
+"@types/ramda@npm:^0.28.12":
+  version: 0.28.12
+  resolution: "@types/ramda@npm:0.28.12"
   dependencies:
     ts-toolbelt: ^6.15.1
-  checksum: 25254f007a0b3715eb76f2e47e249559358d7fdd518943ef4f57506638db937a17745e42bd8cdaab4f8341dd1cbeae162d623e1ddf2ed46ecff4028b48f5afae
+  checksum: 58146449c6bc7d63773bed263a6843fa3fa48e01ffd8e7109bcc60370d0084477dac4ca88c90229fc218129b68471c2f243b4b8077ca7faa8e795883a586142d
   languageName: node
   linkType: hard
 
@@ -11431,22 +11440,22 @@ __metadata:
     "@testing-library/jest-dom": ^5.16.4
     "@testing-library/react": ^13.2.0
     "@testing-library/user-event": ^14.2.0
-    "@types/debug": ^4.1.5
+    "@types/debug": ^4.1.7
     "@types/jest": ^27.5.1
     "@types/node": ^14.14.16
-    "@types/ramda": ^0.27.40
+    "@types/ramda": ^0.28.12
     "@types/react": ^18.0.9
     "@types/react-dom": ^18.0.4
     "@types/react-router-dom": ^5.3.3
     "@types/seedrandom": ^2.4.28
     bootstrap: ^5.0.1
     classnames: ^2.3.1
-    debug: ^4.3.1
+    debug: ^4.3.4
     eslint-plugin-modules-newline: ^0.0.6
     framer-motion: ^6.3.3
     node-sass: ^6.0.0
     normalize.css: ^8.0.1
-    ramda: ^0.27.1
+    ramda: ^0.28.0
     react: ^18.1.0
     react-dom: ^18.1.0
     react-icons: ^4.3.1
@@ -18388,10 +18397,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"ramda@npm:^0.27.1":
-  version: 0.27.1
-  resolution: "ramda@npm:0.27.1"
-  checksum: 31a0c0ef739b2525d7615f84cbb5d3cb89ee0c795469b711f729ea1d8df0dccc3cd75d3717a1e9742d42315ce86435680b7c87743eb7618111c60c144a5b8059
+"ramda@npm:^0.28.0":
+  version: 0.28.0
+  resolution: "ramda@npm:0.28.0"
+  checksum: 44ea6e5010bba70151b6a92d8114a91915e8b5a16105cce65fae58c9d7386b812c429645e35f21141d7087568550ce383bc10ee1a65cdec951f4b69ea457e6a4
   languageName: node
   linkType: hard
 
