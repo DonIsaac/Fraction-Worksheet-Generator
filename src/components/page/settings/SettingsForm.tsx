@@ -48,10 +48,12 @@ export const SettingsForm: FC<SettingsFormProps> = ({ onDone }) => {
                         name="value-min"
                         value={valueMin}
                         action={setValueMin}
+                        min={1}
                     /> To <NumberInput
                         name="value-max"
                         value={valueMax}
                         action={setValueMax}
+                        min={2}
                     />
                 </FormGroup>
 
@@ -84,7 +86,12 @@ export const SettingsForm: FC<SettingsFormProps> = ({ onDone }) => {
 }
 
 type OnOpChange = (checked: boolean) => PayloadAction<string>
-const OperationsInputGroup: FC<{ operations: Operation[] }> = ({
+type OperationsInputGroupProps = {
+
+    /** All available operations that may be included in fraction problems */
+    operations: Operation[] 
+}
+const OperationsInputGroup: FC<OperationsInputGroupProps> = ({
     operations,
 }) => {
 

@@ -26,7 +26,7 @@ export type InputProps<
      * Creates action that is dispatched when value is changed.
      */
     action: A
-}
+} & Pick<React.InputHTMLAttributes<HTMLInputElement>, 'min' | 'max'>
 
 /**
  * A form input field that dispatches an action when its value changes.
@@ -42,7 +42,12 @@ type InputComponent<P> = <A extends (arg: P) => AnyAction>(
  *
  * @param props
  */
-export const CheckboxInput: InputComponent<boolean> = ({ name, value, action }) => {
+export const CheckboxInput: InputComponent<boolean> = ({
+    name,
+    value,
+    action,
+    ...rest
+}) => {
     const dispatch = useDispatch()
 
     return (
@@ -55,11 +60,17 @@ export const CheckboxInput: InputComponent<boolean> = ({ name, value, action }) 
             onChange={
                 () => dispatch(action(!value))
             }
+            {...rest}
         />
     )
 }
 
-export const NumberInput: InputComponent<number> = ({ name, value, action }) => {
+export const NumberInput: InputComponent<number> = ({
+    name,
+    value,
+    action,
+    ...rest
+}) => {
     const dispatch = useDispatch()
 
     return (
@@ -73,6 +84,7 @@ export const NumberInput: InputComponent<number> = ({ name, value, action }) => 
             onChange={
                 e => dispatch(action(Number.parseInt(e.target.value)))
             }
+            {...rest}
         />
     )
 }
