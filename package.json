@@ -76,7 +76,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/seedrandom": "^2.4.28",
     "browserslist": "^4.22.1",
-    "node-sass": "^7.0.1",
+    "node-sass": "^9.0.0",
     "react-is": "^18.2.0",
     "rimraf": "^5.0.5",
     "seedrandom": "^3.0.5",
