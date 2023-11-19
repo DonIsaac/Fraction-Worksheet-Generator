@@ -15,10 +15,15 @@ $hover-lighten: 10%;
   color: $color;
   transition: $btn-transition;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: $bg-color-hover;
     color: $color-hover;
     transition: $btn-transition;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
   }
 }
 

@@ -3,7 +3,7 @@ import {
     render,
     RenderResult,
 } from "@testing-library/react"
-import { Header } from "./Header"
+import Header from "./Header"
 
 describe("<NavBar />", () => {
 

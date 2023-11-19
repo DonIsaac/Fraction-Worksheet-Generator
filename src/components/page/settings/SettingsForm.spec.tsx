@@ -34,7 +34,7 @@ describe("<SettingsForm />", () => {
     it("should call onDone when submit button is clicked", () => {
         const done = mount.querySelector("button[role='submit']")
         expect(done).not.toBeNull()
-        // todo: click done and assert onDone is called
+        // Todo: click done and assert onDone is called
         // done.
     })
 })

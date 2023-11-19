@@ -4,11 +4,10 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux"
 import {
     RootState,
 } from "../../app/state"
-import { setDone, clearQuestions } from "./worksheet.store"
+import { setDone, clearAnswers } from "./worksheet.store"
 import { Button } from "../../components/button/Button"
 
 import "./FlowWorksheet.scss"
-import { generateQuestions } from "../../app/state/dispatchers"
 import { ConnectedFillBlanksQuestion } from "../question"
 import { times } from "ramda"
 import { BsArrowClockwise, BsCheckCircle } from "react-icons/bs"
@@ -35,8 +34,7 @@ export const FlowWorksheet: FC<FlowWorksheetProps> = () => {
     const dispatch = useDispatch()
     const finishWorksheet = () => dispatch(setDone())
     const resetWorksheet = () => {
-        dispatch(clearQuestions())
-        generateQuestions(24)
+        dispatch(clearAnswers())
     }
     return (
         <main>
@@ -66,14 +64,14 @@ export const FlowWorksheet: FC<FlowWorksheetProps> = () => {
                     <BsCheckCircle /> Finish
                 </Button>
                     }
-                    <Button
+                    {/* <Button
                         type="button"
                         role="reset"
                         primary={isDone}
                         onClick={resetWorksheet}
                     >
                         <BsArrowClockwise /> Reset
-                    </Button>
+                    </Button> */}
                 </div>
             </form>
         </main>

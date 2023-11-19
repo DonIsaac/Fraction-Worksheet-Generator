@@ -4,6 +4,7 @@ import { raise } from "../../lib"
 import { Question } from "../question"
 
 type AnswerQuestionAction = PayloadAction<{ i: number, answer: [n: string, d: string] }>
+const EMPTY_ANSWER: [n: string, d: string] = ["", ""]
 
 /**
  * State for a single question on a worksheet.
@@ -57,6 +58,16 @@ const worksheet = createSlice({
         clearQuestions: () => initialState,
 
         /**
+         * Reset answers for all questions without modifying the questions.
+         * @param state 
+         */
+        clearAnswers(state) {
+            for (const question of state.questions){
+                question.answer = EMPTY_ANSWER
+            }
+        },
+
+        /**
          * Populates the questions list with a clean set of questions.
          *
          * @throws if the worksheet has already been completed (i.e. `isDone === true`)
@@ -68,7 +79,7 @@ const worksheet = createSlice({
                 {
                     ...state,
                     questions: action.payload.map(
-                        question => ({ question, answer: ["", ""] })
+                        question => ({ question, answer: EMPTY_ANSWER })
                     ),
                 }
             ),
@@ -124,6 +135,7 @@ const worksheet = createSlice({
 
 export const {
     clearQuestions,
+    clearAnswers,
     setQuestions,
     answerQuestion,
     setDone,

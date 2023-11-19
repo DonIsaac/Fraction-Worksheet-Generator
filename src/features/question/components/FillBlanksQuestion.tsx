@@ -96,7 +96,9 @@ export const FillBlanksQuestion: FC<FillBlanksQuestionProps> = ({
             <span className="question-wrapper">
                 <QuestionBody question={question}>
                     <span className="operation">=</span>
-                    <FractionInput {...props} />
+                    {mode != "incomplete" && (
+                        <FractionInput {...props} />
+                    )}
                     {shouldDisplaySolution &&
                         <FractionDisplay frac={solution} className="solution" />}
                 </QuestionBody>

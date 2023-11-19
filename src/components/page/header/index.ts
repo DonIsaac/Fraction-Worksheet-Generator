@@ -1,1 +1,1 @@
-export * from "./Header"
+export { default as Header, type HeaderLinkName } from "./Header"

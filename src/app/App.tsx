@@ -1,5 +1,5 @@
-import React, { FC, useState } from "react"
-import { shallowEqual, useSelector } from "react-redux"
+import React, { FC, useCallback, useState } from "react"
+import { shallowEqual, useDispatch, useSelector } from "react-redux"
 import Debug from "debug"
 
 import {
@@ -18,12 +18,14 @@ import logo from "./logo.svg"
 import "./App.scss"
 import { ErrorBoundary } from "../components/boundary/ErrorBoundary"
 import { saveQuestionConfigStore } from "../features/worksheet/question-config.store"
+import { setDone, clearAnswers, clearQuestions } from "src/features/worksheet"
 
 // TODO: make this configurable
 const NUM_QUESTIONS = 24
 const debug = Debug("frac:view:App")
 
 const App: FC = () => {
+    const dispatch = useDispatch()
     const [modalVisible, setModalVisible] = useState(false)
     const [questionsGenerated, setQuestionsGenerated] = useState(false)
     const [oldQuestionConfig, setOldQuestionConfig] = useState<RootState["questionConfig"] | undefined>()
@@ -31,6 +33,7 @@ const App: FC = () => {
         state => state.questionConfig,
         shallowEqual
     )
+    // const onFinish = useCallback(() => dispatch(setDone()), [dispatch])
     const isDone = useSelector<RootState, boolean>(
         state => state.worksheet.isDone,
         shallowEqual
@@ -62,18 +65,30 @@ const App: FC = () => {
         setModalVisible(false)
     }
 
-    const onHeaderClick = (linkName: HeaderLinkName) => {
+    const onHeaderClick = useCallback(function onHeaderClick(linkName: HeaderLinkName) {
         debug("onHeaderClick('%s') called", linkName)
 
-        if (linkName === "settings") {
-            setOldQuestionConfig(questionConfig)
-            setModalVisible(!modalVisible)
+        switch(linkName) {
+            case "settings":
+                setOldQuestionConfig(questionConfig)
+                setModalVisible(!modalVisible)
+                break
+            case "finish":
+                dispatch(setDone())
+                break
+            case "new":
+                dispatch(clearQuestions())
+                generateQuestions(24)
+                break
+            case "reset":
+                dispatch(clearAnswers())
+                break
         }
-    }
+    }, [dispatch])
 
     return (
         <>
-            <Header onClick={onHeaderClick}/>
+            <Header onClick={onHeaderClick} isDone={isDone} />
             <Modal
                 visible={modalVisible}
                 title="Settings"

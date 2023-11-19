@@ -26,7 +26,7 @@ export type InputProps<
      * Creates action that is dispatched when value is changed.
      */
     action: A
-} & Pick<React.InputHTMLAttributes<HTMLInputElement>, 'min' | 'max'>
+} & Pick<React.InputHTMLAttributes<HTMLInputElement>, "min" | "max">
 
 /**
  * A form input field that dispatches an action when its value changes.
