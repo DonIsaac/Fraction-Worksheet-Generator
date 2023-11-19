@@ -9,6 +9,7 @@
         "max-nesting-depth": 5,
         "selector-max-compound-selectors": 5,
         "selector-no-qualifying-type": [true, { "ignore": ["attribute", "id", "class"] }],
-        "string-quotes": "double"
+        "string-quotes": "double",
+        "import-notation": "string"
     }
 }

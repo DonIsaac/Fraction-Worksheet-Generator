@@ -65,7 +65,7 @@ const App: FC = () => {
         setModalVisible(false)
     }
 
-    const onHeaderClick = useCallback(function onHeaderClick(linkName: HeaderLinkName) {
+    const onHeaderClick = useCallback((linkName: HeaderLinkName) => {
         debug("onHeaderClick('%s') called", linkName)
 
         switch(linkName) {

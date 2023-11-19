@@ -62,7 +62,7 @@ const worksheet = createSlice({
          * @param state 
          */
         clearAnswers(state) {
-            for (const question of state.questions){
+            for (const question of state.questions) {
                 question.answer = EMPTY_ANSWER
             }
         },

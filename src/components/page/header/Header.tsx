@@ -1,5 +1,7 @@
 import React, { FC } from "react"
-import { BsArrowClockwise, BsCheckCircle, BsFillGearFill, BsFillPlusCircleFill } from "react-icons/bs"
+import {
+    BsArrowClockwise, BsCheckCircle, BsFillGearFill, BsFillPlusCircleFill 
+} from "react-icons/bs"
 import { Button } from "../../button"
 
 import "./Header.scss"
@@ -12,7 +14,7 @@ export interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({
     onClick,
-    isDone
+    isDone,
 }) => {
     return (
         <header>
